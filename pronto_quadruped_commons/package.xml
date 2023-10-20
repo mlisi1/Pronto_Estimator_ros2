@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package format="2">
+  <name>pronto_quadruped_commons</name>
+  <version>0.3.0</version>
+  <description>
+        pronto_quadruped_commons
+  </description>
+
+  <author email="marco.frigerio@kuleuven.be">Marco Frigerio</author>
+  <author email="michele.focchi@iit.it">Michele Focchi</author>
+  <author email="mcamurri@robots.ox.ac.uk">Marco Camurri</author>
+
+  <maintainer email="mcamurri@robots.ox.ac.uk">Marco Camurri</maintainer>
+
+  <license>LGPLv2.1</license>
+  <license>BSD</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- <test_depend>rostest</test_depend> -->
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
