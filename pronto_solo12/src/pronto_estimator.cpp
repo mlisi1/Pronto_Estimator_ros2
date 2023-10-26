@@ -1,24 +1,37 @@
-#include <rclcpp/rclcpp.hpp>
-#include "pronto_quadruped_ros/stance_estimator_ros.hpp"
-#include "pronto_quadruped_ros/leg_odometer_ros.hpp"
-#include "pronto_quadruped_ros/bias_lock_handler_ros.hpp"
-#include "pronto_quadruped_ros/legodo_handler_ros.hpp"
+#include <rclcpp/rclcpp.hpp> 
 
-#include "pronto_ros/ros_frontend.hpp"
-#include "pronto_ros/ins_ros_handler.hpp"
-#include "pronto_ros/pose_msg_ros_handler.hpp"
+#include "pronto_ros/pronto_node.hpp"
 
 #include <pinocchio/parsers/urdf.hpp>
 #include <pinocchio/algorithm/kinematics.hpp>
 
-#include <pronto_solo12/feet_contact_forces.hpp>
+#include "pronto_solo12/feet_contact_forces.hpp"
+#include "pronto_solo12/feet_jacobians.hpp"
+#include "pronto_solo12/forward_kinematics.hpp"
 
-
-using std::placeholders::_1;
 
 using namespace pronto;
-using namespace pinocchio;
 
 const std::string urdf_file = "$(find solo_robot_description)/urdf/again/solo12.urdf";
-Model robot_model;
+pinocchio::Model robot_model;
 
+int main(int argc, char *argv[])
+{
+
+    rclcpp::init(argc, argv);
+
+    pinocchio::urdf::buildModel(urdf_file, robot_model);
+    pinocchio::Data data(robot_model); 
+
+    solo::FeetJacobians feet_jacs(robot_model, data);
+    solo::ForwardKinematics fwd_kin(feet_jacs);
+    solo::Dynamics dynamics(robot_model, data);
+    solo::FeetContactForces feet_forces(feet_jacs, dynamics);
+
+    ProntoNode<sensor_msgs::msg::JointState> node(fwd_kin, feet_jacs, dynamics, feet_forces);
+
+    node.run();
+
+    return 0;
+}
+  

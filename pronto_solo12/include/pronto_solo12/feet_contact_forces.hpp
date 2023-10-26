@@ -2,8 +2,11 @@
 
 #include <pronto_quadruped_commons/feet_contact_forces.h>
 #include <pronto_quadruped_commons/leg_vector_map.h>
+#include "pronto_solo12/feet_jacobians.hpp"
+#include "pronto_solo12/dynamics.hpp"
 
 namespace pronto {
+namespace solo{
 
 class FeetContactForces : public pronto::quadruped::FeetContactForces {
 
@@ -14,12 +17,10 @@ public:
   using LegVectorMap = quadruped::LegVectorMap;
 
 public:
-    FeetContactForces() :
-        inverse_dynamics_(inertia_prop_, motion_transf_),
-        jsim_(inertia_prop_, force_transf_)
-    {
-
-    }
+    FeetContactForces(solo::FeetJacobians&  feet_jacs, solo::Dynamics& dynamics) :
+        feet_jacs_(feet_jacs),
+        dynamics_(dynamics)
+    {}
 
     inline Vector3d getFootGRF(const JointState& q,
                         const JointState& qd,
@@ -83,13 +84,12 @@ public:
 private:
 
     // Add here:
-    // inertia properties
-    // motion transform
     // force transforms
-    // inverse dynamics
-    // joint space inertia matrix (JSIM)
-    // feet jacobians
+    Dynamics dynamics_;
+    FeetJacobians feet_jacs_;
+    Eigen::Matrix3d M_leg;
+    Eigen::Vector3d c_leg;
 
 };
-
+}
 }

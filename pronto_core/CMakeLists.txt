@@ -42,6 +42,10 @@ ament_target_dependencies(
 # which is appropriate when building the dll but not consuming it.
 target_compile_definitions(pronto_core PRIVATE "PRONTO_CORE_BUILDING_LIBRARY")
 
+ament_export_include_directories(include)
+ament_export_libraries(${PROJECT_NAME})
+ament_export_dependencies("Eigen3")
+
 install(
   DIRECTORY include/
   DESTINATION include

@@ -58,6 +58,23 @@ ament_target_dependencies(
 # which is appropriate when building the dll but not consuming it.
 target_compile_definitions(pronto_quadruped_ros PRIVATE "PRONTO_QUADRUPED_ROS_BUILDING_LIBRARY")
 
+ament_export_include_directories(include)
+ament_export_libraries(${PROJECT_NAME})
+ament_export_dependencies("rclcpp"
+"pronto_utils"
+"pronto_core"
+"pronto_ros"
+"pronto_quadruped"
+"geometry_msgs"
+"sensor_msgs"
+"pronto_msgs"
+"Eigen3"
+"visualization_msgs"
+"tf2_ros"
+"tf2_geometry_msgs" 
+"nav_msgs")
+
+
 install(
   DIRECTORY include/
   DESTINATION include

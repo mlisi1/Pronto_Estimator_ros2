@@ -75,6 +75,19 @@ install(
   RUNTIME DESTINATION bin
 )
 
+ament_export_include_directories(include)
+ament_export_libraries(${PROJECT_NAME})
+ament_export_dependencies(  
+"Eigen3"
+"pronto_msgs"
+"pronto_core"
+"sensor_msgs"
+"tf2_ros"
+"geometry_msgs"
+"tf2_geometry_msgs" 
+"rclcpp"
+"nav_msgs")
+
 add_executable(${PROJECT_NAME}_node src/pronto_ros_node.cpp)
 target_include_directories(${PROJECT_NAME}_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

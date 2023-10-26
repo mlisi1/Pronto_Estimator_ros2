@@ -39,6 +39,12 @@ ament_target_dependencies(
 target_compile_definitions(${PROJECT_NAME} PRIVATE "PRONTO_QUADRUPED_BUILDING_LIBRARY")
 # set_property(TARGET ${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON) # solution 2
 
+ament_export_include_directories(include)
+ament_export_libraries(${PROJECT_NAME})
+ament_export_dependencies("pronto_quadruped_commons"
+  "pronto_utils"
+  "pronto_core")
+
 install(
   DIRECTORY include/
   DESTINATION include
