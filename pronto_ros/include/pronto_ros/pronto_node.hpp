@@ -5,6 +5,19 @@
 #include "pronto_ros/ins_ros_handler.hpp"
 #include "pronto_ros/pose_msg_ros_handler.hpp"
 #include "pronto_ros/scan_matcher_ros_handler.hpp"
+
+#include "pronto_quadruped_ros/conversions.hpp"
+#include "pronto_quadruped_ros/stance_estimator_ros.hpp"
+#include "pronto_quadruped_ros/leg_odometer_ros.hpp"
+#include "pronto_quadruped_ros/bias_lock_handler_ros.hpp"
+#include "pronto_quadruped_ros/legodo_handler_ros.hpp"
+
+#include "pronto_solo12/feet_jacobians.hpp"
+#include "pronto_solo12/feet_contact_forces.hpp"
+#include "pronto_solo12/dynamics.hpp"
+#include "pronto_solo12/forward_kinematics.hpp"
+
+
 // TODO: add visual odometry
 namespace pronto {
 
@@ -26,16 +39,24 @@ public:
     using SensorSet = std::set<std::string>;
 
     ProntoNode(
-        SensingModule<JointStateMsgT>& legodo_handler,
-        DualSensingModule<sensor_msgs::msg::Imu, JointStateMsgT>& imu_bias_lock
-    );
+        solo::ForwardKinematics& fwd_kin,
+        solo::FeetJacobians& feet_jacs,
+        solo::Dynamics& dynamics,
+        solo::FeetContactForces& feet_forces);
 
     virtual void init(bool subscribe = true);
     virtual void run();
 
 protected:
-    SensingModule<JointStateMsgT>& legodo_handler_;
-    DualSensingModule<sensor_msgs::msg::Imu, JointStateMsgT>& bias_lock_handler_;
+
+    // quadruped added here
+    quadruped::StanceEstimatorROS stance_estimator;
+    quadruped::LegOdometerROS leg_odometer;
+    quadruped::ImuBiasLockROS imu_bias_lock;
+
+
+    SensingModule<JointStateMsgT> legodo_handler_;
+    DualSensingModule<sensor_msgs::msg::Imu, JointStateMsgT> bias_lock_handler_;
     ROSFrontEnd front_end;
     SensorList init_sensors;
     SensorList active_sensors;
@@ -48,21 +69,29 @@ protected:
 
 template <class JointStateMsgT, class ContactStateMsgT> 
 ProntoNode<JointStateMsgT, ContactStateMsgT>::ProntoNode(
-    SensingModule<JointStateMsgT>& legodo_handler,
-    DualSensingModule<sensor_msgs::msg::Imu, JointStateMsgT>& imu_bias_lock
-) : Node("pronto_node", options), legodo_handler_(legodo_handler), bias_lock_handler_(imu_bias_lock), front_end(nh) {
+    solo::ForwardKinematics& fwd_kin,
+    solo::FeetJacobians& feet_jacs,
+    solo::Dynamics& dynamics,
+    solo::FeetContactForces& feet_forces
+) : Node("pronto_node"), 
+    stance_estimator(this->shared_from_this(), feet_forces),
+    leg_odometer(this->shared_from_this(), feet_jacs, fwd_kin), 
+    imu_bias_lock(this->shared_from_this()), legodo_handler_(this->shared_from_this(), stance_estimator, leg_odometer),
+    bias_lock_handler_(imu_bias_lock), front_end(this->shared_from_this()) {
+
+
     // get the list of active and init sensors from the param server
     if (!BOOST_TT_HAS_NEGATE_HPP_INCLUDED->get_parameter("init_sensors", init_sensors)) {
-        RCLCPP_ERROR(nh->get_logger(), "Not able to get init_sensors param");
+        RCLCPP_ERROR(this->get_logger(), "Not able to get init_sensors param");
     }
 
-    if (!nh->get_parameter("active_sensors", active_sensors)) {
-        RCLCPP_ERROR(nh->get_logger(), "Not able to get active_sensors param");
+    if (!this->get_parameter("active_sensors", active_sensors)) {
+        RCLCPP_ERROR(this->get_logger(), "Not able to get active_sensors param");
     }
 
     bool publish_pose = false;
-    if (!nh->get_parameter("publish_pose", publish_pose)) {
-        RCLCPP_WARN(nh->get_logger(), "Not able to get publish_pose param. Not publishing pose.");
+    if (!this->get_parameter("publish_pose", publish_pose)) {
+        RCLCPP_WARN(this->get_logger(), "Not able to get publish_pose param. Not publishing pose.");
     }
 }
 
@@ -131,7 +160,7 @@ void ProntoNode<JointStateMsgT, ContactStateMsgT>::init(bool subscribe) {
                 // if secondary topic is provided, and the second message is not dummy,
                 // attempt to cast the leg odometry handler as a DualHandler instead of SingleHandler
                 if(!is_dummy_msg<ContactStateMsgT>::value && // non sono sicuro sia corretto
-                   this->getParam(*it + "/secondary_topic", secondary_topic))
+                   this->get_parameter(*it + "/secondary_topic", secondary_topic))
                 {
                     try{
                         RCLCPP_INFO(this->get_logger(),"Subscribing to secondary topic for legodo: " << secondary_topic);
@@ -150,7 +179,7 @@ void ProntoNode<JointStateMsgT, ContactStateMsgT>::init(bool subscribe) {
                 }
             }
             if(init){
-                front_end.addInitModule(legodo_handler, *it, topic, subscribe);
+                front_end.addInitModule(legodo_handler_, *it, topic, subscribe);
             }
         }
         if(it->compare("pose_meas") == 0){
@@ -165,8 +194,8 @@ void ProntoNode<JointStateMsgT, ContactStateMsgT>::init(bool subscribe) {
 
         if(it->compare("bias_lock") == 0){
           if(!this->get_parameter(*it + "/secondary_topic", secondary_topic)){
-              ROS_WARN_STREAM("Not adding sensor \"" << *it << "\".");
-              ROS_WARN_STREAM ("Param \"secondary_topic\" not available.");
+              RCLCPP_WARN_STREAM(this->get_logger(),"Not adding sensor \"" << *it << "\".");
+              RCLCPP_WARN_STREAM(this->get_logger(),"Param \"secondary_topic\" not available.");
               continue;
           }
           if(active){
@@ -175,29 +204,29 @@ void ProntoNode<JointStateMsgT, ContactStateMsgT>::init(bool subscribe) {
           }
         }
 
-        if(it->compare("scan_matcher") == 0 ){
-          bool use_relative_pose = true;
-          this->get_parameter(*it + "/relative_pose", use_relative_pose);
-          RCLCPP_WARN_STREAM(this->get_logger(),"Scan matcher will use " << (use_relative_pose ? "relative " : "absolute ") << "pose");
+        // if(it->compare("scan_matcher") == 0 ){
+        //   bool use_relative_pose = true;
+        //   this->get_parameter(*it + "/relative_pose", use_relative_pose);
+        //   RCLCPP_WARN_STREAM(this->get_logger(),"Scan matcher will use " << (use_relative_pose ? "relative " : "absolute ") << "pose");
 
-          if(use_relative_pose){
-            sm_handler_ = std::make_shared<LidarOdometryHandlerROS>(this->share_from_this());
-            if(active){
-                front_end.addSensingModule(*sm_handler_, *it, roll_forward, publish_head, topic, subscribe);
-            }
-            if(init){
-                front_end.addInitModule(*sm_handler_, *it, topic, subscribe);
-            }
-          } else {
-            sm2_handler_ = std::make_shared<ScanMatcherHandler>(this->share_from_this());
-            if(active){
-                front_end.addSensingModule(*sm2_handler_, *it, roll_forward, publish_head, topic, subscribe);
-            }
-            if(init){
-                front_end.addInitModule(*sm2_handler_, *it, topic, subscribe);
-            }
-          }
-        }
+        //   if(use_relative_pose){
+        //     sm_handler_ = std::make_shared<LidarOdometryHandlerROS>(this->shared_from_this());
+        //     if(active){
+        //         front_end.addSensingModule(*sm_handler_, *it, roll_forward, publish_head, topic, subscribe);
+        //     }
+        //     if(init){
+        //         front_end.addInitModule(*sm_handler_, *it, topic, subscribe);
+        //     }
+        //   } else {
+        //     sm2_handler_ = std::make_shared<ScanMatcherHandler>(this->shared_from_this());
+        //     if(active){
+        //         front_end.addSensingModule(*sm2_handler_, *it, roll_forward, publish_head, topic, subscribe);
+        //     }
+        //     if(init){
+        //         front_end.addInitModule(*sm2_handler_, *it, topic, subscribe);
+        //     }
+        //   }
+        // }
 
         // TODO: add vicon and fovis
     }

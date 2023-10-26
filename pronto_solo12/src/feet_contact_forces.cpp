@@ -6,6 +6,8 @@
 using namespace iit;  //rbd library
 
 namespace pronto {
+namespace solo{
+    
 bool FeetContactForces::getFootGRF(const JointState &q,
                                       const JointState &qd,
                                       const JointState &tau,
@@ -39,33 +41,20 @@ bool FeetContactForces::getFootGRF(const JointState &q,
     rbd::ForceVector h_base;
     JointState  h_joints;
 
-    // Update the Joint Space Inertia Matrix with latest encoder values
-    jsim_(q);
-
-
-    // If we set all accelerations to zero, we basically compute the h_base and
-    // h_joints components of the dynamics equation
-    inverse_dynamics_.id_fully_actuated(h_base,
-                                        h_joints,
-                                        gravity_base,
-                                        base_twist,
-                                        base_acceleration,
-                                        q,
-                                        qd,
-                                        qdd);
-
+    // From now on we use pinocchio
+    M_leg = dynamics_.getInertiaMatrix(q, leg);
+    c_leg = dynamics_.getNonLinear(q, qd, leg);
+    
     // 3 joints of the LF leg, on a 3x1 vector;
     Eigen::Vector3d tau_leg = quadruped::getLegJointState(LegID(leg), tau);
-    Eigen::Vector3d h_leg = quadruped::getLegJointState(LegID(leg), h_joints);
-    Eigen::Matrix3d M_leg = jsim_.getFixedBaseBlock().block<3, 3>(leg * 3, leg * 3);
-    Eigen::Matrix<double, 6, 3> F_leg = jsim_.getF().block<6, 3>(0, leg * 3);
     Eigen::Vector3d qdd_leg = qdd.block<3, 1>(leg * 3, 0);
 
-    //N.B the terms - F_leg.transpose() * base_acceleration - M_leg * qdd_leg are already incorporated in h_joints
+    // TODO: check if this computation has errors
 
     foot_grf = -(foot_jacobian.transpose()).inverse() *
-                (tau_leg - h_leg  );
+                (tau_leg - M_leg * qdd_leg - c_leg);
 
     return foot_grf.allFinite();
 }
+}  // namespace solo
 }  // namespace pronto

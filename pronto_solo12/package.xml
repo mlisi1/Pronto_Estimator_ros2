@@ -13,6 +13,8 @@
   <depend>pronto_quadruped_ros</depend>
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
+  <depend>pinocchio</depend>
+  <depend>nav_msgs</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
