@@ -26,8 +26,8 @@
 #include <rclcpp/rclcpp.hpp>
 #include <pronto_core/sensing_module.hpp>
 
-#include <pronto_quadruped/StanceEstimatorBase.hpp>
-#include <pronto_quadruped/LegOdometerBase.hpp>
+#include <pronto_quadruped_ros/stance_estimator_ros.hpp>
+#include <pronto_quadruped_ros/leg_odometer_ros.hpp>
 #include <pronto_quadruped/DataLogger.hpp>
 
 #include "pronto_msgs/msg/joint_state_with_acceleration.hpp"
@@ -76,13 +76,13 @@ public:
 
 public:
     LegodoHandlerBase(rclcpp::Node::SharedPtr nh,
-                      StanceEstimatorBase& fcf,
-                      LegOdometerBase& fj);
+                      StanceEstimatorROS& fcf,
+                      LegOdometerROS& fj);
     virtual ~LegodoHandlerBase() = default;
 
 protected:
-    StanceEstimatorBase& stance_estimator_;
-    LegOdometerBase& leg_odometer_;
+    StanceEstimatorROS& stance_estimator_;
+    LegOdometerROS& leg_odometer_;
 
     std::string base_link_name_;           ///< Name of the base_link
     std::vector<std::string> foot_names_;  ///< Name of the feet frames (in LF, RF, LH, RH order)
@@ -136,9 +136,11 @@ protected:
 
     pronto_msgs::msg::VelocityWithSigmaBounds vel_sigma_bound_msg_;
 
-protected:
-    virtual Update* computeVelocity(rclcpp::Node::SharedPtr nh);
+    virtual Update* computeVelocity();
     virtual void getPreviousState (const StateEstimator *est);
+
+private:
+    rclcpp::Node::SharedPtr nh_;
 };
 
 class LegodoHandlerROS : public pronto::SensingModule<sensor_msgs::msg::JointState>,
@@ -146,20 +148,22 @@ class LegodoHandlerROS : public pronto::SensingModule<sensor_msgs::msg::JointSta
 {
 public:
     LegodoHandlerROS(rclcpp::Node::SharedPtr nh,
-                     StanceEstimatorBase &stance_est,
-                     LegOdometerBase &legodo);
+                     StanceEstimatorROS &stance_est,
+                     LegOdometerROS &legodo);
     virtual ~LegodoHandlerROS() = default;
 
-    Update* processMessage( rclcpp::Node::SharedPtr nh,
-                            const sensor_msgs::msg::JointState msg,
-                            StateEstimator *est) /*override*/;
+    Update* processMessage(const sensor_msgs::msg::JointState *msg, 
+                            StateEstimator *est) override;
 
-    bool processMessageInit(const sensor_msgs::msg::JointState::SharedPtr msg,
+    bool processMessageInit(const sensor_msgs::msg::JointState *msg,
                             const std::map<std::string, bool> &sensor_initialized,
                             const RBIS &default_state,
                             const RBIM &default_cov,
                             RBIS &init_state,
-                            RBIM &init_cov) /*override*/;
+                            RBIM &init_cov) override;
+
+private:
+    rclcpp::Node::SharedPtr nh_;
 };
 
 class LegodoHandlerWithAccelerationROS : public pronto::SensingModule<pronto_msgs::msg::JointStateWithAcceleration>,
@@ -167,20 +171,27 @@ class LegodoHandlerWithAccelerationROS : public pronto::SensingModule<pronto_msg
 {
 public:
     LegodoHandlerWithAccelerationROS(rclcpp::Node::SharedPtr nh,
-                                       StanceEstimatorBase &stance_est,
-                                       LegOdometerBase &legodo) : LegodoHandlerBase(nh, stance_est, legodo) {}
+                                       StanceEstimatorROS &stance_est,
+                                       LegOdometerROS &legodo) : 
+    nh_(nh),
+    LegodoHandlerBase(nh, stance_est, legodo) 
+    {
+    }
+
     virtual ~LegodoHandlerWithAccelerationROS() = default;
+    
+    Update* processMessage(const pronto_msgs::msg::JointStateWithAcceleration *msg, 
+                            StateEstimator *est) override;
 
-    Update* processMessage(rclcpp::Node::SharedPtr nh,
-                            pronto_msgs::msg::JointStateWithAcceleration msg, 
-                            StateEstimator *est) /*override*/;
-
-    bool processMessageInit(const pronto_msgs::msg::JointStateWithAcceleration::SharedPtr msg,
+    bool processMessageInit(const pronto_msgs::msg::JointStateWithAcceleration *msg,
                             const std::map<std::string, bool>& sensor_initialized,
                             const RBIS& default_state,
                             const RBIM& default_cov,
                             RBIS& init_state,
-                            RBIM& init_cov) /*override*/ { return true; }
+                            RBIM& init_cov) override { return true; }
+
+private:
+    rclcpp::Node::SharedPtr nh_;
 };
 
 class ForceSensorLegodoHandlerROS : public LegodoHandlerBase,
@@ -188,23 +199,26 @@ class ForceSensorLegodoHandlerROS : public LegodoHandlerBase,
                                                                      pronto_msgs::msg::QuadrupedForceTorqueSensors>
 {
 public:
-  ForceSensorLegodoHandlerROS(rclcpp::Node::SharedPtr nh,
-                              StanceEstimatorBase& stance_est,
-                              LegOdometerBase& legodo);
-  virtual ~ForceSensorLegodoHandlerROS() = default;
+    ForceSensorLegodoHandlerROS(rclcpp::Node::SharedPtr nh,
+                                StanceEstimatorROS& stance_est,
+                                LegOdometerROS& legodo);
+    virtual ~ForceSensorLegodoHandlerROS() = default;
 
-  Update* processMessage(  rclcpp::Node::SharedPtr nh, 
-                                                        const sensor_msgs::msg::JointState msg, 
-                                                        StateEstimator *est) /*override*/;
+        
+    Update* processMessage(const sensor_msgs::msg::JointState *msg, 
+                            StateEstimator *est) override;
 
-  bool processMessageInit(const sensor_msgs::msg::JointState::SharedPtr msg,
-                          const std::map<std::string, bool> &sensor_initialized,
-                          const RBIS &default_state,
-                          const RBIM &default_cov,
-                          RBIS &init_state,
-                          RBIM &init_cov) /*override*/;
+    bool processMessageInit(const sensor_msgs::msg::JointState *msg,
+                            const std::map<std::string, bool> &sensor_initialized,
+                            const RBIS &default_state,
+                            const RBIM &default_cov,
+                            RBIS &init_state,
+                            RBIM &init_cov) override;
 
-  void processSecondaryMessage(const pronto_msgs::msg::QuadrupedForceTorqueSensors msg) /*override*/;
+    void processSecondaryMessage(const pronto_msgs::msg::QuadrupedForceTorqueSensors& msg) override;
+
+private:
+    rclcpp::Node::SharedPtr nh_;
 };
 
 class FootSensorLegodoHandlerROS : public LegodoHandlerBase,
@@ -212,21 +226,25 @@ class FootSensorLegodoHandlerROS : public LegodoHandlerBase,
                                                                     pronto_msgs::msg::QuadrupedStance>
 {
 public:
-  FootSensorLegodoHandlerROS(rclcpp::Node::SharedPtr nh,
-                             StanceEstimatorBase& stance_est,
-                             LegOdometerBase& legodo);
-  virtual ~FootSensorLegodoHandlerROS() = default;
+    FootSensorLegodoHandlerROS(rclcpp::Node::SharedPtr nh,
+                                StanceEstimatorROS& stance_est,
+                                LegOdometerROS& legodo);
+    virtual ~FootSensorLegodoHandlerROS() = default;
 
-  Update * processMessage(rclcpp::Node::SharedPtr nh, const sensor_msgs::msg::JointState msg, StateEstimator *est) /*override*/;
+    Update* processMessage(const sensor_msgs::msg::JointState *msg, 
+                                StateEstimator *est) override;
 
-  bool processMessageInit(const sensor_msgs::msg::JointState::SharedPtr msg,
-                          const std::map<std::string, bool> &sensor_initialized,
-                          const RBIS &default_state,
-                          const RBIM &default_cov,
-                          RBIS &init_state,
-                          RBIM &init_cov) /*override*/;
+    bool processMessageInit(const sensor_msgs::msg::JointState *msg,
+                            const std::map<std::string, bool> &sensor_initialized,
+                            const RBIS &default_state,
+                            const RBIM &default_cov,
+                            RBIS &init_state,
+                            RBIM &init_cov) override;
 
-  void processSecondaryMessage(const pronto_msgs::msg::QuadrupedStance msg) /*override*/;
+    void processSecondaryMessage(const pronto_msgs::msg::QuadrupedStance& msg) override;
+
+private:
+    rclcpp::Node::SharedPtr nh_;
 };
 
 }  // namespace quadruped

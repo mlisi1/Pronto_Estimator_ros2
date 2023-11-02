@@ -1,8 +1,9 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.12)
 project(pronto_solo12)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
+  # add_compile_options(-Wall)
 endif()
 
 # find dependencies
@@ -17,6 +18,7 @@ find_package(nav_msgs REQUIRED)
 add_library(${PROJECT_NAME}  SHARED src/feet_jacobians.cpp
                                     src/forward_kinematics.cpp
                                     src/dynamics.cpp
+                                    src/feet_contact_forces.cpp
 )
 
 target_compile_features(${PROJECT_NAME} PUBLIC c_std_99 cxx_std_17)
@@ -68,6 +70,11 @@ target_link_libraries(pronto_estimator_node ${PROJECT_NAME})
 
 install(TARGETS pronto_estimator_node
   DESTINATION lib/${PROJECT_NAME})
+
+install(
+  DIRECTORY launch config
+  DESTINATION share/${PROJECT_NAME}
+)
 
 ament_target_dependencies(
   pronto_estimator_node

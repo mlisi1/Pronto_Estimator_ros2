@@ -34,14 +34,14 @@ PoseHandlerROS::PoseHandlerROS(rclcpp::Node::SharedPtr nh) : nh_(nh) {
     pose_module_ = std::make_unique<PoseMeasModule>(cfg);
 }
 
-RBISUpdateInterface* PoseHandlerROS::processMessage(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg,
+RBISUpdateInterface* PoseHandlerROS::processMessage(const geometry_msgs::msg::PoseWithCovarianceStamped *msg,
                                     StateEstimator *est)
 {
     poseMsgFromROS(*msg, pose_meas_);
     return pose_module_->processMessage(&pose_meas_, est);
 }
 
-bool PoseHandlerROS::processMessageInit(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg,
+bool PoseHandlerROS::processMessageInit(const geometry_msgs::msg::PoseWithCovarianceStamped *msg,
                         const std::map<std::string, bool> &sensor_initialized,
                         const RBIS &default_state,
                         const RBIM &default_cov,

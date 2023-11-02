@@ -23,6 +23,8 @@ public:
             model_(model), data_(data)
     {}
 
+    virtual ~FeetJacobians() override {};
+
     void updateConfiguration(const JointState& q);
     
     pinocchio::Data::Matrix6x ComputeJacobian(const JointState& q, const LegID& leg);

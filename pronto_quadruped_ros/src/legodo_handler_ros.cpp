@@ -36,31 +36,32 @@ namespace pronto {
 namespace quadruped {
 
 LegodoHandlerBase::LegodoHandlerBase(rclcpp::Node::SharedPtr nh,
-                                     StanceEstimatorBase& stance_est,
-                                     LegOdometerBase& legodo) :
+                                     StanceEstimatorROS& stance_est,
+                                     LegOdometerROS& legodo) :
+    nh_(nh),
     stance_estimator_(stance_est),
     leg_odometer_(legodo)
 {
     const std::string prefix = "legodo/";
 
-    int downsample_factor_ = nh->get_parameter_or<int>(prefix + "downsample_factor", 1);
-    int utime_offset_ = nh->get_parameter_or<int>(prefix + "utime_offset", 0);
-    RCLCPP_INFO_STREAM(nh->get_logger(), "[LegodoHandler] downsample_factor = " << downsample_factor_ << "\n" <<
+    int downsample_factor_ = nh_->get_parameter_or<int>(prefix + "downsample_factor", 1);
+    int utime_offset_ = nh_->get_parameter_or<int>(prefix + "utime_offset", 0);
+    RCLCPP_INFO_STREAM(nh_->get_logger(), "[LegodoHandler] downsample_factor = " << downsample_factor_ << "\n" <<
                     "                utime_offset =      " << utime_offset_);
 
     double r_vx;
     double r_vy;
     double r_vz;
-    if (!nh->get_parameter(prefix + "r_vx", r_vx)) {
-        RCLCPP_WARN_STREAM(nh->get_logger(), "Could not retrieve r_vx from parameter server. Setting to default.");
+    if (!nh_->get_parameter(prefix + "r_vx", r_vx)) {
+        RCLCPP_WARN_STREAM(nh_->get_logger(), "Could not retrieve r_vx from parameter server. Setting to default.");
         r_vx = 0.1;
     }
-    if (!nh->get_parameter(prefix + "r_vy", r_vy)) {
-        RCLCPP_WARN_STREAM(nh->get_logger(), "Could not retrieve r_vy from parameter server. Setting to default.");
+    if (!nh_->get_parameter(prefix + "r_vy", r_vy)) {
+        RCLCPP_WARN_STREAM(nh_->get_logger(), "Could not retrieve r_vy from parameter server. Setting to default.");
         r_vy = 0.1;
     }
-    if (!nh->get_parameter(prefix + "r_vz", r_vz)) {
-        RCLCPP_WARN_STREAM(nh->get_logger(), "Could not retrieve r_vz from parameter server. Setting to default.");
+    if (!nh_->get_parameter(prefix + "r_vz", r_vz)) {
+        RCLCPP_WARN_STREAM(nh_->get_logger(), "Could not retrieve r_vz from parameter server. Setting to default.");
         r_vz = 0.1;
     }
 
@@ -68,29 +69,29 @@ LegodoHandlerBase::LegodoHandlerBase(rclcpp::Node::SharedPtr nh,
     leg_odometer_.setInitVelocityStd(r_legodo_init);
 
     // Get link name settings for debug topic publishing
-    base_link_name_ = nh->get_parameter_or<std::string>("base_link_name", "base");
+    base_link_name_ = nh_->get_parameter_or<std::string>("base_link_name", "base");
     foot_names_.resize(4);
-    foot_names_[0] = nh->get_parameter_or<std::string>("LF_FOOT_name", "LF_FOOT");
-    foot_names_[1] = nh->get_parameter_or<std::string>("RF_FOOT_name", "RF_FOOT");
-    foot_names_[2] = nh->get_parameter_or<std::string>("LH_FOOT_name", "LH_FOOT");
-    foot_names_[3] = nh->get_parameter_or<std::string>("RH_FOOT_name", "RH_FOOT");
+    foot_names_[0] = nh_->get_parameter_or<std::string>("LF_FOOT_name", "LF_FOOT");
+    foot_names_[1] = nh_->get_parameter_or<std::string>("RF_FOOT_name", "RF_FOOT");
+    foot_names_[2] = nh_->get_parameter_or<std::string>("LH_FOOT_name", "LH_FOOT");
+    foot_names_[3] = nh_->get_parameter_or<std::string>("RH_FOOT_name", "RH_FOOT");
 
     // Determine whether to publish debug topics
-    nh->get_parameter_or(prefix + "publish_debug_topics", debug_, true);
+    nh_->get_parameter_or(prefix + "publish_debug_topics", debug_, true);
     const std::vector<std::string> leg_names = {"lf", "rf", "lh", "rh"};
     if (debug_) {
         for (int i = 0; i < 4; i++) {
-            vel_debug_.push_back(nh->create_publisher<geometry_msgs::msg::TwistStamped>(leg_names[i] + "_veldebug", 10));
-            grf_debug_.push_back(nh->create_publisher<geometry_msgs::msg::WrenchStamped>(leg_names[i] + "_grf", 10));
-            grf_in_foot_frame_debug_.push_back(nh->create_publisher<geometry_msgs::msg::WrenchStamped>(leg_names[i] + "_grf_in_foot", 10));
+            vel_debug_.push_back(nh_->create_publisher<geometry_msgs::msg::TwistStamped>(leg_names[i] + "_veldebug", 10));
+            grf_debug_.push_back(nh_->create_publisher<geometry_msgs::msg::WrenchStamped>(leg_names[i] + "_grf", 10));
+            grf_in_foot_frame_debug_.push_back(nh_->create_publisher<geometry_msgs::msg::WrenchStamped>(leg_names[i] + "_grf_in_foot", 10));
         }
 
-        vel_raw_ = nh->create_publisher<geometry_msgs::msg::TwistStamped>("vel_raw", 10);
-        stance_pub_ = nh->create_publisher<pronto_msgs::msg::QuadrupedStance>("stance", 10);
-        prior_accel_debug_ = nh->create_publisher<geometry_msgs::msg::AccelStamped>("prior_accel", 10);
-        prior_joint_accel_debug_ = nh->create_publisher<sensor_msgs::msg::JointState>("prior_joint_accel", 10);
-        prior_velocity_debug_ = nh->create_publisher<geometry_msgs::msg::TwistStamped>("prior_vel", 10);
-        vel_sigma_bounds_pub_ = nh->create_publisher<pronto_msgs::msg::VelocityWithSigmaBounds>("vel_sigma_bounds", 10);
+        vel_raw_ = nh_->create_publisher<geometry_msgs::msg::TwistStamped>("vel_raw", 10);
+        stance_pub_ = nh_->create_publisher<pronto_msgs::msg::QuadrupedStance>("stance", 10);
+        prior_accel_debug_ = nh_->create_publisher<geometry_msgs::msg::AccelStamped>("prior_accel", 10);
+        prior_joint_accel_debug_ = nh_->create_publisher<sensor_msgs::msg::JointState>("prior_joint_accel", 10);
+        prior_velocity_debug_ = nh_->create_publisher<geometry_msgs::msg::TwistStamped>("prior_vel", 10);
+        vel_sigma_bounds_pub_ = nh_->create_publisher<pronto_msgs::msg::VelocityWithSigmaBounds>("vel_sigma_bounds", 10);
 
         wrench_msg_.wrench.torque.x = 0;
         wrench_msg_.wrench.torque.y = 0;
@@ -98,7 +99,7 @@ LegodoHandlerBase::LegodoHandlerBase(rclcpp::Node::SharedPtr nh,
     }
 
     // Determine whether to log to file (consumes significant blocking cycles!)
-    nh->get_parameter_or(prefix + "output_log_to_file", output_log_to_file_, true);
+    nh_->get_parameter_or(prefix + "output_log_to_file", output_log_to_file_, true);
     if (output_log_to_file_) {
         dl_pose_ = std::make_unique<pronto::DataLogger>("prontopos.txt");
         dl_pose_->setStartFromZero(false);
@@ -109,7 +110,7 @@ LegodoHandlerBase::LegodoHandlerBase(rclcpp::Node::SharedPtr nh,
         dl_vel_->setStartFromZero(false);
     }
 
-    RCLCPP_INFO_STREAM(nh->get_logger(), "[LegodoHandler] Publishing debug topics:       " << std::boolalpha << debug_ << "\n" <<
+    RCLCPP_INFO_STREAM(nh_->get_logger(), "[LegodoHandler] Publishing debug topics:       " << std::boolalpha << debug_ << "\n" <<
                     "                Writing output to text files?  " << output_log_to_file_);
 }
 
@@ -143,7 +144,7 @@ void LegodoHandlerBase::getPreviousState(const StateEstimator *est)
     }
 }
 
-LegodoHandlerBase::Update *LegodoHandlerBase::computeVelocity(rclcpp::Node::SharedPtr nh)
+LegodoHandlerBase::Update *LegodoHandlerBase::computeVelocity()
 {
     if (debug_) {
         // Publish GRF
@@ -273,27 +274,27 @@ LegodoHandlerBase::Update *LegodoHandlerBase::computeVelocity(rclcpp::Node::Shar
                                                  utime_);
     } else {
         if (debug_) {
-            RCLCPP_WARN_STREAM(nh->get_logger(), "[LegodoHandlerBase::computeVelocity] Could not estimate velocity");
+            RCLCPP_WARN_STREAM(nh_->get_logger(), "[LegodoHandlerBase::computeVelocity] Could not estimate velocity");
         }
     }
     return nullptr;
 }
 LegodoHandlerROS::LegodoHandlerROS(rclcpp::Node::SharedPtr nh,
-                                   StanceEstimatorBase& stance_est,
-                                   LegOdometerBase& legodo) :
-    LegodoHandlerBase(nh, stance_est, legodo)
+                                   StanceEstimatorROS& stance_est,
+                                   LegOdometerROS& legodo) :
+    nh_(nh),
+    LegodoHandlerBase(nh_, stance_est, legodo)
 {
 }
 
-LegodoHandlerROS::Update* LegodoHandlerROS::processMessage( rclcpp::Node::SharedPtr nh,
-                                                            const sensor_msgs::msg::JointState  msg,
+LegodoHandlerROS::Update* LegodoHandlerROS::processMessage(const sensor_msgs::msg::JointState *msg,
                                                             StateEstimator *est)
 {
-    nsec_ = toNsec(msg.header.stamp); // save nsecs for later.
+    nsec_ = toNsec(msg->header.stamp); // save nsecs for later.
     utime_ = nsec_ / 1000;  // A lot of internals still assume microseconds
     // TODO: transition from microseconds to nanoseconds everywhere
-    if(!jointStateFromROS(msg, utime_, q_, qd_, qdd_, tau_)){
-      RCLCPP_WARN(nh->get_logger(), "[LegodoHandlerROS::processMessage] Could not process joint state from ROS!");
+    if(!jointStateFromROS(*msg, utime_, q_, qd_, qdd_, tau_)){
+      RCLCPP_WARN(nh_->get_logger(), "[LegodoHandlerROS::processMessage] Could not process joint state from ROS!");
       return nullptr;
     }
     getPreviousState(est);
@@ -305,10 +306,10 @@ LegodoHandlerROS::Update* LegodoHandlerROS::processMessage( rclcpp::Node::Shared
 
     stance_estimator_.getStance(stance_, stance_prob_);
 
-    return computeVelocity(nh);
+    return computeVelocity();
 }
 
-bool LegodoHandlerROS::processMessageInit(const sensor_msgs::msg::JointState::SharedPtr msg,
+bool LegodoHandlerROS::processMessageInit(const sensor_msgs::msg::JointState *msg,
                                           const std::map<std::string, bool>& sensor_initialized,
                                           const RBIS& default_state,
                                           const RBIM& default_cov,
@@ -319,15 +320,14 @@ bool LegodoHandlerROS::processMessageInit(const sensor_msgs::msg::JointState::Sh
     return true;
 }
 
-LegodoHandlerWithAccelerationROS::Update* LegodoHandlerWithAccelerationROS::processMessage( rclcpp::Node::SharedPtr nh,
-                                                                                            const pronto_msgs::msg::JointStateWithAcceleration msg,
+LegodoHandlerWithAccelerationROS::Update* LegodoHandlerWithAccelerationROS::processMessage( const pronto_msgs::msg::JointStateWithAcceleration *msg,
                                                                                             StateEstimator *est)
 {
-    nsec_ = toNsec(msg.header.stamp); // save nsecs for later.
+    nsec_ = toNsec(msg->header.stamp); // save nsecs for later.
     utime_ = 1e-3 * nsec_;  // A lot of internals still assume microseconds
     // TODO: transition from microseconds to nanoseconds everywhere
-    if(!jointStateWithAccelerationFromROS(msg, utime_, q_, qd_, qdd_, tau_)){
-      RCLCPP_WARN(nh->get_logger(),"[LegodoHandlerWithAccelerationROS::processMessage] Could not process joint state from ROS!");
+    if(!jointStateWithAccelerationFromROS(*msg, utime_, q_, qd_, qdd_, tau_)){
+      RCLCPP_WARN(nh_->get_logger(),"[LegodoHandlerWithAccelerationROS::processMessage] Could not process joint state from ROS!");
       return nullptr;
     }
     getPreviousState(est);
@@ -339,17 +339,18 @@ LegodoHandlerWithAccelerationROS::Update* LegodoHandlerWithAccelerationROS::proc
 
     stance_estimator_.getStance(stance_, stance_prob_);
 
-    return computeVelocity(nh);
+    return computeVelocity();
 }
 
 FootSensorLegodoHandlerROS::FootSensorLegodoHandlerROS(rclcpp::Node::SharedPtr nh,
-                                                       StanceEstimatorBase& stance_est,
-                                                       LegOdometerBase& legodo)
-  : LegodoHandlerBase(nh, stance_est, legodo)
+                                                       StanceEstimatorROS& stance_est,
+                                                       LegOdometerROS& legodo) :
+  nh_(nh),
+  LegodoHandlerBase(nh, stance_est, legodo)
 {
 }
 
-bool FootSensorLegodoHandlerROS::processMessageInit(const sensor_msgs::msg::JointState::SharedPtr msg,
+bool FootSensorLegodoHandlerROS::processMessageInit(const sensor_msgs::msg::JointState *msg,
                                                     const std::map<std::string, bool>& sensor_initialized,
                                                     const RBIS& default_state,
                                                     const RBIM& default_cov,
@@ -359,23 +360,22 @@ bool FootSensorLegodoHandlerROS::processMessageInit(const sensor_msgs::msg::Join
   return true;
 }
 
-LegodoHandlerBase::Update * FootSensorLegodoHandlerROS::processMessage( rclcpp::Node::SharedPtr nh,
-                                                                        const sensor_msgs::msg::JointState msg, 
+LegodoHandlerBase::Update * FootSensorLegodoHandlerROS::processMessage(const sensor_msgs::msg::JointState *msg, 
                                                                         StateEstimator *est){
-  nsec_ = toNsec(msg.header.stamp); // save nsecs for later.
+  nsec_ = toNsec(msg->header.stamp); // save nsecs for later.
   utime_ = nsec_ / 1000;  // A lot of internals still assume microseconds
   // TODO: transition from microseconds to nanoseconds everywhere
-  if(!jointStateFromROS(msg, utime_, q_, qd_, qdd_, tau_)){
-    RCLCPP_WARN(nh->get_logger(),"[FootSensorLegodoHandlerROS::processMessage] Could not process joint state from ROS!");
+  if(!jointStateFromROS(*msg, utime_, q_, qd_, qdd_, tau_)){
+    RCLCPP_WARN(nh_->get_logger(),"[FootSensorLegodoHandlerROS::processMessage] Could not process joint state from ROS!");
     return nullptr;
   }
   getPreviousState(est);
   // the data to compute the stance are processed in processSecondaryMessage()
   stance_estimator_.getStance(stance_, stance_prob_);
-  return computeVelocity(nh);
+  return computeVelocity();
 }
 
-void FootSensorLegodoHandlerROS::processSecondaryMessage(const pronto_msgs::msg::QuadrupedStance msg){
+void FootSensorLegodoHandlerROS::processSecondaryMessage(const pronto_msgs::msg::QuadrupedStance& msg){
   LegBoolMap stance;
   // Boolean: true = in contact.
   // We assume that "0.0" means not-in-contact and >=1.0 is in contact (different legs = different floats)
@@ -389,29 +389,29 @@ void FootSensorLegodoHandlerROS::processSecondaryMessage(const pronto_msgs::msg:
 }
 
 ForceSensorLegodoHandlerROS::ForceSensorLegodoHandlerROS(rclcpp::Node::SharedPtr nh,
-                                                         StanceEstimatorBase& stance_est,
-                                                         LegOdometerBase& legodo)
-  : LegodoHandlerBase(nh, stance_est, legodo)
+                                                         StanceEstimatorROS& stance_est,
+                                                         LegOdometerROS& legodo) :
+  nh_(nh),
+  LegodoHandlerBase(nh_, stance_est, legodo)
 {
 }
 
-LegodoHandlerBase::Update * ForceSensorLegodoHandlerROS::processMessage(rclcpp::Node::SharedPtr nh,
-                                                                        const sensor_msgs::msg::JointState msg, 
+LegodoHandlerBase::Update * ForceSensorLegodoHandlerROS::processMessage(const sensor_msgs::msg::JointState *msg, 
                                                                         StateEstimator *est){
-  nsec_ = toNsec(msg.header.stamp);// save nsecs for later.
+  nsec_ = toNsec(msg->header.stamp);// save nsecs for later.
   utime_ = nsec_ / 1000;  // A lot of internals still assume microseconds
   // TODO: transition from microseconds to nanoseconds everywhere
-  if(!jointStateFromROS(msg, utime_, q_, qd_, qdd_, tau_)){
-    RCLCPP_WARN(nh->get_logger(),"[ForceSensorLegodoHandlerROS::processMessage] Could not extract joint states from ROS message!");
+  if(!jointStateFromROS(*msg, utime_, q_, qd_, qdd_, tau_)){
+    RCLCPP_WARN(nh_->get_logger(),"[ForceSensorLegodoHandlerROS::processMessage] Could not extract joint states from ROS message!");
     return nullptr;
   }
   getPreviousState(est);
   // the data to compute the stance are processed in processSecondaryMessage()
   stance_estimator_.getStance(stance_, stance_prob_);
-  return computeVelocity(nh);
+  return computeVelocity();
 }
 
-bool ForceSensorLegodoHandlerROS::processMessageInit(const sensor_msgs::msg::JointState::SharedPtr  msg, 
+bool ForceSensorLegodoHandlerROS::processMessageInit(const sensor_msgs::msg::JointState *msg, 
                                                      const std::map<std::string, bool> & sensor_initialized, 
                                                      const RBIS& default_state, 
                                                      const RBIM& default_cov, 
@@ -420,7 +420,7 @@ bool ForceSensorLegodoHandlerROS::processMessageInit(const sensor_msgs::msg::Joi
   return true;
 }
 
-void ForceSensorLegodoHandlerROS::processSecondaryMessage(const pronto_msgs::msg::QuadrupedForceTorqueSensors msg){
+void ForceSensorLegodoHandlerROS::processSecondaryMessage(const pronto_msgs::msg::QuadrupedForceTorqueSensors& msg){
   LegVectorMap grf;
   grf[LF] << msg.lf.force.x, msg.lf.force.y, msg.lf.force.z;
   grf[RF] << msg.rf.force.x, msg.rf.force.y, msg.rf.force.z;
