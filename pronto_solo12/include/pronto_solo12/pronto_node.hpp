@@ -14,12 +14,13 @@
 
 #include "pronto_solo12/feet_jacobians.hpp"
 #include "pronto_solo12/feet_contact_forces.hpp"
-#include "pronto_solo12/dynamics.hpp"
+// #include "pronto_solo12/dynamics.hpp"
 #include "pronto_solo12/forward_kinematics.hpp"
 
 
 // TODO: add visual odometry
 namespace pronto {
+namespace solo{
 
 template <class MsgT>
 struct is_dummy_msg {
@@ -41,8 +42,9 @@ public:
     ProntoNode(
         solo::ForwardKinematics& fwd_kin,
         solo::FeetJacobians& feet_jacs,
-        solo::Dynamics& dynamics,
         solo::FeetContactForces& feet_forces);
+
+    virtual ~ProntoNode(){};
 
     virtual void init(bool subscribe = true);
     virtual void run();
@@ -54,7 +56,7 @@ protected:
     quadruped::LegOdometerROS leg_odometer;
     // quadruped::ImuBiasLockROS imu_bias_lock;
 
-
+    // SensingModule<JointStateMsgT>& legodo_handler_;
     quadruped::LegodoHandlerROS legodo_handler_;
     quadruped::ImuBiasLockROS bias_lock_handler_;
     ROSFrontEnd front_end;
@@ -71,17 +73,16 @@ template <class JointStateMsgT, class ContactStateMsgT>
 ProntoNode<JointStateMsgT, ContactStateMsgT>::ProntoNode(
     solo::ForwardKinematics& fwd_kin,
     solo::FeetJacobians& feet_jacs,
-    solo::Dynamics& dynamics,
     solo::FeetContactForces& feet_forces
 ) : Node("pronto_node"), 
     stance_estimator(this->shared_from_this(), feet_forces),
     leg_odometer(this->shared_from_this(), feet_jacs, fwd_kin), 
-    imu_bias_lock(this->shared_from_this()), legodo_handler_(this->shared_from_this(), stance_estimator, leg_odometer),
-    bias_lock_handler_(imu_bias_lock), front_end(this->shared_from_this()) {
+    /*imu_bias_lock(this->shared_from_this()),*/ legodo_handler_(this->shared_from_this(), stance_estimator, leg_odometer),
+    bias_lock_handler_(this->shared_from_this()), front_end(this->shared_from_this()) {
 
 
     // get the list of active and init sensors from the param server
-    if (!BOOST_TT_HAS_NEGATE_HPP_INCLUDED->get_parameter("init_sensors", init_sensors)) {
+    if (!this->get_parameter("init_sensors", init_sensors)) {
         RCLCPP_ERROR(this->get_logger(), "Not able to get init_sensors param");
     }
 
@@ -121,17 +122,17 @@ void ProntoNode<JointStateMsgT, ContactStateMsgT>::init(bool subscribe) {
     // iterate over the sensors
     for (SensorSet::iterator it = all_sensors.begin(); it != all_sensors.end(); ++it) {
         if (!this->get_parameter(*it + ".roll_forward_on_receive", roll_forward)) {
-            RCLCPP_WARN(this->get_logger(), "Not adding sensor \"%s\".", *it);
+            RCLCPP_WARN_STREAM(this->get_logger(),"Not adding sensor \"" << *it << "\".");
             RCLCPP_WARN(this->get_logger(), "Param \"roll_forward_on_receive\" not available.");
             continue;
         }
         if (!this->get_parameter(*it + ".publish_head_on_message", publish_head)) {
-            RCLCPP_WARN(this->get_logger(), "Not adding sensor \"%s\".", *it);
+            RCLCPP_WARN_STREAM(this->get_logger(),"Not adding sensor \"" << *it << "\".");
             RCLCPP_WARN(this->get_logger(), "Param \"publish_head_on_message\" not available.");
             continue;
         }
         if (!this->get_parameter(*it + ".topic", topic)) {
-            RCLCPP_WARN(this->get_logger(), "Not adding sensor \"%s\".", *it);
+            RCLCPP_WARN_STREAM(this->get_logger(),"Not adding sensor \"" << *it << "\".");
             RCLCPP_WARN(this->get_logger(), "Param \"topic\" not available.");
             continue;
         }
@@ -163,7 +164,7 @@ void ProntoNode<JointStateMsgT, ContactStateMsgT>::init(bool subscribe) {
                    this->get_parameter(*it + "/secondary_topic", secondary_topic))
                 {
                     try{
-                        RCLCPP_INFO(this->get_logger(),"Subscribing to secondary topic for legodo: " << secondary_topic);
+                        RCLCPP_INFO_STREAM(this->get_logger(),"Subscribing to secondary topic for legodo: " << secondary_topic);
                     front_end.addSecondarySensingModule(dynamic_cast<DualSensingModule<JointStateMsgT,ContactStateMsgT>&>(legodo_handler_),
                                                         *it,
                                                         secondary_topic,
@@ -239,4 +240,5 @@ void ProntoNode<JointStateMsgT, ContactStateMsgT>::run()
     rclcpp::spin(this->shared_from_this());
     rclcpp::shutdown();
 }
+}  // namespace solo
 }  // namespace pronto

@@ -10,10 +10,10 @@ class PoseHandlerROS : public SensingModule<geometry_msgs::msg::PoseWithCovarian
 public:
     PoseHandlerROS(rclcpp::Node::SharedPtr nh);
 
-    RBISUpdateInterface* processMessage(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg,
+    RBISUpdateInterface* processMessage(const geometry_msgs::msg::PoseWithCovarianceStamped *msg,
                                         StateEstimator* est);
 
-    bool processMessageInit(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg,
+    bool processMessageInit(const geometry_msgs::msg::PoseWithCovarianceStamped *msg,
                             const std::map<std::string, bool>& sensor_initialized,
                             const RBIS& default_state,
                             const RBIM& default_cov,

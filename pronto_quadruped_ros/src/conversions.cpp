@@ -4,7 +4,7 @@
 namespace pronto {
 namespace quadruped {
 
-bool jointStateFromROS(const sensor_msgs::msg::JointState msg,
+bool jointStateFromROS(const sensor_msgs::msg::JointState& msg,
                        uint64_t& utime,
                        JointState& q,
                        JointState& qd,

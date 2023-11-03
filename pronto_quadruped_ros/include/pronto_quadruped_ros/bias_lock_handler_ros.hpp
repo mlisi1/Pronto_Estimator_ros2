@@ -18,7 +18,7 @@
 #include "tf2_ros/buffer.h"
 #include "tf2_ros/transform_listener.h"
 #include "tf2_ros/transform_broadcaster.h"
-// #include "tf2_eigen/tf2_eigen.h"
+#include "tf2_eigen/tf2_eigen.hpp"
 
 namespace pronto {
 namespace quadruped {
@@ -81,7 +81,7 @@ ImuBiasLockBaseROS<JointStateT>::ImuBiasLockBaseROS(rclcpp::Node::SharedPtr nh) 
         try {
             // lookupTransform API is : target_frame, source_frame
             geometry_msgs::msg::TransformStamped temp_transform = tfBuffer.lookupTransform(base_frame, imu_frame, tf2::TimePointZero);
-            tf2::fromMsg(temp_transform.transform, ins_to_body);
+            ins_to_body = tf2::transformToEigen(temp_transform.transform);
             RCLCPP_INFO_STREAM(nh_->get_logger(), "IMU (" << imu_frame << ") to base (" << base_frame << ") transform: translation=(" << ins_to_body.translation().transpose() << "), rotation=(" << ins_to_body.rotation() << ")");
             break;
         } catch (const tf2::TransformException& ex) {
