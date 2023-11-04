@@ -1,0 +1,19 @@
+---
+/pronto_ros2:
+  pronto_ros2_node:
+    ros__parameters:
+      pose_topic : "pose"
+      pose_frame_id : "odom"
+      twist_topic : "twist"
+      twist_frame_id : "base"
+      filter_state_topic : "filter_state"
+      publish_filter_state : false
+      publish_pose : true
+      publish_tf : true
+      tf_child_frame_id : "base_pronto"
+      republish_sensors : false
+      init_sensors : [ins, pose_meas] 
+      active_sensors : [ins, legodo, bias_lock, fovis]
+      utime_history_span : 60000000.0
+
+...
