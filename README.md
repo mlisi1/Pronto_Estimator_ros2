@@ -3,7 +3,7 @@ ROS2 Pronto Floating Base System estimator implementation is a library
 
 ## ROS1 Pronto Code Desription
 ### Code UML
-![Alt_Text](/doc/PRONTO_ROS_UML.png)
+
 
 ### Class and methods
 <ol>
