@@ -22,11 +22,7 @@ add_library(pronto_core SHARED  src/rbis.cpp
                                 src/update_history.cpp
                                 src/indexed_meas_module.cpp
                                 src/init_message_module.cpp
-                                src/pose_meas_module.cpp
-                                # src/visual_odometry_module.cpp
-                                # src/lidar_odometry_module.cpp
-                                # src/vicon_module.cpp
-                                # src/gps_module.cpp
+                                src/pose_meas_module.cpp 
 )
 
 target_compile_features(pronto_core PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17

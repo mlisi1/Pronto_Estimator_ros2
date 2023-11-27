@@ -22,7 +22,7 @@ find_package(rclcpp REQUIRED)
 find_package(nav_msgs REQUIRED)
 
 add_library(pronto_ros  SHARED  src/ins_ros_handler.cpp
-                                src/index_meas_ros_handler.cpp
+                                # src/index_meas_ros_handler.cpp
                                 src/init_message_ros_handler.cpp
                                 src/scan_matcher_ros_handler.cpp
                                 src/ros_frontend.cpp
