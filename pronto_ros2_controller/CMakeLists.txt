@@ -16,7 +16,12 @@ find_package(Eigen3 REQUIRED)
 find_package(controller_interface REQUIRED)
 find_package(pronto_core REQUIRED)
 find_package(pronto_quadruped REQUIRED)
-
+find_package(sensor_msgs REQUIRED)
+find_package(tf2)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_eigen REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
 add_library(
   ${PROJECT_NAME}
@@ -42,6 +47,12 @@ ament_target_dependencies(${PROJECT_NAME}
   pronto_core
   Eigen3
   pinocchio
+  tf2
+  tf2_ros
+  tf2_eigen
+  tf2_geometry_msgs
+  geometry_msgs
+  sensor_msgs
 )
 
 install(
@@ -79,6 +90,12 @@ ament_export_dependencies(
   pronto_core
   Eigen3
   pinocchio
+  tf2
+  tf2_ros
+  tf2_eigen
+  tf2_geometry_msgs
+  geometry_msgs
+  sensor_msgs
 )
 ament_export_include_directories(
   include
