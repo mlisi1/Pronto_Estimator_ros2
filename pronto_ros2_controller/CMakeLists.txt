@@ -27,6 +27,7 @@ add_library(
   ${PROJECT_NAME}
   SHARED
   src/pronto_controller.cpp
+  src/proprioceptive_sensor_manager.cpp
   
 )
 
