@@ -15,6 +15,7 @@ find_package(pinocchio REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(controller_interface REQUIRED)
 find_package(pronto_core REQUIRED)
+find_package(pronto_solo12 REQUIRED)
 find_package(pronto_quadruped REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(tf2)
@@ -22,14 +23,21 @@ find_package(tf2_ros REQUIRED)
 find_package(tf2_eigen REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(urdf REQUIRED)
+find_package(pronto_solo12 REQUIRED)
+
 
 add_library(
   ${PROJECT_NAME}
   SHARED
   src/pronto_controller.cpp
   src/proprioceptive_sensor_manager.cpp
+  src/quad_model_parser.cpp
+  # src/legodom_manager.cpp
   
 )
+
+add_executable(test_node src/test_node.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
 
@@ -54,7 +62,17 @@ ament_target_dependencies(${PROJECT_NAME}
   tf2_geometry_msgs
   geometry_msgs
   sensor_msgs
+  pronto_solo12
+  urdf
+  pronto_solo12
 )
+
+# ament_target_dependencies(
+#   test_node
+#   rclcpp
+#   urdf
+#   ${PROJECT_NAME}
+# )
 
 install(
   TARGETS
@@ -67,8 +85,24 @@ install(
 
 pluginlib_export_plugin_description_file(controller_interface pronto_controller.xml)
 
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
+  find_package(ament_lint_auto REQUIRED)
+  find_package(ament_cmake_gtest REQUIRED)
+  # find_package(urdf REQUIRED)
+  # find_package(rclcpp REQUIRED)
+  # ament_add_gtest(${PROJECT_NAME}_test test/model_parser_test.cpp)
+  # target_include_directories(${PROJECT_NAME}_test PUBLIC
+  #     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  #     $<INSTALL_INTERFACE:include>
+  #   )
+
+  #   ament_target_dependencies(${PROJECT_NAME}_test
+  #   urdf
+  #   rclcpp
+  # )
+  # target_link_libraries(${PROJECT_NAME}_test ${PROJECT_NAME})
   # the following line skips the linter which checks for copyrights
   # comment the line when a copyright and license is added to all source files
   set(ament_cmake_copyright_FOUND TRUE)
@@ -97,6 +131,9 @@ ament_export_dependencies(
   tf2_geometry_msgs
   geometry_msgs
   sensor_msgs
+  pronto_solo12
+  urdf
+  pronto_solo12
 )
 ament_export_include_directories(
   include
@@ -104,4 +141,16 @@ ament_export_include_directories(
 ament_export_libraries(
   ${PROJECT_NAME}
 )
+ament_target_dependencies(
+  test_node
+  rclcpp
+  urdf
+  pinocchio
+  Eigen3
+)
+
+target_link_libraries(test_node ${PROJECT_NAME})
+install(TARGETS
+test_node
+  DESTINATION lib/${PROJECT_NAME})
 ament_package()

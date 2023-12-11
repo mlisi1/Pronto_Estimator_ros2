@@ -33,6 +33,11 @@ namespace pronto_controller
                 //configure proprioceptive odometry
             }
             
+            // function to set the time duration of the update
+            void setInsTimeStep(rclcpp::Duration dur)
+            {
+                ins_->setTimeStep(dur.seconds());
+            };
             // this function use the Ins_module to process the incoming data and update the filter state and covariance
             pronto::RBISUpdateInterface* processInsData(
                     const pronto::ImuMeasurement * msr,

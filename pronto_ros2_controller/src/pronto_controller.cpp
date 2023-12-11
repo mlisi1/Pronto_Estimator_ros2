@@ -25,7 +25,7 @@ namespace pronto_controller
         for(int i = PRONTO_NAMES; i < PRONTO_NAMES+PUB_SET_UP; i++)
             auto_declare<bool>(output_params_[i],false);
 
-        auto_declare<long int>("utime_history_span",100);
+        auto_declare< long int>("utime_history_span",100);
 
         auto_declare<std::vector<std::string>>("joints",std::vector<std::string>());
     
@@ -99,12 +99,13 @@ namespace pronto_controller
         }
 
         // set hystoric utime
-        if(!get_node()->get_parameter("utime_history_span", history_span_))
+        long int data_history;
+        if(!get_node()->get_parameter("utime_history_span", data_history))
         {
             RCLCPP_ERROR(get_node()->get_logger(),"Error parsing the history utime");
             return CallbackReturn::ERROR;
         }
-
+        history_span_ = static_cast<u_int64_t>(data_history);
         if(!get_node()->get_parameter("joints",joints_))
         {
              RCLCPP_ERROR(get_node()->get_logger(),"Error parsing the joints name");
@@ -203,6 +204,8 @@ namespace pronto_controller
             }
             else
             {
+                // set the update dt get from the update arguments
+                propr_man_->setInsTimeStep(period);
                 // get the update from imu sensor
                 pronto::RBISUpdateInterface* update = propr_man_->processInsData(&imu_data_,stt_est_.get());
                 // get ipdate from proprioceptive odometry
@@ -277,15 +280,15 @@ namespace pronto_controller
         return controller_interface::return_type::OK;
     };
 
-    bool Pronto_Controller::initializeFilter()
+    bool Pronto_Controller::initializeINS()
     {
-        if(isFilterInitialized())
-            return true;
+        // if(isFilterInitialized())
+        //     return true;
         
-        // if all sensor are initialied try to initialize imu 
-        if(!exter_man_->isExteroceptiveSensorInit())
-            return false;
-        // if imu will be initialize correctly also the filter will be initialize
+        // // if all sensor are initialied try to initialize imu 
+        // if(!exter_man_->isExteroceptiveSensorInit())
+        //     return false;
+        // // if imu will be initialize correctly also the filter will be initialize
 
         return propr_man_->isInsInitialized(
             &imu_data_,

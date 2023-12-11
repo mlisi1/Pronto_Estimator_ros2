@@ -12,7 +12,7 @@ pronto_estimator :
     republish_sensors : false
     init_sensors : [ins, pose_meas] 
     active_sensors : [ins, legodo, bias_lock]
-    utime_history_span : 60000000.0
+    utime_history_span : 60000000
 
     sigma0 :
       vb : 0.15 # m/s

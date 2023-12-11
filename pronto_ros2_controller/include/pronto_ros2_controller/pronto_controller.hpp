@@ -115,6 +115,8 @@ namespace pronto_controller
             //
             bool initializeFilter();
 
+            bool initializeINS();
+
             // function to initialize the filter state and covariance from yaml parameter
             void initializeState();
 

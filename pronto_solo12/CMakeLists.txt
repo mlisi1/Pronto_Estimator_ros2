@@ -14,11 +14,15 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(pinocchio REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(urdf REQUIRED)
+
+add_executable(pinocchio_test_node  src/pinocchio_node.cpp)
 
 add_library(${PROJECT_NAME}  SHARED src/feet_jacobians.cpp
                                     src/forward_kinematics.cpp
                                     src/dynamics.cpp
                                     src/feet_contact_forces.cpp
+                                    src/pronto_mammal_utilities.cpp
 )
 
 target_compile_features(${PROJECT_NAME} PUBLIC c_std_99 cxx_std_17)
@@ -34,7 +38,16 @@ ament_target_dependencies(
   "pinocchio"
   "nav_msgs"
 )
-
+ament_target_dependencies(
+  pinocchio_test_node
+  "pronto_ros"
+  "pronto_quadruped_ros"
+  "rclcpp"
+  "sensor_msgs"
+  "pinocchio"
+  "nav_msgs"
+  "urdf"
+)
 # ament_export_targets(my_libraryTargets HAS_LIBRARY_TARGET)
 # ament_export_dependencies(some_dependency)
 
@@ -49,6 +62,9 @@ install(
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
 )
+install(TARGETS
+  pinocchio_test_node
+  DESTINATION lib/${PROJECT_NAME})
 
 ament_export_include_directories(include)
 ament_export_libraries(${PROJECT_NAME})
