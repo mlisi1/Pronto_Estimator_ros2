@@ -28,6 +28,8 @@
 #include "pronto_core/rotations.hpp"
 
 #include <array>
+#include <map>
+#include <tuple>
 
 #define COV_PAR_NUM 7
 #define STT_PAR_NUM 4
@@ -147,6 +149,9 @@ namespace pronto_controller
             rclcpp::Publisher<Twist_with_Cov_msg>::SharedPtr twist_pub_;
             rclcpp::Publisher<Pose_with_Cov_msg>::SharedPtr pose_pub_;
 
+            std::map<std::string,std::tuple<double,double,double>> jnt_stt_ = {};
+
+            std::string urdf_path_;
             
 
 

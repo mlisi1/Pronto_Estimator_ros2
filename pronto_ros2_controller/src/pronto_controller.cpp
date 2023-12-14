@@ -28,6 +28,8 @@ namespace pronto_controller
         auto_declare< long int>("utime_history_span",100);
 
         auto_declare<std::vector<std::string>>("joints",std::vector<std::string>());
+
+        auto_declare<std::string>("urdf_path",std::string());
     
 
         RCLCPP_INFO(get_node()->get_logger(),"Construct the Ros2 Control Estimator Pronto-based");
@@ -43,6 +45,7 @@ namespace pronto_controller
         //define qos of all topic as best effort 
         rclcpp::QoS out_qos(10);
         std::string name_spot;
+        std::tuple<double,double,double> zeros = {0.0,0.0,0.0};
         out_qos.reliability(rclcpp::ReliabilityPolicy::BestEffort);
 
 
@@ -112,6 +115,17 @@ namespace pronto_controller
             return CallbackReturn::ERROR;
         }
 
+        if(!get_node()->get_parameter("urdf_path",urdf_path_))
+        {
+             RCLCPP_ERROR(get_node()->get_logger(),"Error parsing the urdf name");
+            return CallbackReturn::ERROR;
+        }
+
+        for(auto & jnt_n:joints_)
+        {
+            jnt_stt_.insert({jnt_n,zeros});
+        }
+
         return CallbackReturn::SUCCESS;
     };       
 
@@ -123,7 +137,7 @@ namespace pronto_controller
 
         // create the proprioceptive and exteroceptive sensormanager and build the data structure
         // propr_man_= std::make_shared<Prop_Sensor_Manager>(get_node());
-        propr_man_ = std::make_unique<Prop_Sensor_Manager>(get_node());
+        propr_man_ = std::make_unique<Prop_Sensor_Manager>(get_node(),jnt_stt_,urdf_path_);
         propr_man_->conf_prop_sens();
 
         exter_man_ = std::make_unique<Exte_Sensor_Manager>(get_node());
@@ -208,19 +222,15 @@ namespace pronto_controller
                 propr_man_->setInsTimeStep(period);
                 // get the update from imu sensor
                 pronto::RBISUpdateInterface* update = propr_man_->processInsData(&imu_data_,stt_est_.get());
-                // get ipdate from proprioceptive odometry
-
-                // get the actual state and covariance and update them with the measure
-
-                // pronto::RBIS prior,posterior;
-                // pronto::RBIM prior_cov,posterior_cov;
-                // // get prior convex
-                // stt_est_->getHeadState(prior,prior_cov);
-                // update the filter with Ins and PropOdometry
+               
+                // update the filter with Ins 
                 stt_est_->addUpdate(update,propr_man_->get_ins_roll_forward());
 
-                // // get posterior state 
-                // stt_est_->getHeadState(posterior,posterior_cov);
+                //update the proprioceptive update
+                update = propr_man_->update_odom(time, stt_est_.get());
+
+                // update the filter with Ins 
+                stt_est_->addUpdate(update,true);
 
                 //get the updated state anc cov
                 stt_est_->getHeadState(head_state_,head_cov_);
@@ -413,9 +423,28 @@ namespace pronto_controller
 
     }
 
+
     void Pronto_Controller::get_joints_data()
     {
-
+        std::string type;
+        std::tuple<double,double,double> stt;
+        for(size_t i = 0; i < joints_.size(); i++)
+        {
+           try
+           {
+                stt = {
+                    state_interfaces_[3*i].get_value(),
+                    state_interfaces_[3*i +1].get_value(),
+                    state_interfaces_[3*i +2].get_value()};
+                jnt_stt_.at(joints_[i]) = stt;
+           }
+           catch(const std::exception& e)
+           {
+            std::cerr << e.what() << '\n';
+            assert(false);
+           }
+           
+        }
     }
 
 };

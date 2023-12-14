@@ -172,5 +172,15 @@ namespace pronto_controller
         return ins_->processMessage(msr, est);
     }
 
+    pronto::RBISUpdateInterface* Prop_Sensor_Manager::update_odom(rclcpp::Time time, pronto::StateEstimator* stt_est)
+    {
+        //load data from map to leg odom structure
+        legodom_man_->setJointStates();
+        
+        legodom_man_->getPreviousState(stt_est);
+
+        return  legodom_man_->computeVelocity(time);
+    }
+
 
 };

@@ -33,7 +33,7 @@ add_library(
   src/pronto_controller.cpp
   src/proprioceptive_sensor_manager.cpp
   src/quad_model_parser.cpp
-  # src/legodom_manager.cpp
+  src/legodom_manager.cpp
   
 )
 

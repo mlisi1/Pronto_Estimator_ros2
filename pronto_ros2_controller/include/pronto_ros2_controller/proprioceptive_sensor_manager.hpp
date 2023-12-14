@@ -7,7 +7,7 @@
 #include <string>
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
-
+#include "pronto_ros2_controller/legodom_manager.hpp"
 
 
 
@@ -19,18 +19,26 @@ namespace pronto_controller
     class Prop_Sensor_Manager
     {
         public:
-            Prop_Sensor_Manager(rclcpp_lifecycle::LifecycleNode::SharedPtr controller):
+            Prop_Sensor_Manager(
+                rclcpp_lifecycle::LifecycleNode::SharedPtr controller,
+                std::map<std::string , std::tuple<double,double,double>> joints_map,
+                std::string urdf_path):
             filt_controler_(controller)
             {
+                legodom_man_ = std::make_unique<LegOdom_Manager>(controller,joints_map,urdf_path);
             };
             
             ~Prop_Sensor_Manager(){};
+            
+            pronto::RBISUpdateInterface* update_odom(rclcpp::Time time, pronto::StateEstimator* stt_est);
             
             void conf_prop_sens()
             {
                 // configure ins sensor
                 conf_ins();
                 //configure proprioceptive odometry
+                legodom_man_->get_stance_param();
+                legodom_man_->get_odom_param();
             }
             
             // function to set the time duration of the update
@@ -70,6 +78,8 @@ namespace pronto_controller
             bool roll_forward_on_receive_;
 
             rclcpp_lifecycle::LifecycleNode::SharedPtr filt_controler_;
+
+            std::unique_ptr<LegOdom_Manager> legodom_man_;
     };
            
 };

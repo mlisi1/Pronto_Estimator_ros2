@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     J.fill(0.0);
     pinocchio::FrameIndex id;
     RCLCPP_INFO_STREAM(rclcpp::get_logger("AAA"),"has dim 3"<<q.size());
-    id = p_mod.getFrameId("RF_FOOT");
+    id = p_mod.getFrameId("LF_FOOT");
 RCLCPP_INFO_STREAM(rclcpp::get_logger("AAA"),"has dim 4"<<id);
     pinocchio::getFrameJacobian(p_mod,data,id,pinocchio::ReferenceFrame::LOCAL_WORLD_ALIGNED,J);
 RCLCPP_INFO_STREAM(rclcpp::get_logger("AAA"),"has dim5 "<<q.size());

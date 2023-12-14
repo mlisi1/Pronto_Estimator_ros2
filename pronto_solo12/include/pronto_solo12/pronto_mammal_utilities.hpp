@@ -1,11 +1,13 @@
 #include <pronto_quadruped_commons/feet_contact_forces.h>
 #include <pronto_quadruped_commons/leg_vector_map.h>
-#include "pronto_solo12/feet_jacobians.hpp"
 #include "Eigen/Dense"
 #include "Eigen/Core"
 #include "Eigen/Geometry"
 #include <map>
+#include <tuple>
 #include "pronto_quadruped_commons/feet_contact_forces.h"
+#include "pronto_quadruped_commons/feet_jacobians.h"
+#include "pronto_quadruped_commons/forward_kinematics.h"
 
 //include pinocchio's stuff
 #include <pinocchio/multibody/model.hpp>
@@ -13,6 +15,8 @@
 #include <pinocchio/algorithm/crba.hpp>
 #include <pinocchio/algorithm/rnea.hpp>
 #include <pinocchio/algorithm/frames.hpp>
+#include <pinocchio/algorithm/kinematics.hpp>
+
 
 #define FB_DOF 7
 #define FB_VEL 6
@@ -26,21 +30,50 @@ namespace pronto_controller
     typedef Eigen::Matrix<double, 18, 1> JointVelocityPinocchio;
     typedef Eigen::Matrix<double, 6, 18> CompleteJac;
     typedef Eigen::Matrix<double, 3, 3> LinVelJac;
+
+
     // create a class that directly manage the pinocchio structure and compite the estimated ground reaction force
     class Pinocchio_Feet_Force : public pronto::quadruped::FeetContactForces
     {
         public:
-            Pinocchio_Feet_Force(pinocchio::Model mod,int DOF):
+
+            Pinocchio_Feet_Force()
+            {}
+            Pinocchio_Feet_Force(pinocchio::Model mod,int ker,int DOF):
             model_(mod),
             data_(pinocchio::Data(mod)),
+            ker_(ker),
             DOF_(DOF)
             {
-                q_pin_ = Eigen::MatrixXd::Zero(DOF + FB_DOF,1);
-                dq_pin_ = Eigen::MatrixXd::Zero(DOF_ + FB_VEL,1);
-
-                Jac_ = Eigen::MatrixXd::Zero(3,DOF_/4);
+                // set up the pinocchio data 
+                q_pin_ = Eigen::VectorXd::Zero(DOF + FB_DOF);
+                dq_pin_ = Eigen::VectorXd::Zero(DOF + FB_VEL);
+                ddq_pin_ = Eigen::VectorXd::Zero(DOF + FB_VEL);
+                tau_rnea_ = Eigen::VectorXd::Zero(DOF);
+                tau_msr_ = Eigen::VectorXd::Zero(DOF);
+                Jac_.resize(6,DOF+FB_VEL);
+                for(auto &jnt_ptr:model_.names)
+                {
+                    pin_jnt_name_.push_back(jnt_ptr);
+                }
             };
             ~Pinocchio_Feet_Force(){};
+
+            // set up the state, it is needed to enable the update
+
+            void set_State(
+                    std::map<std::string,std::tuple<double,double,double>> jnt_stt,
+                    Quaterniond orient,
+                    Vector3d xd,
+                    Vector3d xdd,
+                    Vector3d omega,
+                    Vector3d omegad
+            );
+
+
+            // update everything, kinematic, jacobian and RNEA
+            bool update_All();
+
 
             // compute the ground reaction force and save it in foot_grf
             bool getFootGRF(
@@ -55,70 +88,98 @@ namespace pronto_controller
                 const Vector3d& xdd = Vector3d::Zero(),
                 const Vector3d& omega = Vector3d::Zero(),
                 const Vector3d& omegad = Vector3d::Zero()
-            );
+            ) override;
 
             bool getLegJacobian(
                     const LegID& leg,
                     LinVelJac& Jac
                 );
-            bool computeJac(
-                const JointStatePinocchio q
-            );
 
+            void get_w2b_R(Eigen::Matrix3d &R)
+            {
+                R = R_w2b_;
+            };
+
+
+            // retrun the chosen foot forward kineatic 
+            Eigen::Vector3d get_FK(LegID leg)
+            {
+
+                pinocchio::SE3 T;
+                Eigen::Vector3d f_pos;
+                pinocchio::FrameIndex leg_id;
+                switch (leg)
+                {
+                    case pronto::quadruped::LegID::LF:
+                        leg_id = model_.getFrameId("LF_FOOT");
+                        break;
+                    case pronto::quadruped::LegID::RF:
+                        leg_id = model_.getFrameId("RF_FOOT");
+                        break;
+                    case pronto::quadruped::LegID::LH:
+                        leg_id = model_.getFrameId("LH_FOOT");
+                        break;
+                    case pronto::quadruped::LegID::RH:
+                        leg_id = model_.getFrameId("RH_FOOT");
+                        break;
+                }
+                T = data_.oMf[leg_id];
+                f_pos = T.translation();
+                return f_pos;
+
+            };
+
+            
+           
 
         private:
             pinocchio::Model model_;
             pinocchio::Data data_;
-            int DOF_;
+            int ker_,DOF_;
             int leg_count_ = 0;
-            Eigen::MatrixXd q_pin_,dq_pin_,Jac_;
+            bool update_need_ = false;
+            Eigen::VectorXd q_pin_,dq_pin_,ddq_pin_, tau_rnea_, tau_msr_ ;
+            pinocchio::Data::Matrix6x Jac_;
+            std::vector<std::string> pin_jnt_name_ = {};
+            Eigen::Matrix3d R_w2b_;
 
     };
 
     class Pinocchio_Jacobian : public pronto::quadruped::FeetJacobians
     {
         public:
+            Pinocchio_Jacobian()
+            {};
             Pinocchio_Jacobian(
-                pinocchio::Model model,
-                pinocchio::Data data,
-                int DOF,
-                std::map<std::string,int> op_map
+                Pinocchio_Feet_Force pin_ff
                 ):
-            model_(model),
-            data_(data),
-            DOF_(DOF),
-            op_map_(op_map)
-            {
-                // init the Jacobian Storage for Each LEg, here the data are computed at the beginning and then storage
-                q_pin_ = Eigen::MatrixXd::Zero(DOF + FB_DOF , 1);
-                dq_pin_ = Eigen::MatrixXd::Zero(DOF + FB_VEL , 1);
-                Jacs_.resize(0);
-                for(int i = 0; i < 4; i++)
-                    Jacs_.push_back(Eigen::MatrixXd::Zero(3,DOF + FB_VEL));
-                Foot_pos_.resize(4);
-            };
+            pin_ff_(pin_ff)
+            {};
+
             ~Pinocchio_Jacobian(){};
 
-            // given the joint configuration compute both jacobian and forward kinematic and save it in class member
-            // it assumes that 
-            bool Compute_All(const pronto::quadruped::JointState q);
-
-            pronto::quadruped::FootJac getFootJacobian(const JointState& q, const LegID& leg) override;
-
-            pronto::quadruped::Vector3d getFootPos(const JointState& q, const LegID& leg);
-
-            
-
-            
+           pronto::quadruped::FootJac getFootJacobian(const pronto::quadruped::JointState& q, const pronto::quadruped::LegID& leg) override;
+           pronto::quadruped::FootJac getFootJacobianAngular(const pronto::quadruped::JointState& q,const pronto::quadruped::LegID& leg) override;
+      
         private:
-            pinocchio::Model model_;
-            pinocchio::Data data_;
-            int DOF_;
-            Eigen::MatrixXd q_pin_,dq_pin_;
-            std::vector<Eigen::MatrixXd> Jacs_;
-            std::vector<Eigen::Vector3d> Foot_pos_;
-            std::vector<LegID> legs_ = {LegID::LF,LegID::LH,LegID::RF,LegID::RH};
-            std::map<std::string,int> op_map_;
-            std::vector<std::string> pin_jnt_name_;
+            Pinocchio_Feet_Force pin_ff_; 
+    };
+
+    class Pinocchio_FK : public pronto::quadruped::ForwardKinematics
+    {
+        public:
+            Pinocchio_FK(){};
+            Pinocchio_FK(
+                Pinocchio_Feet_Force pin_ff
+            ):
+            pin_ff_(pin_ff)
+            {};
+            ~Pinocchio_FK(){};
+
+            Eigen::Vector3d getFootPos(const JointState& q, const LegID& leg) override;
+
+            Eigen::Matrix3d getFootOrientation(const JointState& q, const LegID& leg) override;
+        private:
+            Pinocchio_Feet_Force pin_ff_; 
     };
 };
