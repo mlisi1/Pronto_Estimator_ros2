@@ -1,6 +1,7 @@
 #include "pronto_core/ins_module.hpp"
 #include "pronto_core/rigidbody.hpp"
 #include "pronto_core/rotations.hpp"
+#include "rclcpp/rclcpp.hpp"
 #include <iostream>
 
 namespace pronto {
@@ -59,7 +60,6 @@ RBISUpdateInterface * InsModule::processMessage(const ImuMeasurement * msg,
   // experimentally the bias estimator estimates the body-imu translation (fixed may 2014):
   Eigen::Vector3d gyro(ins_to_body_.rotation() * msg->omega);
 
-
   RBISIMUProcessStep* update = new RBISIMUProcessStep(current_omega_,
                                                       accelerometer,
                                                       cov_gyro,
@@ -88,6 +88,7 @@ bool InsModule::processMessageInit(const ImuMeasurement * msg,
                                     RBIS & init_state,
                                    RBIM & init_cov)
 {
+    RCLCPP_INFO(rclcpp::get_logger("INS Init"),"the counter is %d",init_counter);
     init_state.utime = msg->utime;
 
     RBISIMUProcessStep * update = dynamic_cast<RBISIMUProcessStep *>(processMessage(msg, NULL));
@@ -98,6 +99,7 @@ bool InsModule::processMessageInit(const ImuMeasurement * msg,
     }
 
     init_counter++;
+    
     // TODO not using magnetometer, sending zero
     // Eigen::Vector3d mag_vec(ins_to_body.rotation() * Eigen::Map<const Eigen::Vector3d>(msg->mag));
 
@@ -121,7 +123,7 @@ bool InsModule::processMessageInitCommon(const std::map<std::string, bool> & sen
   g_vec_sum += -update->accelerometer;
   mag_vec_sum += mag_vec;
   gyro_bias_sum += update->gyro;
-
+  
   delete update;
 
   if (init_counter < num_to_init) {
@@ -144,7 +146,7 @@ bool InsModule::processMessageInitCommon(const std::map<std::string, bool> & sen
               max_initial_gyro_bias);
       ins_gyro_bias_est = Eigen::Vector3d(0,0,0);
     }
-
+    std::cerr <<"the estimate g is "<<ins_g_vec_est.transpose()<< " and its norm is " << ins_g_vec_est.norm()<<std::endl;
     //set orientation
     Eigen::Quaterniond quat_g_vec;
     quat_g_vec.setFromTwoVectors(ins_g_vec_est, -Eigen::Vector3d::UnitZ()); //the gravity vector points in the negative z axis
@@ -190,6 +192,9 @@ bool InsModule::processMessageInitCommon(const std::map<std::string, bool> & sen
         gyro_bias_initial = init_state.gyroBias();
     }
 
+    // fprintf(stderr, "the initial gyro and acceleration bias are [%f,%f,%f] and  [%f,%f,%f]\n", gyro_bias_initial(0), gyro_bias_initial(1), gyro_bias_initial(2),
+    // accel_bias_initial(0),accel_bias_initial(1),accel_bias_initial(2));
+    
     init_state.gyroBias() = gyro_bias_initial;
     init_state.accelBias() = accel_bias_initial;
 

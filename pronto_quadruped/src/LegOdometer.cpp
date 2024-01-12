@@ -236,8 +236,9 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
             }
         }
         var_velocity /= (double)leg_count;
+        
     }
-
+    
     double alpha = 0.4;
     double beta = 0.3;
     double gamma = 0.8;
@@ -279,7 +280,7 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
             return false;
         }
     }
-
+    
     var_velocity << vel_std_(0) * vel_std_(0), vel_std_(1) * vel_std_(1), vel_std_(2) * vel_std_(2);
 
     if(debug_) {

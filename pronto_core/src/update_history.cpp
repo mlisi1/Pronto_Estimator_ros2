@@ -1,4 +1,5 @@
 #include "pronto_core/update_history.hpp"
+#include <iostream>
 
 namespace pronto {
 
@@ -22,9 +23,7 @@ updateHistory::historyMapIterator updateHistory::addToHistory(RBISUpdateInterfac
 //      RBISUpdateInterface::sensor_enum_strings[rbisu->sensor_id], rbisu->utime,
 //      (double) diff_utime / 1.0e6,
 //      RBISUpdateInterface::sensor_enum_strings[updateMap.rbegin()->second->sensor_id]);
-
   historyMapIterator it = updateMap.insert(updateMap.end(), historyPair(rbisu->utime, rbisu));
-
   if (it == updateMap.begin()) {
     historyMapIterator prev_head_it = updateMap.begin();
     prev_head_it++;

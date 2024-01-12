@@ -34,7 +34,7 @@
 #define COV_PAR_NUM 7
 #define STT_PAR_NUM 4
 #define PRONTO_NAMES 5
-#define PUB_SET_UP 4
+#define PUB_SET_UP 3
 #define HISTORY 1
 
 namespace hardware_interface
@@ -148,8 +148,9 @@ namespace pronto_controller
 
             rclcpp::Publisher<Twist_with_Cov_msg>::SharedPtr twist_pub_;
             rclcpp::Publisher<Pose_with_Cov_msg>::SharedPtr pose_pub_;
-
+    
             std::map<std::string,std::tuple<double,double,double>> jnt_stt_ = {};
+            std::map<std::string,bool> sens_init_stt_ = {};
 
             std::string urdf_path_;
             
@@ -161,17 +162,17 @@ namespace pronto_controller
             // state estimator shared ptr
             // proprioceptive sensor shared ptr
             std::vector<std::string> est_params_ = {
-                "sigma0/vb",
-                "sigma0/chi_xy",
-                "sigma0/chi_x",
-                "sigma0/Delta_xy",
-                "sigma0/Delta_z",
-                "sigma0/gyro_bias",
-                "sigma0/acc_bias",
-                "x0/velocity",
-                "x0/angular_velocity",
-                "x0/position",
-                "x0/rpy",
+                "sigma0.vb",
+                "sigma0.chi_xy",
+                "sigma0.chi_x",
+                "sigma0.Delta_xy",
+                "sigma0.Delta_z",
+                "sigma0.gyro_bias",
+                "sigma0.acc_bias",
+                "x0.velocity",
+                "x0.angular_velocity",
+                "x0.position",
+                "x0.rpy",
             };
             std::vector<std::string> output_params_ = {
                 "pose_topic",
@@ -182,10 +183,7 @@ namespace pronto_controller
 
                 "publish_pose",
                 "publish_twist",
-                "republish_sensors",
-
-               
-
+                "republish_sensors"
             };
 
             std::vector<std::string> joints_;

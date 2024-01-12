@@ -21,7 +21,7 @@ namespace pronto_controller
         public:
             Prop_Sensor_Manager(
                 rclcpp_lifecycle::LifecycleNode::SharedPtr controller,
-                std::map<std::string , std::tuple<double,double,double>> joints_map,
+                std::map<std::string , std::tuple<double,double,double>>& joints_map,
                 std::string urdf_path):
             filt_controler_(controller)
             {
@@ -34,11 +34,14 @@ namespace pronto_controller
             
             void conf_prop_sens()
             {
+                // legodom_man_->get_q_size();
                 // configure ins sensor
                 conf_ins();
+                // legodom_man_->get_q_size();
                 //configure proprioceptive odometry
                 legodom_man_->get_stance_param();
                 legodom_man_->get_odom_param();
+
             }
             
             // function to set the time duration of the update

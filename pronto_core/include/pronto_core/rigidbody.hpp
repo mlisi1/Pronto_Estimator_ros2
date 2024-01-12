@@ -6,7 +6,7 @@ namespace pronto {
 /**
  * @brief g_val scalar representing the gravitational acceleration on Earth (positive)
  */
-static const double g_val = 9.80665;
+static const double g_val = 9.8;///0665;
 /**
  * @brief rho_val air density kg/m^3
  */

@@ -46,7 +46,7 @@ namespace pronto_controller
     {
         public:
             LegOdom_Manager(const rclcpp_lifecycle::LifecycleNode::SharedPtr controller,
-                                     std::map<std::string , std::tuple<double,double,double>> joints_map,
+                                     std::map<std::string , std::tuple<double,double,double>>& joints_map,
                                      std::string urdf_path);
         
             ~LegOdom_Manager(){};
@@ -61,8 +61,13 @@ namespace pronto_controller
             void getPreviousState(const pronto::StateEstimator *est);
 
             //set the joint states 
-            void setJointStates();   
-
+            void setJointStates();  
+            void get_q_size()
+            {
+                std::cerr << "q is ";
+                pin_ff_.q_size();
+            } 
+           
             //compute the update based on the stance estimation and joint states
             pronto::RBISUpdateInterface * computeVelocity(rclcpp::Time time);
 
@@ -91,7 +96,7 @@ namespace pronto_controller
             pinocchio::Model model_;
             pinocchio::Data data_;
 
-            std::map<std::string , std::tuple<double,double,double>> joints_map_;
+            std::map<std::string , std::tuple<double,double,double>>& joints_map_;
 
             // pronto like variable 
             pronto::quadruped::JointState q_,dq_,ddq_,tau_;

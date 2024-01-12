@@ -11,6 +11,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON) # solution 3
 find_package(ament_cmake REQUIRED)
 # find_package(ament_cmake_ros REQUIRED)
 find_package(Eigen3 REQUIRED)
+find_package(rclcpp REQUIRED)
 
 add_library(pronto_core SHARED  src/rbis.cpp
                                 src/rotations.cpp
@@ -32,6 +33,7 @@ target_include_directories(pronto_core PUBLIC
 ament_target_dependencies(
   pronto_core
   "Eigen3"
+  "rclcpp"
 )
 
 # Causes the visibility macros to use dllexport rather than dllimport,
@@ -40,7 +42,7 @@ target_compile_definitions(pronto_core PRIVATE "PRONTO_CORE_BUILDING_LIBRARY")
 
 ament_export_include_directories(include)
 ament_export_libraries(${PROJECT_NAME})
-ament_export_dependencies("Eigen3")
+ament_export_dependencies("Eigen3" "rclcpp")
 
 install(
   DIRECTORY include/

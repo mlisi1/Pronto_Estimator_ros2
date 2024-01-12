@@ -16,6 +16,7 @@
 #include <pinocchio/algorithm/rnea.hpp>
 #include <pinocchio/algorithm/frames.hpp>
 #include <pinocchio/algorithm/kinematics.hpp>
+#include <iostream>
 
 
 #define FB_DOF 7
@@ -45,19 +46,36 @@ namespace pronto_controller
             ker_(ker),
             DOF_(DOF)
             {
-                // set up the pinocchio data 
-                q_pin_ = Eigen::VectorXd::Zero(DOF + FB_DOF);
-                dq_pin_ = Eigen::VectorXd::Zero(DOF + FB_VEL);
-                ddq_pin_ = Eigen::VectorXd::Zero(DOF + FB_VEL);
-                tau_rnea_ = Eigen::VectorXd::Zero(DOF);
-                tau_msr_ = Eigen::VectorXd::Zero(DOF);
-                Jac_.resize(6,DOF+FB_VEL);
+                q_pin_ = Eigen::VectorXd::Zero(DOF_ + FB_DOF);
+                dq_pin_ = Eigen::VectorXd::Zero(DOF_ + FB_VEL);
+                ddq_pin_ = Eigen::VectorXd::Zero(DOF_ + FB_VEL);
+                tau_rnea_ = Eigen::VectorXd::Zero(DOF_);
+                tau_msr_ = Eigen::VectorXd::Zero(DOF_);
+                Jac_.resize(6,DOF_+FB_VEL);
                 for(auto &jnt_ptr:model_.names)
                 {
-                    pin_jnt_name_.push_back(jnt_ptr);
+                    
+                    if(jnt_ptr != "universe" && jnt_ptr != "root_joint")
+                    {
+                        std::cerr<<"jnt name is "<<jnt_ptr<<std::endl;
+                        pin_jnt_name_.push_back(jnt_ptr);
+                    }
                 }
             };
             ~Pinocchio_Feet_Force(){};
+
+            // function to set state dim
+            void set_state_dim()
+            {
+                // set up the pinocchio data 
+                std::cerr<< "DOF IS "<< DOF_<<std::endl;
+                q_pin_ = Eigen::VectorXd::Zero(DOF_ + FB_DOF);
+                dq_pin_ = Eigen::VectorXd::Zero(DOF_ + FB_VEL);
+                ddq_pin_ = Eigen::VectorXd::Zero(DOF_ + FB_VEL);
+                tau_rnea_ = Eigen::VectorXd::Zero(DOF_);
+                tau_msr_ = Eigen::VectorXd::Zero(DOF_);
+                Jac_.resize(6,DOF_+FB_VEL);
+            }
 
             // set up the state, it is needed to enable the update
 
@@ -74,6 +92,10 @@ namespace pronto_controller
             // update everything, kinematic, jacobian and RNEA
             bool update_All();
 
+            void q_size()
+            {
+                std::cerr<<" the q dimension is "<< q_pin_.size() <<" and q_dot is "<< dq_pin_.size() << std::endl;
+            }
 
             // compute the ground reaction force and save it in foot_grf
             bool getFootGRF(

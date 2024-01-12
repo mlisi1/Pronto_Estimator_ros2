@@ -6,33 +6,8 @@
 
 namespace pronto_controller
 {
-    Pronto_Controller::Pronto_Controller():
-    stt_est_(nullptr)
+    Pronto_Controller::Pronto_Controller()
     {
-        //declaration of all the estimator param covariances
-        for(int i = 0; i < COV_PAR_NUM; i++)
-            auto_declare<double>(est_params_[i],0.0);
-        
-        //declaration of all the estimator param states
-        for(int i = COV_PAR_NUM; i < COV_PAR_NUM + STT_PAR_NUM; i++)
-            auto_declare<std::vector<double>>(est_params_[i],std::vector<double>());
-        
-        //declaration of all the estimator topic
-        for(int i = 0; i < PRONTO_NAMES; i++)
-            auto_declare<std::string>(output_params_[i],std::string());
-        
-        //declaration of output mode and history 
-        for(int i = PRONTO_NAMES; i < PRONTO_NAMES+PUB_SET_UP; i++)
-            auto_declare<bool>(output_params_[i],false);
-
-        auto_declare< long int>("utime_history_span",100);
-
-        auto_declare<std::vector<std::string>>("joints",std::vector<std::string>());
-
-        auto_declare<std::string>("urdf_path",std::string());
-    
-
-        RCLCPP_INFO(get_node()->get_logger(),"Construct the Ros2 Control Estimator Pronto-based");
     };
 
     Pronto_Controller::~Pronto_Controller()
@@ -41,25 +16,85 @@ namespace pronto_controller
     
     CallbackReturn Pronto_Controller::on_init() 
     {   
+        
+        RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Started Pronto Estimator Controller");
 
-        //define qos of all topic as best effort 
+        try
+        { 
+            // declaration of all the estimator param covariances
+            for(int i = 0; i < COV_PAR_NUM; i++)
+            {
+                // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared Parameter %s",est_params_[i].c_str());
+                auto_declare<double>(est_params_[i],0.0);
+            }
+            // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared Covariance parameter");
+
+            //declaration of all the estimator param states
+            for(int i = COV_PAR_NUM; i < COV_PAR_NUM + STT_PAR_NUM; i++)
+            {
+                // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared Parameter %s",est_params_[i].c_str());
+                auto_declare<std::vector<double>>(est_params_[i],{0.0,0.0,0.0});
+            }
+            // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared state param");
+            //declaration of all the estimator topic
+            for(int i = 0; i < PRONTO_NAMES; i++)
+            {
+                auto_declare<std::string>(output_params_[i],std::string());
+                // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared Parameter %s",output_params_[i].c_str());
+            }
+            // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared topic names param");
+            //declaration of output mode and history 
+            for(int i = PRONTO_NAMES; i < PRONTO_NAMES+PUB_SET_UP; i++)
+            {
+                auto_declare<bool>(output_params_[i],false);
+                // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared Parameter %s %d of %d",output_params_[i].c_str(),i,PRONTO_NAMES+PUB_SET_UP);
+            }
+            // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared Parameter history_span pre declared");
+
+            auto_declare<long int>("utime_history_span",100);
+
+            // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared Parameter history_span");
+
+            auto_declare<std::vector<std::string>>("joints",std::vector<std::string>());
+
+            // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared Parameter joints");
+
+
+            auto_declare<std::string>("urdf_path",std::string());
+        
+            // RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Declared Parameter urdf");
+            
+        }
+            catch(const std::exception & e)
+            {
+                RCLCPP_ERROR(get_node()->get_logger(),"Exception thrown during declaration of joints name with message: %s", e.what());
+            }
+        RCLCPP_INFO(rclcpp::get_logger("PRONTO_ESTIMATOR INIT"),"Construct the Ros2 Control Estimator Pronto-based");
+        return CallbackReturn::SUCCESS;
+    };       
+
+    CallbackReturn Pronto_Controller::on_configure(const rclcpp_lifecycle::State & )
+    {
+         //define qos of all topic as best effort 
         rclcpp::QoS out_qos(10);
         std::string name_spot;
         std::tuple<double,double,double> zeros = {0.0,0.0,0.0};
         out_qos.reliability(rclcpp::ReliabilityPolicy::BestEffort);
 
-
+        RCLCPP_INFO(get_node()->get_logger(),"on_configure: init broadcaster ");
         tf2_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(*get_node());
 
         //get the parameter to set up the controller publisher 
         for(int i = PRONTO_NAMES; i < PRONTO_NAMES+PUB_SET_UP; i++)
         {
-           if(!get_node()->get_parameter(output_params_[i],pub_data_[i]))
+           if(!get_node()->get_parameter(output_params_[i],pub_data_[i - PRONTO_NAMES]))
             {
                 RCLCPP_ERROR(get_node()->get_logger(),"Error in parse the parameter %s", output_params_[i].c_str());
                 return CallbackReturn::ERROR;
             }
         }
+        RCLCPP_ERROR(get_node()->get_logger(),"pub data is %d,%d,%d", pub_data_[0],pub_data_[1],pub_data_[2]);
+
 
         //get the parameter declared in structure
         for(int i = 0; i < PRONTO_NAMES; i++)
@@ -70,12 +105,17 @@ namespace pronto_controller
                 RCLCPP_ERROR(get_node()->get_logger(),"Error in parse the parameter %s", output_params_[i].c_str());
                 return CallbackReturn::ERROR;
             }
+            RCLCPP_INFO(get_node()->get_logger(),"on_configure: index of for cycle is %d ",i);
+            name_spot = "~/" + name_spot;
             switch (i)
             {
             // case create topic pose
             case 0:
                 if(pub_data_[i%2])
+                { 
+                    RCLCPP_ERROR(get_node()->get_logger(),"creating pose publisher");
                     pose_pub_ = get_node()->create_publisher<Pose_with_Cov_msg>(name_spot,out_qos);
+                }
                 break;
             // set up frame id in pose message
             case 1:
@@ -100,7 +140,7 @@ namespace pronto_controller
                 break;
             }
         }
-
+        RCLCPP_INFO(get_node()->get_logger(),"on_configure: created topic and frame name");
         // set hystoric utime
         long int data_history;
         if(!get_node()->get_parameter("utime_history_span", data_history))
@@ -108,16 +148,22 @@ namespace pronto_controller
             RCLCPP_ERROR(get_node()->get_logger(),"Error parsing the history utime");
             return CallbackReturn::ERROR;
         }
+        
         history_span_ = static_cast<u_int64_t>(data_history);
         if(!get_node()->get_parameter("joints",joints_))
         {
-             RCLCPP_ERROR(get_node()->get_logger(),"Error parsing the joints name");
+            RCLCPP_ERROR(get_node()->get_logger(),"Error parsing the joints name");
+            return CallbackReturn::ERROR;
+        }
+        if(joints_.empty())
+        {
+            RCLCPP_INFO(get_node()->get_logger(),"the joints could not be empty");
             return CallbackReturn::ERROR;
         }
 
         if(!get_node()->get_parameter("urdf_path",urdf_path_))
         {
-             RCLCPP_ERROR(get_node()->get_logger(),"Error parsing the urdf name");
+            RCLCPP_ERROR(get_node()->get_logger(),"Error parsing the urdf name");
             return CallbackReturn::ERROR;
         }
 
@@ -125,23 +171,19 @@ namespace pronto_controller
         {
             jnt_stt_.insert({jnt_n,zeros});
         }
-
-        return CallbackReturn::SUCCESS;
-    };       
-
-    CallbackReturn Pronto_Controller::on_configure(const rclcpp_lifecycle::State & )
-    {
         // initialize state and covariance from parameter calling the init function 
-        initializeState();
-        initializeCovariance();
-
-        // create the proprioceptive and exteroceptive sensormanager and build the data structure
-        // propr_man_= std::make_shared<Prop_Sensor_Manager>(get_node());
-        propr_man_ = std::make_unique<Prop_Sensor_Manager>(get_node(),jnt_stt_,urdf_path_);
-        propr_man_->conf_prop_sens();
-
-        exter_man_ = std::make_unique<Exte_Sensor_Manager>(get_node());
         
+        initializeState();
+        RCLCPP_INFO(get_node()->get_logger(),"on_configure: made state initialization");
+        initializeCovariance();
+        RCLCPP_INFO(get_node()->get_logger(),"on_configure: made covariance initialization");
+        // create the proprioceptive and exteroceptive sensormanager and build the data structure
+        propr_man_ = std::make_unique<Prop_Sensor_Manager>(get_node(),jnt_stt_,urdf_path_);
+        RCLCPP_INFO(get_node()->get_logger(),"on_configure:create prop sens menager");
+        
+        propr_man_->conf_prop_sens();
+        // exter_man_ = std::make_unique<Exte_Sensor_Manager>(get_node());
+        RCLCPP_INFO(get_node()->get_logger(),"Completed estimator Configuration ");
         return CallbackReturn::SUCCESS; 
     };
 
@@ -211,76 +253,83 @@ namespace pronto_controller
         if(fil_stt_ == Filter_State::NOT_INITIALIZED)
         {
             // try to configure the filter
-            if(initializeFilter())
+            RCLCPP_INFO(get_node()->get_logger(),"the filter is not initialized");
+            if(!isFilterInitialized())
             {
-                // if initialized change state
-                fil_stt_ = Filter_State::INITIALIZED;
-            }
-            else
-            {
-                // set the update dt get from the update arguments
-                propr_man_->setInsTimeStep(period);
-                // get the update from imu sensor
-                pronto::RBISUpdateInterface* update = propr_man_->processInsData(&imu_data_,stt_est_.get());
-               
-                // update the filter with Ins 
-                stt_est_->addUpdate(update,propr_man_->get_ins_roll_forward());
-
-                //update the proprioceptive update
-                update = propr_man_->update_odom(time, stt_est_.get());
-
-                // update the filter with Ins 
-                stt_est_->addUpdate(update,true);
-
-                //get the updated state anc cov
-                stt_est_->getHeadState(head_state_,head_cov_);
-
-                // get the base state and build the ros2 message
-                // start from velocity 
-                BlockToVector3d(head_state_.velocity(),twist_msg_.twist.twist.linear);
-                BlockToVector3d(head_state_.angularVelocity(),twist_msg_.twist.twist.angular);
-
-                twist_msg_.header.set__stamp(rclcpp::Time(head_state_.utime * 1000));
-
-
-                twist_msg_.twist.covariance.fill(0.0);
-
-                Eigen::Block<pronto::RBIM,3,3> vel_cov = head_cov_.block<3,3>(pronto::RBIS::velocity_ind,pronto::RBIS::velocity_ind);
-                Eigen::Block<pronto::RBIM,3,3> omega_cov = head_cov_.block<3,3>(pronto::RBIS::angular_velocity_ind,pronto::RBIS::angular_velocity_ind);
-
-                for(int i=0; i<3; i++)
+                // try to init the INS
+                
+                if(propr_man_->isInsInitialized(
+                    &imu_data_,
+                    sens_init_stt_,
+                    default_state_,
+                    default_cov_,
+                    init_state_,
+                    init_cov_
+                ))
                 {
-                    for(int j=0; j<3; j++)
-                    {
-                        twist_msg_.twist.covariance[6*i+j] = vel_cov(i,j);
-                        twist_msg_.twist.covariance[6*(i+3)+j+3] = omega_cov(i,j);
-                    }
+                    initializeFilter();
+                    RCLCPP_INFO(get_node()->get_logger(),"the filter is initialized");
+                    fil_stt_ = Filter_State::INITIALIZED;
                 }
-
-                twist_pub_->publish(twist_msg_);
-
-                //pass to pose
-                BlockToPoint(head_state_.position(), pose_msg_.pose.pose.position);
-                QuaternionToMsg(head_state_.orientation(), pose_msg_.pose.pose.orientation);
-
-                
-                pose_msg_.header.stamp = rclcpp::Time(head_state_.utime * 1000);
-
-                pose_pub_->publish(pose_msg_);
-
-                // TODO add the tranform data for the base respect to the odom 
-                
-
-
-
-
-
             }
         }
         else if (fil_stt_ == Filter_State::INITIALIZED)
         {
-            // update the filter state using the proprioceptive data
+             
+             // set the update dt get from the update arguments
+           
+            propr_man_->setInsTimeStep(period);
+            // get the update from imu sensor
+            pronto::RBISUpdateInterface* update_imu = propr_man_->processInsData(&imu_data_,stt_est_.get());
 
+            // update the filter with Ins 
+            stt_est_->addUpdate(update_imu,propr_man_->get_ins_roll_forward());
+            //update the proprioceptive update
+
+            pronto::RBISUpdateInterface* update_odom = propr_man_->update_odom(time, stt_est_.get());
+            // RCLCPP_INFO(get_node()->get_logger(),"pass");
+            // // update the filter with Ins 
+            stt_est_->addUpdate(update_odom,true);
+            // RCLCPP_INFO(get_node()->get_logger(),"pass");
+            //get the updated state anc cov
+            stt_est_->getHeadState(head_state_,head_cov_);
+
+            // get the base state and build the ros2 message
+            // start from velocity 
+            BlockToVector3d(head_state_.velocity(),twist_msg_.twist.twist.linear);
+            BlockToVector3d(head_state_.angularVelocity(),twist_msg_.twist.twist.angular);
+
+            twist_msg_.header.set__stamp(rclcpp::Time(head_state_.utime * 1000));
+
+
+            twist_msg_.twist.covariance.fill(0.0);
+
+            Eigen::Block<pronto::RBIM,3,3> vel_cov = head_cov_.block<3,3>(pronto::RBIS::velocity_ind,pronto::RBIS::velocity_ind);
+            Eigen::Block<pronto::RBIM,3,3> omega_cov = head_cov_.block<3,3>(pronto::RBIS::angular_velocity_ind,pronto::RBIS::angular_velocity_ind);
+
+            for(int i=0; i<3; i++)
+            {
+                for(int j=0; j<3; j++)
+                {
+                    twist_msg_.twist.covariance[6*i+j] = vel_cov(i,j);
+                    twist_msg_.twist.covariance[6*(i+3)+j+3] = omega_cov(i,j);
+                }
+            }
+
+            twist_pub_->publish(twist_msg_);
+
+            //pass to pose
+            BlockToPoint(head_state_.position(), pose_msg_.pose.pose.position);
+            QuaternionToMsg(head_state_.orientation(), pose_msg_.pose.pose.orientation);
+
+            
+            pose_msg_.header.stamp = rclcpp::Time(head_state_.utime * 1000);
+            
+            // RCLCPP_INFO(get_node()->get_logger(),"the pos is %f,%f,%f",pose_msg_.pose.pose.position.x,pose_msg_.pose.pose.position.y,pose_msg_.pose.pose.position.z);
+            pose_pub_->publish(pose_msg_);
+
+            // TODO add the tranform data for the base respect to the odom 
+            // update the filter state using the proprioceptive data
         }
         else
         {
@@ -312,38 +361,50 @@ namespace pronto_controller
 
     void Pronto_Controller::initializeState()
     {
-        std::vector<double> init_vec = std::vector<double>(3,0.0);
+        rclcpp::Parameter init_vec;
+        std::vector<double> vect;
+        RCLCPP_INFO(get_node()->get_logger(),"start init state");
         for(int i = COV_PAR_NUM; i < COV_PAR_NUM + STT_PAR_NUM; i++)
         {
-            if(!get_node()->get_parameter(est_params_[i],init_vec))
-            {
-                RCLCPP_ERROR(get_node()->get_logger(),"Error in parse the parameter %s, state not initialized", output_params_[i].c_str());
-                return;
+            // RCLCPP_INFO(get_node()->get_logger(),"get parameter %d-th %s",i,est_params_[i].c_str());
+            try{
+            vect = get_node()->get_parameter(est_params_[i]).as_double_array();
             }
+            catch(std::exception& e)
+            {
+                RCLCPP_INFO(get_node()->get_logger(),"the error is %s",e.what());
+            }
+            // if(!get_node()->get_parameter(est_params_[i],init_vec))
+            // {
+            //     RCLCPP_ERROR(get_node()->get_logger(),"Error in parse the parameter %s, state not initialized", output_params_[i].c_str());
+            //     return;
+            // }
+            // RCLCPP_INFO(get_node()->get_logger(),"get parameter");
+            // vect = init_vec.as_double_array();
+            // RCLCPP_INFO(get_node()->get_logger(),"the state to init are %d and the vector are [%f,%f,%f]",i-COV_PAR_NUM,vect[0],vect[1],vect[2]);
             switch (i-COV_PAR_NUM)
             {
             case 1:
                 // set linear velocity 
-                default_state_.velocity() = Eigen::Map<Eigen::Vector3d>(init_vec.data());
+                default_state_.velocity() = Eigen::Map<Eigen::Vector3d>(vect.data());
                 break;
             case 2:
-                default_state_.angularVelocity() = Eigen::Map<Eigen::Vector3d>(init_vec.data());
+                default_state_.angularVelocity() = Eigen::Map<Eigen::Vector3d>(vect.data());
                 break;
             case 3:
-                default_state_.position() = Eigen::Map<Eigen::Vector3d>(init_vec.data());
+                default_state_.position() = Eigen::Map<Eigen::Vector3d>(vect.data());
                 break;
             case 4:
-                default_state_.orientation() = pronto::rotation::setQuatEulerAngles(Eigen::Map<Eigen::Vector3d>(init_vec.data()));
+                default_state_.orientation() = pronto::rotation::setQuatEulerAngles(Eigen::Map<Eigen::Vector3d>(vect.data()));
                 break;
             
             default:
                 break;
             }
+        }
         init_state_ = default_state_;
         head_state_ = default_state_;
         RCLCPP_INFO(get_node()->get_logger(),"Filter Initial State initialized.");
-        }
-
     };
    
     void Pronto_Controller::initializeCovariance()
@@ -397,7 +458,7 @@ namespace pronto_controller
         stt_est_.reset(new StateEst(new pronto::RBISResetUpdate(init_state_,
                                                                init_cov_,
                                                                pronto::RBISUpdateInterface::reset,
-                                                               init_state_.utime),
+                                                               imu_data_.utime),
                                            history_span_));
         
     filter_initialized_ = true;
@@ -413,6 +474,8 @@ namespace pronto_controller
             imu_data_.acceleration(i) = state_interfaces_[i].get_value();
             imu_data_.omega(i) = state_interfaces_[i + VEC3].get_value();
         }
+        // imu_data_.acceleration = pronto::g_vec;
+        // imu_data_.omega = Eigen::Vector3d::Zero();
         imu_data_.orientation = Eigen::Quaterniond(
             state_interfaces_[2*VEC3].get_value(),
             state_interfaces_[2*VEC3 + 1].get_value(),
@@ -420,6 +483,9 @@ namespace pronto_controller
             state_interfaces_[2*VEC3 + 3].get_value()
         );
         imu_data_.utime = time.nanoseconds()/1000;
+
+        // imu_data_.acceleration = Eigen::Vector3d(0.0,0.0,9.81);
+        // imu_data_.omega = Eigen::Vector3d::Zero();
 
     }
 
@@ -433,17 +499,18 @@ namespace pronto_controller
            try
            {
                 stt = {
-                    state_interfaces_[3*i].get_value(),
-                    state_interfaces_[3*i +1].get_value(),
-                    state_interfaces_[3*i +2].get_value()};
-                jnt_stt_.at(joints_[i]) = stt;
+                    state_interfaces_[3*i + QUAT + 2 * VEC3].get_value(),
+                    state_interfaces_[3*i +1 + QUAT + 2 * VEC3].get_value(),
+                    state_interfaces_[3*i +2 + QUAT + 2 * VEC3].get_value()};
+                jnt_stt_.at(joints_[i]).swap(stt);
+               
+
            }
            catch(const std::exception& e)
            {
             std::cerr << e.what() << '\n';
             assert(false);
            }
-           
         }
     }
 

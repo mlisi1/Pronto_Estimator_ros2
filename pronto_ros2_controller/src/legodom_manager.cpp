@@ -4,11 +4,11 @@
 namespace pronto_controller
 {
 
-    std::string legodo_prefix = "legodo/";
+    std::string legodo_prefix = "legodo.";
 
     const pinocchio::JointModelFreeFlyer root_fb;
     LegOdom_Manager::LegOdom_Manager(const rclcpp_lifecycle::LifecycleNode::SharedPtr controller,
-                                     std::map<std::string , std::tuple<double,double,double>> joints_map,
+                                     std::map<std::string , std::tuple<double,double,double>>& joints_map,
                                      std::string urdf_path):
                                      controller_(controller),
                                      joints_map_(joints_map)
@@ -46,12 +46,12 @@ namespace pronto_controller
 
         // build the class to compute kinematic and dynamics value
         pinocchio::urdf::buildModel(urdf_path,root_fb,model_);
-        
-        Pinocchio_Feet_Force pin_ff_(model_,ker_dir,DOF);
+        RCLCPP_INFO(controller_->get_logger(), " the DOF computed are %d",DOF);
+        pin_ff_ = Pinocchio_Feet_Force(model_,ker_dir,DOF);
 
-        Pinocchio_Jacobian pin_jac_(pin_ff_);
+        pin_jac_ = Pinocchio_Jacobian(pin_ff_);
  
-        Pinocchio_FK pin_fk_(pin_ff_);
+        pin_fk_ = Pinocchio_FK(pin_ff_);
 
         // build the pronto class to make the odometry correction 
 
@@ -64,6 +64,8 @@ namespace pronto_controller
         double r_vx;
         double r_vy;
         double r_vz;
+        auto a = legodo_prefix + "r_vx";
+        RCLCPP_INFO(controller->get_logger(),"a %s",a.c_str());
         if(!controller_->get_parameter(legodo_prefix + "r_vx", r_vx)){
             RCLCPP_WARN(controller_->get_logger(),"Could not retrieve r_vx from parameter server. Setting to default.");
             r_vx = 0.1;
@@ -76,6 +78,9 @@ namespace pronto_controller
             RCLCPP_WARN(controller_->get_logger(),"Could not retrieve r_vz from parameter server. Setting to default.");
             r_vz = 0.1;
         }
+        Eigen::Vector3d r_legodo_init(r_vx,r_vy,r_vz);
+        leg_odom_->setInitVelocityStd(r_legodo_init);
+        jnt_num_ = DOF;
     };
 
 
@@ -91,7 +96,7 @@ namespace pronto_controller
         int stance_hysteresis_delay_high_int = 0;
         double hysteresis_high = 50;
         double stance_threshold = 50;
-
+        pin_ff_.set_state_dim();
         if (!controller_->get_parameter(legodo_prefix + "stance_mode", stance_mode)) 
         {
             RCLCPP_WARN_STREAM(controller_->get_logger(), "Could not get param \"" << legodo_prefix
@@ -157,6 +162,7 @@ namespace pronto_controller
         }
 
         stance_est_->setParams(beta, stance_threshold, hysteresis_low, hysteresis_high, stance_hysteresis_delay_low, stance_hysteresis_delay_high);
+        pin_ff_.q_size();
     };
     
     void LegOdom_Manager::get_odom_param()
@@ -198,7 +204,8 @@ namespace pronto_controller
                 break;
             default:
                 leg_odom_->setMode(SigmaMode::STATIC_SIGMA, AverageMode::SIMPLE_AVG);
-    }
+        }
+        pin_ff_.q_size();
     }
 
     void LegOdom_Manager::getPreviousState(const pronto::StateEstimator *est)
@@ -221,10 +228,9 @@ namespace pronto_controller
 
         uint64_t utime = time.nanoseconds()/1000;
         // TODO add the marker publisher for RVIZ see davide's displayer
-        
         stance_est_->getGRF(grf_);
+        stance_est_->getStance(stance_,stance_prob_);
         leg_odom_->setGrf(grf_);
-
         leg_odom_->estimateVelocity(
             utime,
             q_,
@@ -235,7 +241,7 @@ namespace pronto_controller
             dx_,
             cov_legodo_
         );
-
+       
         return new pronto::RBISIndexedMeasurement(
                             pronto::RigidBodyState::velocityInds(),
                             dx_,
@@ -248,7 +254,7 @@ namespace pronto_controller
 
     void LegOdom_Manager::setJointStates()
     {
-
+       
         // set pronto joints state 
         for(size_t i = 0; i < jnt_id.size(); i++)
         {
@@ -261,18 +267,31 @@ namespace pronto_controller
             }
             catch(std::exception& e)
             {
-                if(i == 0 || i == 3 || i == 6 || i == 9)
+                if(jnt_num_ == 8)
                 {
-                    q_[i] = 0.0;
-                    dq_[i] = 0.0;
-                    tau_[i] = 0.0;
+                    if(i == 0 || i == 3 || i == 6 || i == 9)
+                    {                        q_[i] = 0.0;
+                        dq_[i] = 0.0;
+                        tau_[i] = 0.0;
+                    }
+                    else
+                    {
+                        RCLCPP_ERROR(controller_->get_logger(),"quadruped with %d DOF raise exeption %s at ind %ld, check the URDF",jnt_num_, e.what(),i);
+                        assert(false);
+                    }
                 }
-                RCLCPP_ERROR(controller_->get_logger(),"raise exeption %s at ind %ld",e.what(),i);
-                assert(false);
+                else
+                {
+                    RCLCPP_ERROR(controller_->get_logger(),"quadruped with %d DOF raise exeption %s at ind %ld, check the URDF",jnt_num_, e.what(),i);
+                    assert(false);
+                }
             }
         }
+        
         //set the pinocchio state
         pin_ff_.set_State(joints_map_,orient_,dx_,ddx_,omega_,domega_);
+        // compute all the dynamics quantities
+        pin_ff_.update_All();
     }
 
 };

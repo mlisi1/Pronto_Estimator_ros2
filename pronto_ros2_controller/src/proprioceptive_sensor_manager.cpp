@@ -7,7 +7,7 @@ namespace pronto_controller
         // the change of the imu frame into base frame is done by the hardwareinterface
         Eigen::Affine3d ins_to_body = Eigen::Isometry3d::Identity();
 
-        std::string ins_param_prefix = "ins";
+        std::string ins_param_prefix = "ins.";
         // start to get all parameters
         pronto::InsConfig cfg;
 
@@ -176,9 +176,7 @@ namespace pronto_controller
     {
         //load data from map to leg odom structure
         legodom_man_->setJointStates();
-        
         legodom_man_->getPreviousState(stt_est);
-
         return  legodom_man_->computeVelocity(time);
     }
 
