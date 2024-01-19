@@ -1,0 +1,42 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/biped_force_torque_sensors__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/biped_force_torque_sensors__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/controller_foot_contact__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/controller_foot_contact__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/filter_state__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/filter_state__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/gps_data__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/gps_data__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/indexed_measurement__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/indexed_measurement__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/joint_state_with_acceleration__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/joint_state_with_acceleration__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/lidar_odometry_update__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/lidar_odometry_update__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/quadruped_force_torque_sensors__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/quadruped_force_torque_sensors__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/quadruped_stance__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/quadruped_stance__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/velocity_with_sigma_bounds__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/velocity_with_sigma_bounds__type_support.cpp.o.d"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/visual_odometry_update__type_support.cpp.o"
+  "CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/visual_odometry_update__type_support.cpp.o.d"
+  "libpronto_msgs__rosidl_typesupport_c.pdb"
+  "libpronto_msgs__rosidl_typesupport_c.so"
+  "rosidl_typesupport_c/pronto_msgs/msg/biped_force_torque_sensors__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/controller_foot_contact__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/filter_state__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/gps_data__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/indexed_measurement__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/joint_state_with_acceleration__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/lidar_odometry_update__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/quadruped_force_torque_sensors__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/quadruped_stance__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/velocity_with_sigma_bounds__type_support.cpp"
+  "rosidl_typesupport_c/pronto_msgs/msg/visual_odometry_update__type_support.cpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

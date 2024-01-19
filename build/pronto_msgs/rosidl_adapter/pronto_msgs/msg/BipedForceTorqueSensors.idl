@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from pronto_msgs/msg/BipedForceTorqueSensors.msg
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Wrench.idl"
+#include "std_msgs/msg/Header.idl"
+
+module pronto_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "Atlas force torque sensors for the wrists and ankles")
+    struct BipedForceTorqueSensors {
+      std_msgs::msg::Header header;
+
+      geometry_msgs::msg::Wrench l_foot;
+
+      geometry_msgs::msg::Wrench r_foot;
+
+      geometry_msgs::msg::Wrench l_hand;
+
+      geometry_msgs::msg::Wrench r_hand;
+    };
+  };
+};

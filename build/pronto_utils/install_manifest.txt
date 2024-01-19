@@ -1,0 +1,5 @@
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/libpronto_utils.so
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/libkalman_filter.so
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/libbacklash_filter.so
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/export_pronto_utilsExport.cmake
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/export_pronto_utilsExport-noconfig.cmake

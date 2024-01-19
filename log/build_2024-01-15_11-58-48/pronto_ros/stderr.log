@@ -1,0 +1,7 @@
+gmake[2]: *** Deleting file 'joint_state_with_acceleration_republisher'
+gmake[2]: *** Deleting file 'pronto_ros_node'
+gmake[2]: *** [CMakeFiles/pronto_ros_node.dir/build.make:4554: pronto_ros_node] Interrupt
+gmake[2]: *** [CMakeFiles/joint_state_with_acceleration_republisher.dir/build.make:4554: joint_state_with_acceleration_republisher] Interrupt
+gmake[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/pronto_ros_node.dir/all] Interrupt
+gmake[1]: *** [CMakeFiles/Makefile2:193: CMakeFiles/joint_state_with_acceleration_republisher.dir/all] Interrupt
+gmake: *** [Makefile:146: all] Interrupt

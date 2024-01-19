@@ -1,0 +1,101 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.6 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found rclcpp: 16.0.7 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.5 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found ament_lint_auto: 0.12.9 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_core/include>
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core
+[ 33%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/rigidbody.cpp.o[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/rbis.cpp.o[0m
+[ 41%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/scan_matcher_module.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/update_history.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/ins_module.cpp.o[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/state_est.cpp.o[0m
+[ 58%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/rbis_update_interface.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/rotations.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/indexed_meas_module.cpp.o[0m
+[ 83%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/init_message_module.cpp.o[0m
+[ 91%] [32mBuilding CXX object CMakeFiles/pronto_core.dir/src/pose_meas_module.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library libpronto_core.so[0m
+[100%] Built target pronto_core
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/environment/library_path.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/environment/library_path.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/definitions.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/gps_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/indexed_meas_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/init_message_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/ins_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/lidar_odometry_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/pose_meas_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/pronto_core.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/rbis.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/rbis_update_interface.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/rigidbody.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/rotations.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/scan_matcher_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/sensing_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/state_est.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/update_history.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/vicon_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/visibility_control.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/include/pronto_core/visual_odometry_module.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/ament_index/resource_index/package_run_dependencies/pronto_core
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/ament_index/resource_index/parent_prefix_path/pronto_core
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/environment/ament_prefix_path.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/environment/ament_prefix_path.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/environment/path.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/environment/path.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/local_setup.bash
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/local_setup.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/local_setup.zsh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/local_setup.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/ament_index/resource_index/packages/pronto_core
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/cmake/ament_cmake_export_libraries-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/cmake/ament_cmake_export_targets-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/cmake/pronto_coreConfig.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/cmake/pronto_coreConfig-version.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.xml
+-- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib/libpronto_core.so
+-- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib/libpronto_core.so" to ""
+-- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/cmake/export_pronto_coreExport.cmake
+-- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/cmake/export_pronto_coreExport-noconfig.cmake

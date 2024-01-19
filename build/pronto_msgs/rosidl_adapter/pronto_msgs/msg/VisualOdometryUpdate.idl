@@ -1,0 +1,33 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from pronto_msgs/msg/VisualOdometryUpdate.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+#include "geometry_msgs/msg/Transform.idl"
+#include "std_msgs/msg/Header.idl"
+
+module pronto_msgs {
+  module msg {
+    typedef double double__36[36];
+    module VisualOdometryUpdate_Constants {
+      const uint8 NO_DATA = 0;
+      const uint8 ESTIMATE_VALID = 1;
+      const uint8 ESTIMATE_INSUFFICIENT_FEATURES = 2;
+      const uint8 ESTIMATE_DEGENERATE = 3;
+      const uint8 ESTIMATE_REPROJECTION_ERROR = 4;
+    };
+    struct VisualOdometryUpdate {
+      std_msgs::msg::Header header;
+
+      builtin_interfaces::msg::Time curr_timestamp;
+
+      builtin_interfaces::msg::Time prev_timestamp;
+
+      geometry_msgs::msg::Transform relative_transform;
+
+      double__36 covariance;
+
+      uint8 estimate_status;
+    };
+  };
+};

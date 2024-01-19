@@ -16,9 +16,14 @@
 #include "pronto_core/state_est.hpp"
 #include "pronto_core/rotations.hpp"
 #include "pronto_quadruped/DynamicStanceEstimator.hpp"
-
+#include "geometry_msgs/msg/vector3.hpp"
+#include "sensor_msgs/msg/joint_state.hpp"
+#include "rclcpp/qos.hpp"
 #include <tuple>
+#include "pronto_solo12/pinocchio_pronto_quadruped_model.hpp"
 
+
+#define ALPHA_FF 0.5
 namespace pronto_controller
 {
     const std::vector<std::string> jnt_id = 
@@ -40,6 +45,8 @@ namespace pronto_controller
     using AverageMode = pronto::quadruped::LegOdometer::AverageMode;
     using FeetContactForces = pronto::quadruped::FeetContactForces;
     using Jointind = pronto::quadruped::JointIdentifiers;
+    using Vec3_msg = geometry_msgs::msg::Vector3;
+    using JntStt = sensor_msgs::msg::JointState;
    
     
     class LegOdom_Manager
@@ -56,6 +63,9 @@ namespace pronto_controller
 
             // funtion to manage the parameter of the stance_estimator
             void get_stance_param();
+
+            // update fading filter of joints velocities
+            void  update_fading_filter(double measure, int ind);
 
             //get the actual estimated state
             void getPreviousState(const pronto::StateEstimator *est);
@@ -109,6 +119,7 @@ namespace pronto_controller
             std::vector<Eigen::Vector3d> pin_foot_pos_;
 
             std::unique_ptr<Model_Parser> mod_parse_;
+            pronto::quadruped::PinocchioProntoQuadrupedModel pin_model_;
             Pinocchio_Feet_Force pin_ff_;
             Pinocchio_Jacobian pin_jac_;
             Pinocchio_FK pin_fk_;
@@ -125,6 +136,19 @@ namespace pronto_controller
             // pronto update variable
             pronto::RBIS default_state_, init_state_,head_state_;
             pronto::RBIM default_cov_,init_cov_,head_cov_;
+            rclcpp::Publisher<Vec3_msg>::SharedPtr odom_cor_pub_;
+            rclcpp::Publisher<Vec3_msg>::SharedPtr fl_jac_pub_;
+            rclcpp::Publisher<Vec3_msg>::SharedPtr fr_jac_pub_;
+            rclcpp::Publisher<Vec3_msg>::SharedPtr hl_jac_pub_;
+            rclcpp::Publisher<Vec3_msg>::SharedPtr hr_jac_pub_;
+            rclcpp::Publisher<JntStt>::SharedPtr fading_filter_vel_pub_;
+            rclcpp::Publisher<JntStt>::SharedPtr stance_pub_;
+            std::vector<double> est_vel_;
+            std::vector<double> est_pos_;
+            JntStt jnt_msg_;
+            JntStt stance_msg_;
+            bool first_step_ = true;
+
     };
 };
 

@@ -1,0 +1,3 @@
+source;share/pronto_quadruped/environment/ament_prefix_path.sh
+source;share/pronto_quadruped/environment/library_path.sh
+source;share/pronto_quadruped/environment/path.sh

@@ -1,6 +1,7 @@
 #include "pronto_ros2_controller/legodom_manager.hpp"
 
-
+#define DEBUG 1
+#define TS 0.001
 namespace pronto_controller
 {
 
@@ -33,7 +34,15 @@ namespace pronto_controller
             RCLCPP_ERROR(controller_->get_logger(),"Throw error in model parsing, check the model");
             assert(false);
         }
-
+        stance_msg_.name.resize(1);
+        stance_msg_.name[0] = "Stance Number";
+        stance_msg_.position.resize(1,0.0);
+        est_vel_.resize(DOF);
+        est_pos_.resize(DOF);
+        jnt_msg_.name.resize(DOF," ");
+        jnt_msg_.position.resize(DOF,0.0);
+        jnt_msg_.velocity.resize(DOF,0.0);
+        jnt_msg_.effort.resize(DOF,0.0);
         // get the kernel direction in therms of force and velocity produced by the leg
 
         auto ker_dir = mod_parse_->get_ker_dir();
@@ -47,11 +56,16 @@ namespace pronto_controller
         // build the class to compute kinematic and dynamics value
         pinocchio::urdf::buildModel(urdf_path,root_fb,model_);
         RCLCPP_INFO(controller_->get_logger(), " the DOF computed are %d",DOF);
+        
+        pin_model_ = pronto::quadruped::PinocchioProntoQuadrupedModel(model_,"base_link","LF_FOOT","RF_FOOT","LH_FOOT","RH_FOOT");
+
         pin_ff_ = Pinocchio_Feet_Force(model_,ker_dir,DOF);
 
-        pin_jac_ = Pinocchio_Jacobian(pin_ff_);
+        pin_jac_ = Pinocchio_Jacobian(&pin_ff_);
  
-        pin_fk_ = Pinocchio_FK(pin_ff_);
+        pin_fk_ = Pinocchio_FK(&pin_ff_);
+
+
 
         // build the pronto class to make the odometry correction 
 
@@ -81,6 +95,15 @@ namespace pronto_controller
         Eigen::Vector3d r_legodo_init(r_vx,r_vy,r_vz);
         leg_odom_->setInitVelocityStd(r_legodo_init);
         jnt_num_ = DOF;
+        odom_cor_pub_ = controller_->create_publisher<Vec3_msg>("~/Odom_Correction",rclcpp::QoS(10));
+
+        fl_jac_pub_ = controller_->create_publisher<Vec3_msg>("~/fl_jac_cor",rclcpp::QoS(10));
+        fr_jac_pub_ = controller_->create_publisher<Vec3_msg>("~/fr_jac_cor",rclcpp::QoS(10));
+        hl_jac_pub_ = controller_->create_publisher<Vec3_msg>("~/hl_jac_cor",rclcpp::QoS(10));
+        hr_jac_pub_ = controller_->create_publisher<Vec3_msg>("~/hr_jac_cor",rclcpp::QoS(10));
+
+        fading_filter_vel_pub_ = controller_->create_publisher<JntStt>("~/Fading_Filter_Est",rclcpp::QoS(10));
+        stance_pub_ = controller_->create_publisher<JntStt>("~/Stance",rclcpp::QoS(10));
     };
 
 
@@ -225,13 +248,25 @@ namespace pronto_controller
 
     pronto::RBISUpdateInterface * LegOdom_Manager::computeVelocity(rclcpp::Time time)
     {
-
+        bool use_cor = false;
         uint64_t utime = time.nanoseconds()/1000;
+        Vec3_msg deb_cor_msg;
         // TODO add the marker publisher for RVIZ see davide's displayer
         stance_est_->getGRF(grf_);
+        
         stance_est_->getStance(stance_,stance_prob_);
+        for(int i = 0; i<4; i++)
+            std::cerr<<"the "<<i<<"-th leg grf is "<<grf_[i].transpose()<<" and the stance prob is "<<stance_[i]<<std::endl;
+        std::cerr<<std::endl;
+        // for(int i = 0; i < 4; i++) {
+        //     std::cerr<<" the stance leg "<<i<<"-th leg is "<< stance_[i]<<std::endl;
+        // }
         leg_odom_->setGrf(grf_);
-        leg_odom_->estimateVelocity(
+        
+        // std::cerr << "the joints dot q are "<<dq_.transpose()<<std::endl;
+        // std::cerr<< " the jnt pos are "<<q_.transpose()<< " and the velocity are "<<dq_.transpose()<<std::endl;
+        
+        use_cor = leg_odom_->estimateVelocity(
             utime,
             q_,
             dq_,
@@ -241,14 +276,57 @@ namespace pronto_controller
             dx_,
             cov_legodo_
         );
-       
-        return new pronto::RBISIndexedMeasurement(
+        Eigen::Vector3d foot_vel;
+        Vec3_msg aaa;
+
+        leg_odom_->get_foot_corr(0,foot_vel);
+        aaa.x = foot_vel(0);
+        aaa.y = foot_vel(1);
+        aaa.z = foot_vel(2);
+        fl_jac_pub_->publish(aaa);
+
+        leg_odom_->get_foot_corr(1,foot_vel);
+        aaa.x = foot_vel(0);
+        aaa.y = foot_vel(1);
+        aaa.z = foot_vel(2);
+        fr_jac_pub_->publish(aaa);
+        
+        leg_odom_->get_foot_corr(2,foot_vel);
+        aaa.x = foot_vel(0);
+        aaa.y = foot_vel(1);
+        aaa.z = foot_vel(2);
+        hl_jac_pub_->publish(aaa);
+
+        leg_odom_->get_foot_corr(3,foot_vel);
+        aaa.x = foot_vel(0);
+        aaa.y = foot_vel(1);
+        aaa.z = foot_vel(2);
+        hr_jac_pub_->publish(aaa);
+        
+        if(DEBUG)
+        {
+            stance_msg_.position[0] = stance_[0] + stance_[1] +stance_[2] +stance_[3];
+          
+            stance_pub_->publish(stance_msg_);
+
+            // auto vel_b = orient_.toRotationMatrix()*dx_;
+            auto vel_b = leg_odom_->get_odom_corr();
+            deb_cor_msg.x = vel_b(0);
+            deb_cor_msg.y = vel_b(1);
+            deb_cor_msg.z = vel_b(2);
+            odom_cor_pub_->publish(deb_cor_msg);
+        }
+        // RCLCPP_INFO(controller_->get_logger(),"the velocity correction is [%f,%f,%f]",dx_(0),dx_(1),dx_(2));
+        if(use_cor)
+            return new pronto::RBISIndexedMeasurement(
                             pronto::RigidBodyState::velocityInds(),
                             dx_,
                             cov_legodo_,
                             pronto::RBISUpdateInterface::legodo,
                             utime
                             );
+        else
+            return nullptr;
 
     }
 
@@ -261,9 +339,23 @@ namespace pronto_controller
             try
             {
                 std::tuple<double,double,double> jnt_tuple = joints_map_.at(jnt_id[i]);
+                
                 q_[i] = std::get<0>(jnt_tuple);
+                if(first_step_)
+                    est_pos_[i] = q_[i];
                 dq_[i] = std::get<1>(jnt_tuple);
+                update_fading_filter(q_[i],i);
+                // if(DEBUG)
+                //     dq_[i] = est_vel_[i];
                 tau_[i] = std::get<2>(jnt_tuple);
+                if(DEBUG)
+                {
+                    jnt_msg_.name[i] = jnt_id[i];
+                    jnt_msg_.position[i] = q_[i];
+                    jnt_msg_.velocity[i] = dq_[i];
+                    fading_filter_vel_pub_->publish(jnt_msg_);
+                    // dq_[i] = est_vel_[i];
+                }
             }
             catch(std::exception& e)
             {
@@ -286,12 +378,25 @@ namespace pronto_controller
                     assert(false);
                 }
             }
+            if(first_step_)
+                first_step_ = false;
+            
         }
+
         
         //set the pinocchio state
         pin_ff_.set_State(joints_map_,orient_,dx_,ddx_,omega_,domega_);
         // compute all the dynamics quantities
         pin_ff_.update_All();
+    }
+
+    void LegOdom_Manager::update_fading_filter(double measure, int ind)
+    {
+        double H,G;
+        G = (1 - ALPHA_FF*ALPHA_FF);
+        H = std::pow((1-ALPHA_FF),2);
+        est_pos_[ind] = est_pos_[ind] + est_vel_[ind]*TS + G*(measure -(est_pos_[ind] + est_vel_[ind]*TS));
+        est_vel_[ind] = est_vel_[ind] + (H/TS)*(measure -(est_pos_[ind] + TS * est_vel_[ind]));
     }
 
 };

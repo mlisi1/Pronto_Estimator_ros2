@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from pronto_msgs/msg/FilterState.msg
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Quaternion.idl"
+#include "std_msgs/msg/Header.idl"
+
+module pronto_msgs {
+  module msg {
+    struct FilterState {
+      std_msgs::msg::Header header;
+
+      geometry_msgs::msg::Quaternion quat;
+
+      sequence<double> state;
+
+      sequence<double> cov;
+    };
+  };
+};

@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from pronto_msgs/msg/VelocityWithSigmaBounds.msg
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Vector3.idl"
+#include "std_msgs/msg/Header.idl"
+
+module pronto_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "convenience message encoding the linear velocity" "\n"
+      "one sigma bounds (plus, minus) and the sigma alone")
+    struct VelocityWithSigmaBounds {
+      std_msgs::msg::Header header;
+
+      geometry_msgs::msg::Vector3 velocity_plus_one_sigma;
+
+      geometry_msgs::msg::Vector3 velocity_minus_one_sigma;
+
+      geometry_msgs::msg::Vector3 plus_one_sigma;
+    };
+  };
+};

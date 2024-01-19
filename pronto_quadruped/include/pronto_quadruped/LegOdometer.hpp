@@ -85,7 +85,7 @@ public:
       std::cerr << "Function not implemented yet!" << std::endl;
       return false;
     }
-
+    void get_foot_corr(int i, Eigen::Vector3d& vec);
     bool estimateVelocity(const uint64_t utime,
                           const JointState& q,
                           const JointState& qd,
@@ -129,6 +129,11 @@ public:
 
     FeetJacobians& getFeetJacobians() const { return feet_jacobians_; }
     ForwardKinematics& getForwardKinematics() const { return forward_kinematics_; }
+
+    Eigen::Vector3d get_odom_corr()
+    {
+        return xd_b_;
+    };
 
 protected:
     FeetJacobians& feet_jacobians_;

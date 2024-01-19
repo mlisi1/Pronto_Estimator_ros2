@@ -1,0 +1,10 @@
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/uninstall.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/pronto_core_uninstall.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/pronto_core.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/test.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/edit_cache.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/rebuild_cache.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/list_install_components.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/install.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/install/local.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core/CMakeFiles/install/strip.dir

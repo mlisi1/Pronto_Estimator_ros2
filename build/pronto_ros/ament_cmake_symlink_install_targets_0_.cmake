@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_targets("TARGET_FILES" "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/joint_state_with_acceleration_republisher" "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/pronto_ros_node" "TARGETS" "joint_state_with_acceleration_republisher" "pronto_ros_node" "DESTINATION" "lib/pronto_ros")

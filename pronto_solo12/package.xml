@@ -11,6 +11,7 @@
 
   <depend>pronto_ros</depend>
   <depend>pronto_quadruped_ros</depend>
+  <depend>pronto_quadruped_commons</depend>
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
   <depend>pinocchio</depend>

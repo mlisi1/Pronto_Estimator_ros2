@@ -1,0 +1,539 @@
+[0.502s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.502s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=20, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7fe680e7caf0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fe6812d7c10>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fe6812d7c10>>)
+[0.526s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.526s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.526s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.526s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.526s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.526s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.526s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.526s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extensions ['ignore', 'ignore_ament_install']
+[0.532s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extension 'ignore'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extension 'ignore_ament_install'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extensions ['colcon_pkg']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extension 'colcon_pkg'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extensions ['colcon_meta']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extension 'colcon_meta'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extensions ['ros']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extension 'ros'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extensions ['cmake', 'python']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extension 'cmake'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extension 'python'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extensions ['python_setup_py']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(doc) by extension 'python_setup_py'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_core) by extensions ['ignore', 'ignore_ament_install']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_core) by extension 'ignore'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_core) by extension 'ignore_ament_install'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_core) by extensions ['colcon_pkg']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_core) by extension 'colcon_pkg'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_core) by extensions ['colcon_meta']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_core) by extension 'colcon_meta'
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_core) by extensions ['ros']
+[0.533s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_core) by extension 'ros'
+[0.535s] DEBUG:colcon.colcon_core.package_identification:Package 'pronto_core' with type 'ros.ament_cmake' and name 'pronto_core'
+[0.535s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.535s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_msgs) by extension 'ignore'
+[0.536s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_msgs) by extension 'ignore_ament_install'
+[0.536s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_msgs) by extensions ['colcon_pkg']
+[0.536s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_msgs) by extension 'colcon_pkg'
+[0.536s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_msgs) by extensions ['colcon_meta']
+[0.536s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_msgs) by extension 'colcon_meta'
+[0.536s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_msgs) by extensions ['ros']
+[0.536s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_msgs) by extension 'ros'
+[0.536s] DEBUG:colcon.colcon_core.package_identification:Package 'pronto_msgs' with type 'ros.ament_cmake' and name 'pronto_msgs'
+[0.536s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped) by extensions ['ignore', 'ignore_ament_install']
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped) by extension 'ignore'
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped) by extension 'ignore_ament_install'
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped) by extensions ['colcon_pkg']
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped) by extension 'colcon_pkg'
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped) by extensions ['colcon_meta']
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped) by extension 'colcon_meta'
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped) by extensions ['ros']
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped) by extension 'ros'
+[0.537s] DEBUG:colcon.colcon_core.package_identification:Package 'pronto_quadruped' with type 'ros.ament_cmake' and name 'pronto_quadruped'
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_commons) by extensions ['ignore', 'ignore_ament_install']
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_commons) by extension 'ignore'
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_commons) by extension 'ignore_ament_install'
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_commons) by extensions ['colcon_pkg']
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_commons) by extension 'colcon_pkg'
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_commons) by extensions ['colcon_meta']
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_commons) by extension 'colcon_meta'
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_commons) by extensions ['ros']
+[0.537s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_commons) by extension 'ros'
+[0.538s] DEBUG:colcon.colcon_core.package_identification:Package 'pronto_quadruped_commons' with type 'ros.ament_cmake' and name 'pronto_quadruped_commons'
+[0.538s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.538s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_ros) by extension 'ignore'
+[0.538s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_ros) by extension 'ignore_ament_install'
+[0.538s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_ros) by extensions ['colcon_pkg']
+[0.538s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_ros) by extension 'colcon_pkg'
+[0.538s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_ros) by extensions ['colcon_meta']
+[0.538s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_ros) by extension 'colcon_meta'
+[0.538s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_ros) by extensions ['ros']
+[0.538s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_quadruped_ros) by extension 'ros'
+[0.539s] DEBUG:colcon.colcon_core.package_identification:Package 'pronto_quadruped_ros' with type 'ros.ament_cmake' and name 'pronto_quadruped_ros'
+[0.539s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.539s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros) by extension 'ignore'
+[0.539s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros) by extension 'ignore_ament_install'
+[0.539s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros) by extensions ['colcon_pkg']
+[0.539s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros) by extension 'colcon_pkg'
+[0.539s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros) by extensions ['colcon_meta']
+[0.539s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros) by extension 'colcon_meta'
+[0.539s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros) by extensions ['ros']
+[0.539s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros) by extension 'ros'
+[0.540s] DEBUG:colcon.colcon_core.package_identification:Package 'pronto_ros' with type 'ros.ament_cmake' and name 'pronto_ros'
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros2_controller) by extensions ['ignore', 'ignore_ament_install']
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros2_controller) by extension 'ignore'
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros2_controller) by extension 'ignore_ament_install'
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros2_controller) by extensions ['colcon_pkg']
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros2_controller) by extension 'colcon_pkg'
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros2_controller) by extensions ['colcon_meta']
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros2_controller) by extension 'colcon_meta'
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros2_controller) by extensions ['ros']
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_ros2_controller) by extension 'ros'
+[0.540s] DEBUG:colcon.colcon_core.package_identification:Package 'pronto_ros2_controller' with type 'ros.ament_cmake' and name 'pronto_ros2_controller'
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_solo12) by extensions ['ignore', 'ignore_ament_install']
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_solo12) by extension 'ignore'
+[0.540s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_solo12) by extension 'ignore_ament_install'
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_solo12) by extensions ['colcon_pkg']
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_solo12) by extension 'colcon_pkg'
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_solo12) by extensions ['colcon_meta']
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_solo12) by extension 'colcon_meta'
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_solo12) by extensions ['ros']
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_solo12) by extension 'ros'
+[0.541s] DEBUG:colcon.colcon_core.package_identification:Package 'pronto_solo12' with type 'ros.ament_cmake' and name 'pronto_solo12'
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_utils) by extensions ['ignore', 'ignore_ament_install']
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_utils) by extension 'ignore'
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_utils) by extension 'ignore_ament_install'
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_utils) by extensions ['colcon_pkg']
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_utils) by extension 'colcon_pkg'
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_utils) by extensions ['colcon_meta']
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_utils) by extension 'colcon_meta'
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_utils) by extensions ['ros']
+[0.541s] Level 1:colcon.colcon_core.package_identification:_identify(pronto_utils) by extension 'ros'
+[0.542s] DEBUG:colcon.colcon_core.package_identification:Package 'pronto_utils' with type 'ros.ament_cmake' and name 'pronto_utils'
+[0.542s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.542s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.542s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.542s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.542s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.588s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.588s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.604s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 356 installed packages in /opt/ros/humble
+[0.605s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.660s] Level 5:colcon.colcon_core.verb:set package 'pronto_core' build argument 'cmake_args' from command line to 'None'
+[0.660s] Level 5:colcon.colcon_core.verb:set package 'pronto_core' build argument 'cmake_target' from command line to 'None'
+[0.660s] Level 5:colcon.colcon_core.verb:set package 'pronto_core' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.660s] Level 5:colcon.colcon_core.verb:set package 'pronto_core' build argument 'cmake_clean_cache' from command line to 'False'
+[0.661s] Level 5:colcon.colcon_core.verb:set package 'pronto_core' build argument 'cmake_clean_first' from command line to 'False'
+[0.661s] Level 5:colcon.colcon_core.verb:set package 'pronto_core' build argument 'cmake_force_configure' from command line to 'False'
+[0.661s] Level 5:colcon.colcon_core.verb:set package 'pronto_core' build argument 'ament_cmake_args' from command line to 'None'
+[0.661s] Level 5:colcon.colcon_core.verb:set package 'pronto_core' build argument 'catkin_cmake_args' from command line to 'None'
+[0.661s] Level 5:colcon.colcon_core.verb:set package 'pronto_core' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.661s] DEBUG:colcon.colcon_core.verb:Building package 'pronto_core' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core', 'merge_install': False, 'path': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_core', 'symlink_install': True, 'test_result_base': None}
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'pronto_msgs' build argument 'cmake_args' from command line to 'None'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'pronto_msgs' build argument 'cmake_target' from command line to 'None'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'pronto_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'pronto_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'pronto_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'pronto_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'pronto_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'pronto_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'pronto_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.668s] DEBUG:colcon.colcon_core.verb:Building package 'pronto_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs', 'merge_install': False, 'path': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs', 'symlink_install': True, 'test_result_base': None}
+[0.675s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_commons' build argument 'cmake_args' from command line to 'None'
+[0.675s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_commons' build argument 'cmake_target' from command line to 'None'
+[0.675s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_commons' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.675s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_commons' build argument 'cmake_clean_cache' from command line to 'False'
+[0.675s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_commons' build argument 'cmake_clean_first' from command line to 'False'
+[0.675s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_commons' build argument 'cmake_force_configure' from command line to 'False'
+[0.675s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_commons' build argument 'ament_cmake_args' from command line to 'None'
+[0.675s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_commons' build argument 'catkin_cmake_args' from command line to 'None'
+[0.675s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_commons' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.675s] DEBUG:colcon.colcon_core.verb:Building package 'pronto_quadruped_commons' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons', 'merge_install': False, 'path': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped_commons', 'symlink_install': True, 'test_result_base': None}
+[0.682s] Level 5:colcon.colcon_core.verb:set package 'pronto_utils' build argument 'cmake_args' from command line to 'None'
+[0.682s] Level 5:colcon.colcon_core.verb:set package 'pronto_utils' build argument 'cmake_target' from command line to 'None'
+[0.682s] Level 5:colcon.colcon_core.verb:set package 'pronto_utils' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.682s] Level 5:colcon.colcon_core.verb:set package 'pronto_utils' build argument 'cmake_clean_cache' from command line to 'False'
+[0.682s] Level 5:colcon.colcon_core.verb:set package 'pronto_utils' build argument 'cmake_clean_first' from command line to 'False'
+[0.682s] Level 5:colcon.colcon_core.verb:set package 'pronto_utils' build argument 'cmake_force_configure' from command line to 'False'
+[0.682s] Level 5:colcon.colcon_core.verb:set package 'pronto_utils' build argument 'ament_cmake_args' from command line to 'None'
+[0.682s] Level 5:colcon.colcon_core.verb:set package 'pronto_utils' build argument 'catkin_cmake_args' from command line to 'None'
+[0.682s] Level 5:colcon.colcon_core.verb:set package 'pronto_utils' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.682s] DEBUG:colcon.colcon_core.verb:Building package 'pronto_utils' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils', 'merge_install': False, 'path': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_utils', 'symlink_install': True, 'test_result_base': None}
+[0.689s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped' build argument 'cmake_args' from command line to 'None'
+[0.689s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped' build argument 'cmake_target' from command line to 'None'
+[0.689s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.690s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped' build argument 'cmake_clean_cache' from command line to 'False'
+[0.690s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped' build argument 'cmake_clean_first' from command line to 'False'
+[0.690s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped' build argument 'cmake_force_configure' from command line to 'False'
+[0.690s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped' build argument 'ament_cmake_args' from command line to 'None'
+[0.690s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped' build argument 'catkin_cmake_args' from command line to 'None'
+[0.690s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.690s] DEBUG:colcon.colcon_core.verb:Building package 'pronto_quadruped' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped', 'merge_install': False, 'path': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped', 'symlink_install': True, 'test_result_base': None}
+[0.697s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros' build argument 'cmake_args' from command line to 'None'
+[0.697s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros' build argument 'cmake_target' from command line to 'None'
+[0.697s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.697s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[0.697s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros' build argument 'cmake_clean_first' from command line to 'False'
+[0.697s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros' build argument 'cmake_force_configure' from command line to 'False'
+[0.697s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros' build argument 'ament_cmake_args' from command line to 'None'
+[0.697s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[0.697s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.697s] DEBUG:colcon.colcon_core.verb:Building package 'pronto_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros', 'merge_install': False, 'path': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_ros', 'symlink_install': True, 'test_result_base': None}
+[0.704s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_ros' build argument 'cmake_args' from command line to 'None'
+[0.704s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_ros' build argument 'cmake_target' from command line to 'None'
+[0.704s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.704s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[0.704s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_ros' build argument 'cmake_clean_first' from command line to 'False'
+[0.704s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_ros' build argument 'cmake_force_configure' from command line to 'False'
+[0.704s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_ros' build argument 'ament_cmake_args' from command line to 'None'
+[0.704s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[0.704s] Level 5:colcon.colcon_core.verb:set package 'pronto_quadruped_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.704s] DEBUG:colcon.colcon_core.verb:Building package 'pronto_quadruped_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_ros', 'merge_install': False, 'path': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped_ros', 'symlink_install': True, 'test_result_base': None}
+[0.711s] Level 5:colcon.colcon_core.verb:set package 'pronto_solo12' build argument 'cmake_args' from command line to 'None'
+[0.711s] Level 5:colcon.colcon_core.verb:set package 'pronto_solo12' build argument 'cmake_target' from command line to 'None'
+[0.711s] Level 5:colcon.colcon_core.verb:set package 'pronto_solo12' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.711s] Level 5:colcon.colcon_core.verb:set package 'pronto_solo12' build argument 'cmake_clean_cache' from command line to 'False'
+[0.711s] Level 5:colcon.colcon_core.verb:set package 'pronto_solo12' build argument 'cmake_clean_first' from command line to 'False'
+[0.711s] Level 5:colcon.colcon_core.verb:set package 'pronto_solo12' build argument 'cmake_force_configure' from command line to 'False'
+[0.711s] Level 5:colcon.colcon_core.verb:set package 'pronto_solo12' build argument 'ament_cmake_args' from command line to 'None'
+[0.711s] Level 5:colcon.colcon_core.verb:set package 'pronto_solo12' build argument 'catkin_cmake_args' from command line to 'None'
+[0.711s] Level 5:colcon.colcon_core.verb:set package 'pronto_solo12' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.711s] DEBUG:colcon.colcon_core.verb:Building package 'pronto_solo12' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_solo12', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_solo12', 'merge_install': False, 'path': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_solo12', 'symlink_install': True, 'test_result_base': None}
+[0.718s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros2_controller' build argument 'cmake_args' from command line to 'None'
+[0.718s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros2_controller' build argument 'cmake_target' from command line to 'None'
+[0.718s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros2_controller' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.718s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros2_controller' build argument 'cmake_clean_cache' from command line to 'False'
+[0.718s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros2_controller' build argument 'cmake_clean_first' from command line to 'False'
+[0.718s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros2_controller' build argument 'cmake_force_configure' from command line to 'False'
+[0.718s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros2_controller' build argument 'ament_cmake_args' from command line to 'None'
+[0.718s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros2_controller' build argument 'catkin_cmake_args' from command line to 'None'
+[0.718s] Level 5:colcon.colcon_core.verb:set package 'pronto_ros2_controller' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.718s] DEBUG:colcon.colcon_core.verb:Building package 'pronto_ros2_controller' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros2_controller', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros2_controller', 'merge_install': False, 'path': '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_ros2_controller', 'symlink_install': True, 'test_result_base': None}
+[0.725s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.732s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.733s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_core' with build type 'ament_cmake'
+[0.733s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_core'
+[0.741s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.741s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.741s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.757s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs' with build type 'ament_cmake'
+[0.757s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs'
+[0.764s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.765s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.781s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped_commons' with build type 'ament_cmake'
+[0.781s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped_commons'
+[0.788s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.789s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.805s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_utils' with build type 'ament_cmake'
+[0.805s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_utils'
+[0.812s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.812s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.832s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_core -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core
+[0.834s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs
+[0.834s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped_commons -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons
+[0.837s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_utils -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils
+[1.278s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_utils -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils
+[1.279s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils -- -j20 -l20
+[1.281s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped_commons -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons
+[1.282s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons -- -j20 -l20
+[1.304s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons -- -j20 -l20
+[1.338s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons
+[1.860s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_quadruped_commons)
+[1.861s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons
+[1.880s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons' for CMake module files
+[1.881s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons' for CMake config files
+[1.881s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_quadruped_commons', 'cmake_prefix_path')
+[1.899s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/hook/cmake_prefix_path.ps1'
+[1.900s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/hook/cmake_prefix_path.dsv'
+[1.900s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/hook/cmake_prefix_path.sh'
+[1.901s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/bin'
+[1.901s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/lib/pkgconfig/pronto_quadruped_commons.pc'
+[1.902s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/lib/python3.10/site-packages'
+[1.902s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/bin'
+[1.919s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.ps1'
+[1.920s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.dsv'
+[1.921s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.sh'
+[1.922s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.bash'
+[1.923s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.zsh'
+[1.923s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/colcon-core/packages/pronto_quadruped_commons)
+[1.968s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_quadruped_commons)
+[1.991s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons' for CMake module files
+[1.992s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons' for CMake config files
+[1.993s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_quadruped_commons', 'cmake_prefix_path')
+[2.015s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/hook/cmake_prefix_path.ps1'
+[2.016s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/hook/cmake_prefix_path.dsv'
+[2.016s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/hook/cmake_prefix_path.sh'
+[2.017s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/bin'
+[2.017s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/lib/pkgconfig/pronto_quadruped_commons.pc'
+[2.017s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/lib/python3.10/site-packages'
+[2.017s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/bin'
+[2.039s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.ps1'
+[2.039s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.dsv'
+[2.040s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.sh'
+[2.040s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.bash'
+[2.041s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.zsh'
+[2.041s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/colcon-core/packages/pronto_quadruped_commons)
+[2.043s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_core -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core
+[2.045s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core -- -j20 -l20
+[3.216s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs
+[3.218s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs -- -j20 -l20
+[8.207s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs -- -j20 -l20
+[8.350s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs
+[9.491s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils -- -j20 -l20
+[9.529s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils
+[9.820s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_utils)
+[9.821s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils
+[9.831s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils' for CMake module files
+[9.832s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils' for CMake config files
+[9.832s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_utils', 'cmake_prefix_path')
+[9.842s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/cmake_prefix_path.ps1'
+[9.842s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/cmake_prefix_path.dsv'
+[9.843s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/cmake_prefix_path.sh'
+[9.843s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib'
+[9.843s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_utils', 'ld_library_path_lib')
+[9.854s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/ld_library_path_lib.ps1'
+[9.854s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/ld_library_path_lib.dsv'
+[9.855s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/ld_library_path_lib.sh'
+[9.855s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/bin'
+[9.855s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/pkgconfig/pronto_utils.pc'
+[9.855s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/python3.10/site-packages'
+[9.856s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/bin'
+[9.873s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.ps1'
+[9.873s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.dsv'
+[9.875s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.sh'
+[9.875s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.bash'
+[9.875s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.zsh'
+[9.876s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/colcon-core/packages/pronto_utils)
+[9.941s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_utils)
+[9.966s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils' for CMake module files
+[9.967s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils' for CMake config files
+[9.967s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_utils', 'cmake_prefix_path')
+[9.987s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/cmake_prefix_path.ps1'
+[9.988s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/cmake_prefix_path.dsv'
+[9.988s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/cmake_prefix_path.sh'
+[9.989s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib'
+[9.989s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_utils', 'ld_library_path_lib')
+[10.008s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/ld_library_path_lib.ps1'
+[10.009s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/ld_library_path_lib.dsv'
+[10.009s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/hook/ld_library_path_lib.sh'
+[10.009s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/bin'
+[10.009s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/pkgconfig/pronto_utils.pc'
+[10.010s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/python3.10/site-packages'
+[10.010s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/bin'
+[10.029s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.ps1'
+[10.030s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.dsv'
+[10.031s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.sh'
+[10.031s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.bash'
+[10.031s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.zsh'
+[10.032s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/colcon-core/packages/pronto_utils)
+[10.033s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_msgs)
+[10.034s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs
+[10.055s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs' for CMake module files
+[10.056s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs' for CMake config files
+[10.058s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_msgs', 'cmake_prefix_path')
+[10.068s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/cmake_prefix_path.ps1'
+[10.068s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/cmake_prefix_path.dsv'
+[10.068s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/cmake_prefix_path.sh'
+[10.068s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib'
+[10.069s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_msgs', 'ld_library_path_lib')
+[10.078s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/ld_library_path_lib.ps1'
+[10.078s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/ld_library_path_lib.dsv'
+[10.079s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/ld_library_path_lib.sh'
+[10.079s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/bin'
+[10.079s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/pkgconfig/pronto_msgs.pc'
+[10.079s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/python3.10/site-packages'
+[10.079s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/bin'
+[10.089s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.ps1'
+[10.089s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.dsv'
+[10.090s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.sh'
+[10.090s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.bash'
+[10.090s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.zsh'
+[10.090s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/colcon-core/packages/pronto_msgs)
+[10.269s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_msgs)
+[10.289s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs' for CMake module files
+[10.290s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs' for CMake config files
+[10.292s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_msgs', 'cmake_prefix_path')
+[10.311s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/cmake_prefix_path.ps1'
+[10.311s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/cmake_prefix_path.dsv'
+[10.312s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/cmake_prefix_path.sh'
+[10.312s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib'
+[10.312s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_msgs', 'ld_library_path_lib')
+[10.331s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/ld_library_path_lib.ps1'
+[10.332s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/ld_library_path_lib.dsv'
+[10.332s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/hook/ld_library_path_lib.sh'
+[10.332s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/bin'
+[10.333s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/pkgconfig/pronto_msgs.pc'
+[10.333s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/python3.10/site-packages'
+[10.333s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/bin'
+[10.352s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.ps1'
+[10.352s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.dsv'
+[10.353s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.sh'
+[10.354s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.bash'
+[10.354s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.zsh'
+[10.354s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/colcon-core/packages/pronto_msgs)
+[17.988s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core -- -j20 -l20
+[18.019s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core
+[18.242s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_core)
+[18.242s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_core
+[18.259s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core' for CMake module files
+[18.260s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core' for CMake config files
+[18.260s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_core', 'cmake_prefix_path')
+[18.277s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/cmake_prefix_path.ps1'
+[18.278s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/cmake_prefix_path.dsv'
+[18.278s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/cmake_prefix_path.sh'
+[18.279s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib'
+[18.279s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_core', 'ld_library_path_lib')
+[18.305s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/ld_library_path_lib.ps1'
+[18.306s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/ld_library_path_lib.dsv'
+[18.306s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/ld_library_path_lib.sh'
+[18.306s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/bin'
+[18.306s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib/pkgconfig/pronto_core.pc'
+[18.307s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib/python3.10/site-packages'
+[18.307s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/bin'
+[18.325s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.ps1'
+[18.325s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.dsv'
+[18.326s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.sh'
+[18.326s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.bash'
+[18.326s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.zsh'
+[18.326s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/colcon-core/packages/pronto_core)
+[18.376s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_core)
+[18.393s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core' for CMake module files
+[18.394s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core' for CMake config files
+[18.394s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_core', 'cmake_prefix_path')
+[18.412s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/cmake_prefix_path.ps1'
+[18.412s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/cmake_prefix_path.dsv'
+[18.413s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/cmake_prefix_path.sh'
+[18.413s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib'
+[18.413s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_core', 'ld_library_path_lib')
+[18.431s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/ld_library_path_lib.ps1'
+[18.431s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/ld_library_path_lib.dsv'
+[18.431s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/hook/ld_library_path_lib.sh'
+[18.432s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/bin'
+[18.432s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib/pkgconfig/pronto_core.pc'
+[18.432s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib/python3.10/site-packages'
+[18.432s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/bin'
+[18.449s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.ps1'
+[18.450s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.dsv'
+[18.450s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.sh'
+[18.451s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.bash'
+[18.451s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/package.zsh'
+[18.452s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/colcon-core/packages/pronto_core)
+[18.452s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped' with build type 'ament_cmake'
+[18.452s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped'
+[18.471s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[18.471s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[18.511s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_ros' with build type 'ament_cmake'
+[18.511s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_ros'
+[18.528s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[18.528s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[18.550s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped
+[18.555s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_ros -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros
+[19.742s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped' returned '0': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped
+[19.743s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped -- -j20 -l20
+[21.018s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros' returned '0': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_ros -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros
+[21.020s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros -- -j20 -l20
+[32.324s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped' returned '0': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped -- -j20 -l20
+[32.349s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped
+[32.537s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_quadruped)
+[32.537s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped' returned '0': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped
+[32.546s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped' for CMake module files
+[32.546s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped' for CMake config files
+[32.547s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_quadruped', 'cmake_prefix_path')
+[32.556s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/cmake_prefix_path.ps1'
+[32.556s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/cmake_prefix_path.dsv'
+[32.556s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/cmake_prefix_path.sh'
+[32.556s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/lib'
+[32.556s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_quadruped', 'ld_library_path_lib')
+[32.565s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/ld_library_path_lib.ps1'
+[32.566s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/ld_library_path_lib.dsv'
+[32.566s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/ld_library_path_lib.sh'
+[32.566s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/bin'
+[32.566s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/lib/pkgconfig/pronto_quadruped.pc'
+[32.566s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/lib/python3.10/site-packages'
+[32.566s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/bin'
+[32.575s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.ps1'
+[32.576s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.dsv'
+[32.576s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.sh'
+[32.576s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.bash'
+[32.576s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.zsh'
+[32.576s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/colcon-core/packages/pronto_quadruped)
+[32.624s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_quadruped)
+[32.641s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped' for CMake module files
+[32.641s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped' for CMake config files
+[32.642s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_quadruped', 'cmake_prefix_path')
+[32.658s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/cmake_prefix_path.ps1'
+[32.658s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/cmake_prefix_path.dsv'
+[32.659s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/cmake_prefix_path.sh'
+[32.659s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/lib'
+[32.659s] Level 1:colcon.colcon_core.shell:create_environment_hook('pronto_quadruped', 'ld_library_path_lib')
+[32.677s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/ld_library_path_lib.ps1'
+[32.678s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/ld_library_path_lib.dsv'
+[32.678s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/hook/ld_library_path_lib.sh'
+[32.678s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/bin'
+[32.678s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/lib/pkgconfig/pronto_quadruped.pc'
+[32.679s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/lib/python3.10/site-packages'
+[32.679s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/bin'
+[32.697s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.ps1'
+[32.698s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.dsv'
+[32.699s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.sh'
+[32.699s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.bash'
+[32.699s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.zsh'
+[32.700s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/colcon-core/packages/pronto_quadruped)
+[73.559s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete was interrupted
+[73.560s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete again
+[73.578s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros' returned '-2': AMENT_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core:/opt/openrobots:/opt/openrobots:/opt/ros/humble LD_LIBRARY_PATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros -- -j20 -l20
+[73.618s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pronto_ros)
+[73.634s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros' for CMake module files
+[73.634s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros' for CMake config files
+[73.634s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/bin'
+[73.634s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/lib/pkgconfig/pronto_ros.pc'
+[73.635s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/lib/python3.10/site-packages'
+[73.635s] Level 1:colcon.colcon_core.environment:checking '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/bin'
+[73.651s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/share/pronto_ros/package.ps1'
+[73.651s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/share/pronto_ros/package.dsv'
+[73.651s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/share/pronto_ros/package.sh'
+[73.652s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/share/pronto_ros/package.bash'
+[73.652s] INFO:colcon.colcon_core.shell:Creating package script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/share/pronto_ros/package.zsh'
+[73.652s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_ros/share/colcon-core/packages/pronto_ros)
+[73.663s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished
+[73.663s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[73.663s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[73.663s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[73.674s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[73.674s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[73.674s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[73.683s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[73.698s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/local_setup.ps1'
+[73.699s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/_local_setup_util_ps1.py'
+[73.700s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/setup.ps1'
+[73.716s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/local_setup.sh'
+[73.716s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/_local_setup_util_sh.py'
+[73.717s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/setup.sh'
+[73.732s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/local_setup.bash'
+[73.733s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/setup.bash'
+[73.748s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/local_setup.zsh'
+[73.749s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/setup.zsh'

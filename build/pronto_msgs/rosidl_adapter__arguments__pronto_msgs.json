@@ -1,0 +1,16 @@
+{
+  "package_name": "pronto_msgs",
+  "non_idl_tuples": [
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/FilterState.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/IndexedMeasurement.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/QuadrupedStance.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/JointStateWithAcceleration.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/ControllerFootContact.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/QuadrupedForceTorqueSensors.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/VelocityWithSigmaBounds.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/VisualOdometryUpdate.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/GPSData.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/LidarOdometryUpdate.msg",
+    "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs:msg/BipedForceTorqueSensors.msg"
+  ]
+}

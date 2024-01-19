@@ -213,6 +213,7 @@ bool StanceEstimator::getStance(LegBoolMap &stance,
             stance[leg_id] = (stance_probability[leg_id] > 0.5 ? true : false);
             break;
         }
+        // std::cerr << "the GRF of "<< leg_id << "-th leg is "<< grf_[leg_id].transpose() << " and the stance prob is "<<stance[leg_id]<<std::endl;
     }
     return true;
 }

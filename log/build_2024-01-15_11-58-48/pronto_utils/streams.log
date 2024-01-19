@@ -1,0 +1,147 @@
+[0.032s] Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_utils -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils
+[0.071s] -- The C compiler identification is GNU 11.4.0
+[0.107s] -- The CXX compiler identification is GNU 11.4.0
+[0.111s] -- Detecting C compiler ABI info
+[0.153s] -- Detecting C compiler ABI info - done
+[0.157s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.157s] -- Detecting C compile features
+[0.158s] -- Detecting C compile features - done
+[0.160s] -- Detecting CXX compiler ABI info
+[0.206s] -- Detecting CXX compiler ABI info - done
+[0.213s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.213s] -- Detecting CXX compile features
+[0.214s] -- Detecting CXX compile features - done
+[0.216s] -- Found ament_cmake: 1.3.6 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.327s] -- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+[0.369s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.404s] -- Found ament_lint_auto: 0.12.9 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.460s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.460s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_utils/include>
+[0.460s] -- Configured cppcheck exclude dirs and/or files: 
+[0.461s] -- Added test 'lint_cmake' to check CMake code style
+[0.463s] -- Added test 'uncrustify' to check C / C++ code style
+[0.463s] -- Configured uncrustify additional arguments: 
+[0.463s] -- Added test 'xmllint' to check XML markup files
+[0.465s] -- Configuring done
+[0.470s] -- Generating done
+[0.470s] -- Build files have been written to: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils
+[0.473s] Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_utils -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils
+[0.474s] Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils -- -j20 -l20
+[0.503s] [  5%] [32mBuilding CXX object CMakeFiles/kalman_filter.dir/src/alpha_filter.cpp.o[0m
+[0.504s] [ 15%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/HeavyLowPassFilter.cpp.o[0m
+[0.504s] [ 15%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/Filter.cpp.o[0m
+[0.504s] [ 20%] [32mBuilding CXX object CMakeFiles/kalman_filter.dir/src/kalman_filter.cpp.o[0m
+[0.504s] [ 25%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/DataFileLogger.cpp.o[0m
+[0.505s] [ 40%] [32mBuilding CXX object CMakeFiles/kalman_filter.dir/src/simple_kalman_filter.cpp.o[0m
+[0.505s] [ 40%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/MedianFilter.cpp.o[0m
+[0.505s] [ 45%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/BipolarSchmittTrigger.cpp.o[0m
+[0.505s] [ 45%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/RateChange.cpp.o[0m
+[0.505s] [ 50%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/NumericalDiff.cpp.o[0m
+[0.505s] [ 55%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/DistributedDiff.cpp.o[0m
+[0.506s] [ 60%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/TrapezoidalInt.cpp.o[0m
+[0.507s] [ 65%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/Gaussian.cpp.o[0m
+[0.507s] [ 70%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/ExpireTimer.cpp.o[0m
+[0.507s] [ 75%] [32mBuilding CXX object CMakeFiles/pronto_utils.dir/src/SchmittTrigger.cpp.o[0m
+[2.224s] [ 80%] [32m[1mLinking CXX shared library libpronto_utils.so[0m
+[2.362s] [ 80%] Built target pronto_utils
+[7.696s] [ 85%] [32m[1mLinking CXX shared library libkalman_filter.so[0m
+[7.859s] [ 85%] Built target kalman_filter
+[7.874s] [ 90%] [32mBuilding CXX object CMakeFiles/backlash_filter.dir/src/backlash_filter.cpp.o[0m
+[7.877s] [ 95%] [32mBuilding CXX object CMakeFiles/backlash_filter.dir/src/torque_adjustment.cpp.o[0m
+[8.599s] [100%] [32m[1mLinking CXX shared library libbacklash_filter.so[0m
+[8.678s] [100%] Built target backlash_filter
+[8.686s] Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils -- -j20 -l20
+[8.724s] Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils
+[8.729s] -- Install configuration: ""
+[8.730s] -- Execute custom install script
+[8.730s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/environment/library_path.sh
+[8.740s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/environment/library_path.dsv
+[8.747s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/BipolarSchmittTrigger.hpp
+[8.753s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/BlipFilter.hpp
+[8.759s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/CumulativeAverage.hpp
+[8.767s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/DataFileLogger.hpp
+[8.774s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/DistributedDiff.hpp
+[8.780s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/ExpireTimer.hpp
+[8.786s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/Filter.hpp
+[8.792s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/Gaussian.hpp
+[8.798s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/HeavyLowPassFilter.hpp
+[8.804s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/MedianFilter.hpp
+[8.810s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/NumericalDiff.hpp
+[8.816s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/RateChange.hpp
+[8.822s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/SchmittTrigger.hpp
+[8.827s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/SignalTap.hpp
+[8.833s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/TrapezoidalInt.hpp
+[8.839s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/alpha_filter.hpp
+[8.845s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/backlash_filter.hpp
+[8.850s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/kalman_filter.hpp
+[8.856s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/simple_kalman_filter.hpp
+[8.861s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/torque_adjustment.hpp
+[8.867s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/visibility_control.h
+[8.873s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/BipolarSchmittTrigger.hpp
+[8.873s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/BlipFilter.hpp
+[8.873s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/CumulativeAverage.hpp
+[8.873s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/DataFileLogger.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/DistributedDiff.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/ExpireTimer.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/Filter.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/Gaussian.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/HeavyLowPassFilter.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/MedianFilter.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/NumericalDiff.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/RateChange.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/SchmittTrigger.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/SignalTap.hpp
+[8.874s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/TrapezoidalInt.hpp
+[8.875s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/alpha_filter.hpp
+[8.875s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/backlash_filter.hpp
+[8.875s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/kalman_filter.hpp
+[8.875s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/simple_kalman_filter.hpp
+[8.875s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/torque_adjustment.hpp
+[8.875s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/visibility_control.h
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/BipolarSchmittTrigger.hpp
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/BlipFilter.hpp
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/CumulativeAverage.hpp
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/DataFileLogger.hpp
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/DistributedDiff.hpp
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/ExpireTimer.hpp
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/Filter.hpp
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/Gaussian.hpp
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/HeavyLowPassFilter.hpp
+[8.876s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/MedianFilter.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/NumericalDiff.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/RateChange.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/SchmittTrigger.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/SignalTap.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/TrapezoidalInt.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/alpha_filter.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/backlash_filter.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/kalman_filter.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/simple_kalman_filter.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/torque_adjustment.hpp
+[8.877s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/include/pronto_utils/visibility_control.h
+[8.878s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/ament_index/resource_index/package_run_dependencies/pronto_utils
+[8.884s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/ament_index/resource_index/parent_prefix_path/pronto_utils
+[8.890s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/environment/ament_prefix_path.sh
+[8.898s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/environment/ament_prefix_path.dsv
+[8.904s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/environment/path.sh
+[8.910s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/environment/path.dsv
+[8.916s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/local_setup.bash
+[8.922s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/local_setup.sh
+[8.928s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/local_setup.zsh
+[8.934s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/local_setup.dsv
+[8.940s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.dsv
+[8.947s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/ament_index/resource_index/packages/pronto_utils
+[8.953s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/ament_cmake_export_include_directories-extras.cmake
+[8.959s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/ament_cmake_export_libraries-extras.cmake
+[8.966s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/ament_cmake_export_dependencies-extras.cmake
+[8.974s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/ament_cmake_export_targets-extras.cmake
+[8.983s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/pronto_utilsConfig.cmake
+[8.992s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/pronto_utilsConfig-version.cmake
+[9.002s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/package.xml
+[9.008s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/libpronto_utils.so
+[9.009s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/libkalman_filter.so
+[9.014s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/libbacklash_filter.so
+[9.014s] -- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/lib/libbacklash_filter.so" to ""
+[9.014s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/export_pronto_utilsExport.cmake
+[9.014s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake/export_pronto_utilsExport-noconfig.cmake
+[9.016s] Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_utils

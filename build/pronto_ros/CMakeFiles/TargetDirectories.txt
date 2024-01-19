@@ -1,0 +1,12 @@
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/uninstall.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/pronto_ros_uninstall.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/pronto_ros.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/pronto_ros_node.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/joint_state_with_acceleration_republisher.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/test.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/edit_cache.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/rebuild_cache.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/list_install_components.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/install.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/install/local.dir
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_ros/CMakeFiles/install/strip.dir

@@ -1,0 +1,6 @@
+setup.py
+pronto_msgs/__init__.py
+pronto_msgs.egg-info/PKG-INFO
+pronto_msgs.egg-info/SOURCES.txt
+pronto_msgs.egg-info/dependency_links.txt
+pronto_msgs.egg-info/top_level.txt

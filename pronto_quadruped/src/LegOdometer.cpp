@@ -26,6 +26,7 @@
 #include <iit/rbd/utils.h>
 #include <boost/math/distributions/normal.hpp>
 #include <sstream>
+#include <cmath>
 
 namespace pronto {
 
@@ -159,15 +160,38 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
                                    Vector3d &velocity,
                                    Matrix3d &covariance)
 {
+
     vel_cov_ = initial_vel_cov_;
 
     // Recording foot position and base velocity from legs
+    // JointState prova = JointState(1,2,3,4,5,6,7,8,9,10,11,12);
+    // for(int leg = LF; leg <= RH; leg++)
+    // {
+      
+    // }
+    // std::cerr << "the qdot estimate vel are "<< qd.transpose()<<std::endl;
     foot_pos_ = forward_kinematics_.getFeetPos(q);
     for(int leg = LF; leg <= RH; leg++){
+        // auto qd_block = qd.block<3,1>(leg * 3, 0);
         base_vel_leg_[LegID(leg)] = - feet_jacobians_.getFootJacobian(q, LegID(leg))
-                            * qd.block<3,1>(leg * 3, 0)
-                            - omega.cross(foot_pos_[LegID(leg)]);
+                            * qd.block<3,1>(leg * 3, 0) ; //+ Eigen::Vector3d(0.4,0.0,0.0);
+                              - omega.cross(foot_pos_[LegID(leg)]);
+        // for(int p = 0 ; p< 3; p++)
+        // {
+        //   base_vel_leg_[LegID(leg)](p) = std::fabs( base_vel_leg_[LegID(leg)](p));
+        // }
+    // std::cerr << " the "<<leg<<"-th jacobian is "<<std::endl<<feet_jacobians_.getFootJacobian(q, LegID(leg))<<std::endl;
+    // std::cerr<<"the block data "<<leg <<"are "<<std::endl<<qd.block<3,1>(leg * 3, 0)<<std::endl;
+    // std::cerr<<"the computation is "<<leg <<"is "<<std::endl<<-((base_vel_leg_[LegID(leg)]))<std::endl;
+    // std::cerr << " the "<< leg<<"-th leg est_vel is "<<base_vel_leg_[LegID(leg)].transpose()<< "and the stance prob is "<< stance_legs[leg]<<std::endl;
+    // std::cerr << " the "<<leg<<"-th jacobian is "<<std::endl<<feet_jacobians_.getFootJacobian(q, LegID(leg))<<std::endl;
+    // std::cerr << " the "<<leg<<"-th qdot are "<<std::endl<<qd.block<3,1>(leg * 3, 0)<<std::endl;
+    // std::cerr << "the FK of "<<leg<<"-th leg is "<< foot_pos_[leg].transpose()<<std::endl;
+    // std::cerr<< leg<< "-th the jacobian part is " <<  feet_jacobians_.getFootJacobian(q, LegID(leg))<<std::endl<<std::endl;
     }
+    
+    // std::cerr<< "FL correction by Jacobian " << base_vel_leg_[LegID(0)].transpose()<< std::endl;
+    // std::cerr<< "FR correction by Jacobian " << base_vel_leg_[LegID(1)].transpose()<< std::endl<< std::endl;
 
     Eigen::Vector3d old_xd_b = xd_b_;
     xd_b_.setZero();
@@ -209,16 +233,27 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
     } else if(a_mode_ == AverageMode::SIMPLE_AVG){
         // Computing average velocity
         for(int i = 0; i < 4; i++) {
+            // std::cerr<<" the stance leg "<<i<<"-th leg is "<< stance_legs[i]<<std::endl;
             if(stance_legs[i]) {
                 xd_b_ += base_vel_leg_[i];
                 leg_count++;
+                
             }
+            // std::cerr<<"iteration is "<<i<<std::endl;
+            
+            // std::cerr<<" xd_b_ is "<< xd_b_ << std::endl;
         }
+        // if(leg_count != 0)
+        //   std::cerr<<" leg count is "<< leg_count<<std::endl;
         if(leg_count == 0) {
             return false;
         }
 
         xd_b_ /= (double)leg_count;
+        
+        if(leg_count == 1 || leg_count == 3) {
+            xd_b_ = old_xd_b;
+        }
         if(xd_b_.norm() > 10){
           std::cerr << "+++++++++++++++++++++ABNORMAL VELOCITY: " << std::endl;
           Eigen::IOFormat clean(4, 0, ", ", "\n", "[", "]");
@@ -235,15 +270,13 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
                 }
             }
         }
-        var_velocity /= (double)leg_count;
-        
+        var_velocity /= (double)leg_count; 
     }
-    
+    // std::cerr << " mean Odometry correction "<<xd_b_.transpose()<<std::endl;
     double alpha = 0.4;
     double beta = 0.3;
     double gamma = 0.8;
     double delta = 0.5;
-
     if(s_mode_ == SigmaMode::VAR_SIGMA) {
         // Compute the new sigma based on the covariance over stance legs.
         // leave unchanged if only one leg is on the ground!
@@ -303,7 +336,7 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
                                r_kse_var_impact_debug(1) * alpha + (1 - alpha) * (gamma * initial_vel_std_(1) + (1 - gamma) * (delta * impact + (1 - delta) * sqrt(var_velocity(1)))),
                                r_kse_var_impact_debug(2) * alpha + (1 - alpha) * (gamma * initial_vel_std_(2) + (1 - gamma) * (delta * impact + (1 - delta) * sqrt(var_velocity(2))));
     }
-
+    
 
     vel_cov_ = var_velocity.asDiagonal();
 
@@ -322,10 +355,15 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
     if(!vel_cov_.allFinite()){
         vel_cov_ = initial_vel_cov_;
     }
-
+    // std::cerr << " mean Odometry correction "<<xd_b_.transpose()<<std::endl;
     velocity = xd_b_;
+    
     covariance = vel_cov_;
     return true;
+}
+void LegOdometer::get_foot_corr(int i, Eigen::Vector3d& vec)
+{
+    vec = base_vel_leg_[LegID(i)];
 }
 
 LegVectorMap LegOdometer::getFootPos() {

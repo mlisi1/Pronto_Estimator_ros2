@@ -1,0 +1,74 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.6 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped_commons
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/InertiaMatrix.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/StateDependentBase.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/StateDependentMatrix.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/TransformsBase.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/eigen_traits.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/internals.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/rbd.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/robcogen_commons.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/scalar_traits.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/iit/rbd/utils.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/declarations.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/feet_contact_forces.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/feet_jacobians.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/forward_kinematics.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/geometry/algebra.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/geometry/rotations.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/inertia_properties.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/inverse_dynamics.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/inverse_kinematics.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/joint_bool_map.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/joint_data_map.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/joint_id_tricks.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/jsim.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/leg_bool_map.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/leg_data_map.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/leg_vector_map.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/link_data_map.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/robcogen/scalar/cppad.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/robcogen/scalar/internals.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/robcogen/test/cmdline_fd.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/robcogen/test/cmdline_id.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/robcogen/test/cmdline_jsim.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/robcogen/test/dynamics_cmd_line.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/robcogen/test/dynamics_consistency.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/robcogen/test/fext.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/robcogen/utils.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/include/pronto_quadruped_commons/transforms.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/ament_index/resource_index/package_run_dependencies/pronto_quadruped_commons
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/ament_index/resource_index/parent_prefix_path/pronto_quadruped_commons
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/environment/ament_prefix_path.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/environment/ament_prefix_path.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/environment/path.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/environment/path.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/local_setup.bash
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/local_setup.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/local_setup.zsh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/local_setup.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/ament_index/resource_index/packages/pronto_quadruped_commons
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/cmake/pronto_quadruped_commonsConfig.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/cmake/pronto_quadruped_commonsConfig-version.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/package.xml

@@ -1,0 +1,94 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.6 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found pronto_quadruped_commons: 0.3.0 (/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped_commons/share/pronto_quadruped_commons/cmake)
+-- Found pronto_utils: 0.0.0 (/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_utils/share/pronto_utils/cmake)
+-- Found pronto_core: 0.0.0 (/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_core/share/pronto_core/cmake)
+-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.5 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found ament_lint_auto: 0.12.9 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_quadruped/include>
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_quadruped
+[ 44%] [32mBuilding CXX object CMakeFiles/pronto_quadruped.dir/src/LegOdometer.cpp.o[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/pronto_quadruped.dir/src/DynamicStanceEstimator.cpp.o[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/pronto_quadruped.dir/src/FootSensorStanceDetector.cpp.o[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/pronto_quadruped.dir/src/ForceSensorStanceEstimator.cpp.o[0m
+[ 55%] [32mBuilding CXX object CMakeFiles/pronto_quadruped.dir/src/ImuBiasLock.cpp.o[0m
+[ 77%] [32mBuilding CXX object CMakeFiles/pronto_quadruped.dir/src/FlexEstimator.cpp.o[0m
+[ 77%] [32mBuilding CXX object CMakeFiles/pronto_quadruped.dir/src/StanceEstimator.cpp.o[0m
+[ 88%] [32mBuilding CXX object CMakeFiles/pronto_quadruped.dir/src/DataLogger.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library libpronto_quadruped.so[0m
+[100%] Built target pronto_quadruped
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/environment/library_path.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/environment/library_path.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/DataLogger.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/DynamicStanceEstimator.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/FlexEstimator.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/FootSensorStanceDetector.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/ForceSensorStanceEstimator.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/ImuBiasLock.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/InverseSchmittTrigger.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/LegOdometer.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/LegOdometerBase.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/StanceEstimator.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/StanceEstimatorBase.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/pronto_quadruped.hpp
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/include/pronto_quadruped/visibility_control.h
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/ament_index/resource_index/package_run_dependencies/pronto_quadruped
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/ament_index/resource_index/parent_prefix_path/pronto_quadruped
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/environment/ament_prefix_path.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/environment/ament_prefix_path.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/environment/path.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/environment/path.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/local_setup.bash
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/local_setup.sh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/local_setup.zsh
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/local_setup.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.dsv
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/ament_index/resource_index/packages/pronto_quadruped
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/ament_cmake_export_libraries-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/ament_cmake_export_targets-extras.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/pronto_quadrupedConfig.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/pronto_quadrupedConfig-version.cmake
+-- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/package.xml
+-- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/lib/libpronto_quadruped.so
+-- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/lib/libpronto_quadruped.so" to ""
+-- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/export_pronto_quadrupedExport.cmake
+-- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/export_pronto_quadrupedExport-noconfig.cmake

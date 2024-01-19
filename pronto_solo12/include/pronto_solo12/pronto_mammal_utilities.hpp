@@ -114,7 +114,8 @@ namespace pronto_controller
 
             bool getLegJacobian(
                     const LegID& leg,
-                    LinVelJac& Jac
+                    LinVelJac& Jac,
+                    bool world
                 );
 
             void get_w2b_R(Eigen::Matrix3d &R)
@@ -173,7 +174,7 @@ namespace pronto_controller
             Pinocchio_Jacobian()
             {};
             Pinocchio_Jacobian(
-                Pinocchio_Feet_Force pin_ff
+                Pinocchio_Feet_Force* pin_ff
                 ):
             pin_ff_(pin_ff)
             {};
@@ -184,7 +185,7 @@ namespace pronto_controller
            pronto::quadruped::FootJac getFootJacobianAngular(const pronto::quadruped::JointState& q,const pronto::quadruped::LegID& leg) override;
       
         private:
-            Pinocchio_Feet_Force pin_ff_; 
+            Pinocchio_Feet_Force* pin_ff_; 
     };
 
     class Pinocchio_FK : public pronto::quadruped::ForwardKinematics
@@ -192,7 +193,7 @@ namespace pronto_controller
         public:
             Pinocchio_FK(){};
             Pinocchio_FK(
-                Pinocchio_Feet_Force pin_ff
+                Pinocchio_Feet_Force* pin_ff
             ):
             pin_ff_(pin_ff)
             {};
@@ -202,6 +203,6 @@ namespace pronto_controller
 
             Eigen::Matrix3d getFootOrientation(const JointState& q, const LegID& leg) override;
         private:
-            Pinocchio_Feet_Force pin_ff_; 
+            Pinocchio_Feet_Force* pin_ff_; 
     };
 };

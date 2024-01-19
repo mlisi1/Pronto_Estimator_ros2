@@ -1,0 +1,455 @@
+[0.076s] Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs
+[0.119s] -- The C compiler identification is GNU 11.4.0
+[0.154s] -- The CXX compiler identification is GNU 11.4.0
+[0.158s] -- Detecting C compiler ABI info
+[0.200s] -- Detecting C compiler ABI info - done
+[0.205s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.205s] -- Detecting C compile features
+[0.205s] -- Detecting C compile features - done
+[0.207s] -- Detecting CXX compiler ABI info
+[0.254s] -- Detecting CXX compiler ABI info - done
+[0.258s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.258s] -- Detecting CXX compile features
+[0.258s] -- Detecting CXX compile features - done
+[0.260s] -- Found ament_cmake: 1.3.6 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.371s] -- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+[0.413s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.439s] -- Found builtin_interfaces: 1.2.1 (/opt/ros/humble/share/builtin_interfaces/cmake)
+[0.472s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.477s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.486s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.501s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.520s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.538s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.547s] -- Found geometry_msgs: 4.2.3 (/opt/ros/humble/share/geometry_msgs/cmake)
+[1.178s] -- Found ament_cmake_cppcheck: 0.12.9 (/opt/ros/humble/share/ament_cmake_cppcheck/cmake)
+[1.181s] -- Found ament_cmake_cpplint: 0.12.9 (/opt/ros/humble/share/ament_cmake_cpplint/cmake)
+[1.183s] -- Found ament_cmake_uncrustify: 0.12.9 (/opt/ros/humble/share/ament_cmake_uncrustify/cmake)
+[1.186s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[1.925s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.171s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.205s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[2.207s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[2.241s] -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[2.241s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[2.241s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[2.241s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[2.270s] -- Found PythonExtra: .so  
+[2.362s] -- Found ament_cmake_flake8: 0.12.9 (/opt/ros/humble/share/ament_cmake_flake8/cmake)
+[2.365s] -- Found ament_cmake_pep257: 0.12.9 (/opt/ros/humble/share/ament_cmake_pep257/cmake)
+[2.381s] -- Configuring done
+[2.443s] -- Generating done
+[2.446s] -- Build files have been written to: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs
+[2.459s] Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/pronto_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs
+[2.460s] Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs -- -j20 -l20
+[2.514s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[2.526s] [  1%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[2.535s] [  1%] Built target ament_cmake_python_symlink_pronto_msgs
+[2.873s] running egg_info
+[2.874s] creating pronto_msgs.egg-info
+[2.874s] writing pronto_msgs.egg-info/PKG-INFO
+[2.875s] writing dependency_links to pronto_msgs.egg-info/dependency_links.txt
+[2.875s] writing top-level names to pronto_msgs.egg-info/top_level.txt
+[2.875s] writing manifest file 'pronto_msgs.egg-info/SOURCES.txt'
+[2.877s] reading manifest file 'pronto_msgs.egg-info/SOURCES.txt'
+[2.878s] writing manifest file 'pronto_msgs.egg-info/SOURCES.txt'
+[2.908s] [  1%] Built target ament_cmake_python_build_pronto_msgs_egg
+[3.439s] [  1%] Built target pronto_msgs__cpp
+[3.446s] [  3%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[3.447s] [  3%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[3.447s] [  3%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[3.630s] [  6%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/filter_state__functions.c.o[0m
+[3.630s] [  6%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/indexed_measurement__functions.c.o[0m
+[3.630s] [  6%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/joint_state_with_acceleration__functions.c.o[0m
+[3.631s] [  7%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/gps_data__functions.c.o[0m
+[3.632s] [  8%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/controller_foot_contact__functions.c.o[0m
+[3.632s] [  9%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/quadruped_force_torque_sensors__functions.c.o[0m
+[3.634s] [ 10%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/lidar_odometry_update__functions.c.o[0m
+[3.637s] [ 12%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/velocity_with_sigma_bounds__functions.c.o[0m
+[3.637s] [ 12%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/biped_force_torque_sensors__functions.c.o[0m
+[3.640s] [ 13%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/quadruped_stance__functions.c.o[0m
+[3.641s] [ 13%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_c.dir/rosidl_generator_c/pronto_msgs/msg/detail/visual_odometry_update__functions.c.o[0m
+[3.738s] [ 14%] [32m[1mLinking C shared library libpronto_msgs__rosidl_generator_c.so[0m
+[3.770s] [ 14%] Built target pronto_msgs__rosidl_generator_c
+[3.780s] [ 15%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[3.782s] [ 16%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[3.782s] [ 17%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[3.988s] [ 21%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/filter_state__type_support.cpp.o[0m
+[3.988s] [ 21%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/velocity_with_sigma_bounds__type_support.cpp.o[0m
+[3.988s] [ 21%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/indexed_measurement__type_support.cpp.o[0m
+[3.989s] [ 22%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/controller_foot_contact__type_support.cpp.o[0m
+[3.989s] [ 22%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/quadruped_stance__type_support.cpp.o[0m
+[3.989s] [ 23%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/joint_state_with_acceleration__type_support.cpp.o[0m
+[3.990s] [ 24%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/quadruped_force_torque_sensors__type_support.cpp.o[0m
+[3.998s] [ 24%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/visual_odometry_update__type_support.cpp.o[0m
+[3.999s] [ 25%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/lidar_odometry_update__type_support.cpp.o[0m
+[3.999s] [ 26%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/gps_data__type_support.cpp.o[0m
+[4.095s] [ 27%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/pronto_msgs/msg/biped_force_torque_sensors__type_support.cpp.o[0m
+[4.380s] [ 28%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/controller_foot_contact__type_support.cpp.o[0m
+[4.380s] [ 29%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/filter_state__type_support.cpp.o[0m
+[4.380s] [ 29%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/indexed_measurement__type_support.cpp.o[0m
+[4.389s] [ 30%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/joint_state_with_acceleration__type_support.cpp.o[0m
+[4.413s] [ 32%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/filter_state__type_support.cpp.o[0m
+[4.413s] [ 33%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/quadruped_force_torque_sensors__type_support.cpp.o[0m
+[4.413s] [ 34%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/indexed_measurement__type_support.cpp.o[0m
+[4.413s] [ 31%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/quadruped_stance__type_support.cpp.o[0m
+[4.426s] [ 35%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/visual_odometry_update__type_support.cpp.o[0m
+[4.435s] [ 36%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/quadruped_stance__type_support.cpp.o[0m
+[4.435s] [ 37%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/velocity_with_sigma_bounds__type_support.cpp.o[0m
+[4.481s] [ 38%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/joint_state_with_acceleration__type_support.cpp.o[0m
+[4.502s] [ 39%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/gps_data__type_support.cpp.o[0m
+[4.548s] [ 40%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/lidar_odometry_update__type_support.cpp.o[0m
+[4.556s] [ 41%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/controller_foot_contact__type_support.cpp.o[0m
+[4.565s] [ 42%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/pronto_msgs/msg/detail/biped_force_torque_sensors__type_support.cpp.o[0m
+[4.760s] [ 43%] [32m[1mLinking CXX shared library libpronto_msgs__rosidl_typesupport_cpp.so[0m
+[4.830s] [ 43%] Built target pronto_msgs__rosidl_typesupport_cpp
+[4.876s] [ 44%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/filter_state__type_support.cpp.o[0m
+[4.885s] [ 45%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/indexed_measurement__type_support.cpp.o[0m
+[4.927s] [ 45%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/quadruped_stance__type_support.cpp.o[0m
+[4.965s] [ 46%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/joint_state_with_acceleration__type_support.cpp.o[0m
+[4.984s] [ 47%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/quadruped_force_torque_sensors__type_support.cpp.o[0m
+[4.987s] [ 48%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/controller_foot_contact__type_support.cpp.o[0m
+[4.991s] [ 49%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/velocity_with_sigma_bounds__type_support.cpp.o[0m
+[5.010s] [ 50%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/filter_state__type_support_c.cpp.o[0m
+[5.034s] [ 51%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/indexed_measurement__type_support_c.cpp.o[0m
+[5.039s] [ 52%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/quadruped_force_torque_sensors__type_support.cpp.o[0m
+[5.059s] [ 53%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/quadruped_stance__type_support_c.cpp.o[0m
+[5.090s] [ 54%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/velocity_with_sigma_bounds__type_support.cpp.o[0m
+[5.104s] [ 55%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/joint_state_with_acceleration__type_support_c.cpp.o[0m
+[5.119s] [ 55%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/controller_foot_contact__type_support_c.cpp.o[0m
+[5.153s] [ 56%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/gps_data__type_support.cpp.o[0m
+[5.156s] [ 57%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/visual_odometry_update__type_support.cpp.o[0m
+[5.159s] [ 57%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/lidar_odometry_update__type_support.cpp.o[0m
+[5.163s] [ 58%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/visual_odometry_update__type_support.cpp.o[0m
+[5.172s] [ 59%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/quadruped_force_torque_sensors__type_support_c.cpp.o[0m
+[5.196s] [ 60%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/pronto_msgs/msg/detail/dds_fastrtps/biped_force_torque_sensors__type_support.cpp.o[0m
+[5.199s] [ 61%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/velocity_with_sigma_bounds__type_support_c.cpp.o[0m
+[5.218s] [ 62%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/gps_data__type_support.cpp.o[0m
+[5.281s] [ 63%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/visual_odometry_update__type_support_c.cpp.o[0m
+[5.307s] [ 64%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/gps_data__type_support_c.cpp.o[0m
+[5.347s] [ 65%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/lidar_odometry_update__type_support.cpp.o[0m
+[5.428s] [ 66%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/lidar_odometry_update__type_support_c.cpp.o[0m
+[5.476s] [ 67%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/pronto_msgs/msg/detail/biped_force_torque_sensors__type_support_c.cpp.o[0m
+[5.497s] [ 68%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/filter_state__type_support.c.o[0m
+[5.504s] [ 69%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/indexed_measurement__type_support.c.o[0m
+[5.509s] [ 70%] [32mBuilding CXX object CMakeFiles/pronto_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/pronto_msgs/msg/biped_force_torque_sensors__type_support.cpp.o[0m
+[5.537s] [ 71%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/quadruped_stance__type_support.c.o[0m
+[5.538s] [ 72%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/joint_state_with_acceleration__type_support.c.o[0m
+[5.571s] [ 73%] [32m[1mLinking CXX shared library libpronto_msgs__rosidl_typesupport_c.so[0m
+[5.583s] [ 74%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/controller_foot_contact__type_support.c.o[0m
+[5.583s] [ 75%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/quadruped_force_torque_sensors__type_support.c.o[0m
+[5.599s] [ 75%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/velocity_with_sigma_bounds__type_support.c.o[0m
+[5.641s] [ 76%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/visual_odometry_update__type_support.c.o[0m
+[5.643s] [ 77%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/gps_data__type_support.c.o[0m
+[5.645s] [ 78%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/biped_force_torque_sensors__type_support.c.o[0m
+[5.658s] [ 79%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/pronto_msgs/msg/detail/lidar_odometry_update__type_support.c.o[0m
+[5.675s] [ 80%] [32m[1mLinking CXX shared library libpronto_msgs__rosidl_typesupport_introspection_cpp.so[0m
+[5.680s] [ 80%] Built target pronto_msgs__rosidl_typesupport_c
+[5.702s] [ 81%] [32m[1mLinking C shared library libpronto_msgs__rosidl_typesupport_introspection_c.so[0m
+[5.747s] [ 81%] Built target pronto_msgs__rosidl_typesupport_introspection_c
+[5.783s] [ 81%] Built target pronto_msgs__rosidl_typesupport_introspection_cpp
+[5.918s] [ 82%] [32m[1mLinking CXX shared library libpronto_msgs__rosidl_typesupport_fastrtps_cpp.so[0m
+[5.922s] [ 83%] [32m[1mLinking CXX shared library libpronto_msgs__rosidl_typesupport_fastrtps_c.so[0m
+[5.985s] [ 83%] Built target pronto_msgs__rosidl_typesupport_fastrtps_cpp
+[5.987s] [ 83%] Built target pronto_msgs__rosidl_typesupport_fastrtps_c
+[6.004s] [ 83%] Built target pronto_msgs
+[6.026s] [ 84%] [34m[1mGenerating Python code for ROS interfaces[0m
+[7.008s] [ 84%] Built target pronto_msgs__py
+[7.027s] [ 85%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_joint_state_with_acceleration_s.c.o[0m
+[7.027s] [ 86%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_filter_state_s.c.o[0m
+[7.027s] [ 87%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_controller_foot_contact_s.c.o[0m
+[7.028s] [ 87%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_quadruped_force_torque_sensors_s.c.o[0m
+[7.028s] [ 88%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_velocity_with_sigma_bounds_s.c.o[0m
+[7.028s] [ 89%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_indexed_measurement_s.c.o[0m
+[7.030s] [ 92%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_biped_force_torque_sensors_s.c.o[0m
+[7.030s] [ 92%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_quadruped_stance_s.c.o[0m
+[7.030s] [ 93%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_gps_data_s.c.o[0m
+[7.030s] [ 93%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_lidar_odometry_update_s.c.o[0m
+[7.038s] [ 94%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_generator_py.dir/rosidl_generator_py/pronto_msgs/msg/_visual_odometry_update_s.c.o[0m
+[7.217s] [ 95%] [32m[1mLinking C shared library rosidl_generator_py/pronto_msgs/libpronto_msgs__rosidl_generator_py.so[0m
+[7.248s] [ 95%] Built target pronto_msgs__rosidl_generator_py
+[7.262s] [ 97%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/pronto_msgs/_pronto_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[7.262s] [ 97%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/pronto_msgs/_pronto_msgs_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[7.270s] [ 97%] [32mBuilding C object CMakeFiles/pronto_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/pronto_msgs/_pronto_msgs_s.ep.rosidl_typesupport_c.c.o[0m
+[7.354s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/pronto_msgs/pronto_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[7.354s] [ 99%] [32m[1mLinking C shared library rosidl_generator_py/pronto_msgs/pronto_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[7.383s] [ 99%] Built target pronto_msgs__rosidl_typesupport_introspection_c__pyext
+[7.383s] [ 99%] Built target pronto_msgs__rosidl_typesupport_fastrtps_c__pyext
+[7.412s] [100%] [32m[1mLinking C shared library rosidl_generator_py/pronto_msgs/pronto_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[7.440s] [100%] Built target pronto_msgs__rosidl_typesupport_c__pyext
+[7.449s] Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs -- -j20 -l20
+[7.593s] Invoking command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs
+[7.598s] -- Install configuration: ""
+[7.598s] -- Execute custom install script
+[7.599s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/ament_index/resource_index/rosidl_interfaces/pronto_msgs
+[7.605s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/biped_force_torque_sensors.h
+[7.611s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/controller_foot_contact.h
+[7.617s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__functions.h
+[7.623s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__struct.h
+[7.629s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__type_support.h
+[7.635s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__functions.h
+[7.643s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__struct.h
+[7.650s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__type_support.h
+[7.657s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__functions.h
+[7.664s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__struct.h
+[7.672s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__type_support.h
+[7.682s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__functions.h
+[7.692s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__struct.h
+[7.702s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__type_support.h
+[7.712s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__functions.h
+[7.723s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__struct.h
+[7.733s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__type_support.h
+[7.742s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__functions.h
+[7.749s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__struct.h
+[7.756s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__type_support.h
+[7.762s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__functions.h
+[7.769s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__struct.h
+[7.776s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__type_support.h
+[7.783s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__functions.h
+[7.790s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__struct.h
+[7.797s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__type_support.h
+[7.804s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__functions.h
+[7.811s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__struct.h
+[7.818s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__type_support.h
+[7.825s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__functions.h
+[7.832s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__struct.h
+[7.838s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__type_support.h
+[7.845s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__functions.h
+[7.852s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__struct.h
+[7.858s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__type_support.h
+[7.865s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/filter_state.h
+[7.872s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/gps_data.h
+[7.879s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/indexed_measurement.h
+[7.886s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/joint_state_with_acceleration.h
+[7.893s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/lidar_odometry_update.h
+[7.901s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/quadruped_force_torque_sensors.h
+[7.907s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/quadruped_stance.h
+[7.914s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/rosidl_generator_c__visibility_control.h
+[7.920s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/velocity_with_sigma_bounds.h
+[7.926s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/visual_odometry_update.h
+[7.933s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/environment/library_path.sh
+[7.939s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/environment/library_path.dsv
+[7.949s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__rosidl_typesupport_fastrtps_c.h
+[7.958s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__rosidl_typesupport_fastrtps_c.h
+[7.965s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__rosidl_typesupport_fastrtps_c.h
+[7.972s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__rosidl_typesupport_fastrtps_c.h
+[7.978s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__rosidl_typesupport_fastrtps_c.h
+[7.985s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__rosidl_typesupport_fastrtps_c.h
+[7.992s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__rosidl_typesupport_fastrtps_c.h
+[7.998s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__rosidl_typesupport_fastrtps_c.h
+[8.005s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__rosidl_typesupport_fastrtps_c.h
+[8.013s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__rosidl_typesupport_fastrtps_c.h
+[8.021s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__rosidl_typesupport_fastrtps_c.h
+[8.027s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[8.034s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/biped_force_torque_sensors.hpp
+[8.041s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/controller_foot_contact.hpp
+[8.047s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__builder.hpp
+[8.054s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__struct.hpp
+[8.060s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__traits.hpp
+[8.067s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__builder.hpp
+[8.073s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__struct.hpp
+[8.080s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__traits.hpp
+[8.087s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__builder.hpp
+[8.094s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__struct.hpp
+[8.102s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__traits.hpp
+[8.108s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__builder.hpp
+[8.115s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__struct.hpp
+[8.122s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__traits.hpp
+[8.128s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__builder.hpp
+[8.135s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__struct.hpp
+[8.142s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__traits.hpp
+[8.148s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__builder.hpp
+[8.155s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__struct.hpp
+[8.163s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__traits.hpp
+[8.169s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__builder.hpp
+[8.177s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__struct.hpp
+[8.185s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__traits.hpp
+[8.192s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__builder.hpp
+[8.199s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__struct.hpp
+[8.206s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__traits.hpp
+[8.213s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__builder.hpp
+[8.220s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__struct.hpp
+[8.227s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__traits.hpp
+[8.233s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__builder.hpp
+[8.239s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__struct.hpp
+[8.246s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__traits.hpp
+[8.253s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__builder.hpp
+[8.260s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__struct.hpp
+[8.266s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__traits.hpp
+[8.273s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/filter_state.hpp
+[8.283s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/gps_data.hpp
+[8.293s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/indexed_measurement.hpp
+[8.300s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/joint_state_with_acceleration.hpp
+[8.307s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/lidar_odometry_update.hpp
+[8.314s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/quadruped_force_torque_sensors.hpp
+[8.321s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/quadruped_stance.hpp
+[8.331s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/velocity_with_sigma_bounds.hpp
+[8.341s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/visual_odometry_update.hpp
+[8.348s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__rosidl_typesupport_fastrtps_cpp.hpp
+[8.355s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__rosidl_typesupport_fastrtps_cpp.hpp
+[8.362s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__rosidl_typesupport_fastrtps_cpp.hpp
+[8.369s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__rosidl_typesupport_fastrtps_cpp.hpp
+[8.375s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__rosidl_typesupport_fastrtps_cpp.hpp
+[8.382s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__rosidl_typesupport_fastrtps_cpp.hpp
+[8.389s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__rosidl_typesupport_fastrtps_cpp.hpp
+[8.395s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__rosidl_typesupport_fastrtps_cpp.hpp
+[8.402s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__rosidl_typesupport_fastrtps_cpp.hpp
+[8.409s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__rosidl_typesupport_fastrtps_cpp.hpp
+[8.416s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__rosidl_typesupport_fastrtps_cpp.hpp
+[8.422s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[8.430s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__rosidl_typesupport_introspection_c.h
+[8.437s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__rosidl_typesupport_introspection_c.h
+[8.443s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__rosidl_typesupport_introspection_c.h
+[8.450s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__rosidl_typesupport_introspection_c.h
+[8.457s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__rosidl_typesupport_introspection_c.h
+[8.464s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__rosidl_typesupport_introspection_c.h
+[8.470s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__rosidl_typesupport_introspection_c.h
+[8.477s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__rosidl_typesupport_introspection_c.h
+[8.484s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__rosidl_typesupport_introspection_c.h
+[8.491s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__rosidl_typesupport_introspection_c.h
+[8.498s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__rosidl_typesupport_introspection_c.h
+[8.505s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[8.512s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/biped_force_torque_sensors__rosidl_typesupport_introspection_cpp.hpp
+[8.519s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/controller_foot_contact__rosidl_typesupport_introspection_cpp.hpp
+[8.526s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/filter_state__rosidl_typesupport_introspection_cpp.hpp
+[8.533s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/gps_data__rosidl_typesupport_introspection_cpp.hpp
+[8.540s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/indexed_measurement__rosidl_typesupport_introspection_cpp.hpp
+[8.546s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/joint_state_with_acceleration__rosidl_typesupport_introspection_cpp.hpp
+[8.552s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/lidar_odometry_update__rosidl_typesupport_introspection_cpp.hpp
+[8.559s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_force_torque_sensors__rosidl_typesupport_introspection_cpp.hpp
+[8.565s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/quadruped_stance__rosidl_typesupport_introspection_cpp.hpp
+[8.571s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/velocity_with_sigma_bounds__rosidl_typesupport_introspection_cpp.hpp
+[8.578s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/include/pronto_msgs/pronto_msgs/msg/detail/visual_odometry_update__rosidl_typesupport_introspection_cpp.hpp
+[8.585s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/environment/pythonpath.sh
+[8.592s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/environment/pythonpath.dsv
+[8.602s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs-0.3.0-py3.10.egg-info/PKG-INFO
+[8.608s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs-0.3.0-py3.10.egg-info/SOURCES.txt
+[8.614s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs-0.3.0-py3.10.egg-info/dependency_links.txt
+[8.621s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs-0.3.0-py3.10.egg-info/top_level.txt
+[8.629s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/__init__.py
+[8.636s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/_pronto_msgs_s.ep.rosidl_typesupport_c.c
+[8.643s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/_pronto_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[8.649s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/_pronto_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[8.660s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/libpronto_msgs__rosidl_generator_py.so
+[8.670s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/__init__.py
+[8.678s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_biped_force_torque_sensors.py
+[8.687s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_biped_force_torque_sensors_s.c
+[8.694s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_controller_foot_contact.py
+[8.704s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_controller_foot_contact_s.c
+[8.713s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_filter_state.py
+[8.723s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_filter_state_s.c
+[8.730s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_gps_data.py
+[8.736s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_gps_data_s.c
+[8.742s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_indexed_measurement.py
+[8.749s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_indexed_measurement_s.c
+[8.755s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_joint_state_with_acceleration.py
+[8.762s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_joint_state_with_acceleration_s.c
+[8.768s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_lidar_odometry_update.py
+[8.775s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_lidar_odometry_update_s.c
+[8.781s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_quadruped_force_torque_sensors.py
+[8.787s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_quadruped_force_torque_sensors_s.c
+[8.794s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_quadruped_stance.py
+[8.801s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_quadruped_stance_s.c
+[8.807s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_velocity_with_sigma_bounds.py
+[8.814s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_velocity_with_sigma_bounds_s.c
+[8.821s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_visual_odometry_update.py
+[8.828s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_visual_odometry_update_s.c
+[8.834s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/pronto_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[8.840s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/pronto_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[8.846s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/pronto_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[8.852s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/pronto_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[8.852s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/pronto_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[8.852s] -- Up-to-date symlink: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/pronto_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[8.852s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/FilterState.idl
+[8.859s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/IndexedMeasurement.idl
+[8.865s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/QuadrupedStance.idl
+[8.871s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/JointStateWithAcceleration.idl
+[8.876s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/ControllerFootContact.idl
+[8.883s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/QuadrupedForceTorqueSensors.idl
+[8.889s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/VelocityWithSigmaBounds.idl
+[8.895s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/VisualOdometryUpdate.idl
+[8.901s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/GPSData.idl
+[8.907s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/LidarOdometryUpdate.idl
+[8.913s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/BipedForceTorqueSensors.idl
+[8.920s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/FilterState.msg
+[8.926s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/IndexedMeasurement.msg
+[8.932s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/QuadrupedStance.msg
+[8.938s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/JointStateWithAcceleration.msg
+[8.945s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/ControllerFootContact.msg
+[8.952s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/QuadrupedForceTorqueSensors.msg
+[8.958s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/VelocityWithSigmaBounds.msg
+[8.964s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/VisualOdometryUpdate.msg
+[8.970s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/GPSData.msg
+[8.976s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/LidarOdometryUpdate.msg
+[8.982s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/msg/BipedForceTorqueSensors.msg
+[8.988s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/ament_index/resource_index/package_run_dependencies/pronto_msgs
+[8.994s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/ament_index/resource_index/parent_prefix_path/pronto_msgs
+[9.001s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/environment/ament_prefix_path.sh
+[9.007s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/environment/ament_prefix_path.dsv
+[9.013s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/environment/path.sh
+[9.022s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/environment/path.dsv
+[9.032s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/local_setup.bash
+[9.043s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/local_setup.sh
+[9.046s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/local_setup.zsh
+[9.052s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/local_setup.dsv
+[9.058s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.dsv
+[9.064s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/ament_index/resource_index/packages/pronto_msgs
+[9.071s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/rosidl_cmake-extras.cmake
+[9.078s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[9.085s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[9.092s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[9.099s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[9.106s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[9.114s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[9.121s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgsConfig.cmake
+[9.132s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgsConfig-version.cmake
+[9.139s] -- Symlinking: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/package.xml
+[9.146s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_generator_c.so
+[9.147s] -- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_generator_c.so" to ""
+[9.147s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_fastrtps_c.so
+[9.147s] -- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+[9.147s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_fastrtps_cpp.so
+[9.148s] -- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+[9.148s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_introspection_c.so
+[9.148s] -- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_introspection_c.so" to ""
+[9.149s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_c.so
+[9.149s] -- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_c.so" to ""
+[9.149s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_introspection_cpp.so
+[9.150s] -- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+[9.150s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_cpp.so
+[9.150s] -- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_typesupport_cpp.so" to ""
+[9.188s] Listing '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/__init__.py'...
+[9.189s] Listing '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/__init__.py'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_biped_force_torque_sensors.py'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_controller_foot_contact.py'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_filter_state.py'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_gps_data.py'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_indexed_measurement.py'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_joint_state_with_acceleration.py'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_lidar_odometry_update.py'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_quadruped_force_torque_sensors.py'...
+[9.189s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_quadruped_stance.py'...
+[9.190s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_velocity_with_sigma_bounds.py'...
+[9.190s] Compiling '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/local/lib/python3.10/dist-packages/pronto_msgs/msg/_visual_odometry_update.py'...
+[9.193s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_generator_py.so
+[9.193s] -- Set runtime path of "/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/lib/libpronto_msgs__rosidl_generator_py.so" to ""
+[9.193s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/export_pronto_msgs__rosidl_generator_cExport.cmake
+[9.194s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/export_pronto_msgs__rosidl_generator_cExport-noconfig.cmake
+[9.194s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/export_pronto_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[9.194s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/export_pronto_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[9.195s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/export_pronto_msgs__rosidl_generator_cppExport.cmake
+[9.195s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/export_pronto_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[9.195s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/export_pronto_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[9.196s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgs__rosidl_typesupport_introspection_cExport.cmake
+[9.196s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[9.196s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgs__rosidl_typesupport_cExport.cmake
+[9.196s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[9.197s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[9.197s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[9.197s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgs__rosidl_typesupport_cppExport.cmake
+[9.197s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/pronto_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[9.197s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/export_pronto_msgs__rosidl_generator_pyExport.cmake
+[9.197s] -- Installing: /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_msgs/share/pronto_msgs/cmake/export_pronto_msgs__rosidl_generator_pyExport-noconfig.cmake
+[9.276s] Invoked command in '/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jacopo/Documents/Repo_Projects/Pronto_Estimator/build/pronto_msgs

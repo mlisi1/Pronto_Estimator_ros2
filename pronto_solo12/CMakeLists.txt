@@ -23,6 +23,7 @@ add_library(${PROJECT_NAME}  SHARED src/feet_jacobians.cpp
                                     src/dynamics.cpp
                                     src/feet_contact_forces.cpp
                                     src/pronto_mammal_utilities.cpp
+                                    src/pinocchio_pronto_quadruped_model.cpp
 )
 
 target_compile_features(${PROJECT_NAME} PUBLIC c_std_99 cxx_std_17)

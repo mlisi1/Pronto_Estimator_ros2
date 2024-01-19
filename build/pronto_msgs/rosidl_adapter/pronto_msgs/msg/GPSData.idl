@@ -1,0 +1,38 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from pronto_msgs/msg/GPSData.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module pronto_msgs {
+  module msg {
+    typedef double double__3[3];
+    struct GPSData {
+      std_msgs::msg::Header header;
+
+      uint64 utime;
+
+      int32 gps_lock;
+
+      double longitude;
+
+      double latitude;
+
+      double elev;
+
+      double horizontal_accuracy;
+
+      double vertical_accuracy;
+
+      uint32 num_satellites;
+
+      double speed;
+
+      double heading;
+
+      double__3 xyz_pos;
+
+      double gps_time;
+    };
+  };
+};

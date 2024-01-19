@@ -1,0 +1,3 @@
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/lib/libpronto_quadruped.so
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/export_pronto_quadrupedExport.cmake
+/home/jacopo/Documents/Repo_Projects/Pronto_Estimator/install/pronto_quadruped/share/pronto_quadruped/cmake/export_pronto_quadrupedExport-noconfig.cmake
