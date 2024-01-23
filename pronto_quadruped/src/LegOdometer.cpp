@@ -192,12 +192,14 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
     
     // std::cerr<< "FL correction by Jacobian " << base_vel_leg_[LegID(0)].transpose()<< std::endl;
     // std::cerr<< "FR correction by Jacobian " << base_vel_leg_[LegID(1)].transpose()<< std::endl<< std::endl;
-
     Eigen::Vector3d old_xd_b = xd_b_;
     xd_b_.setZero();
+    old_leg_count = leg_count;
+    // std::cerr<<"old is "<<old_leg_count<<" "<<leg_count<<std::endl;
     // If we want to perform weighted average over legs depending on the
     // probabilities of contact
-    int leg_count = 0;
+    leg_count = 0;
+    
 
     Eigen::Vector3d var_velocity = Eigen::Vector3d::Zero();
 
@@ -245,15 +247,50 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
         }
         // if(leg_count != 0)
         //   std::cerr<<" leg count is "<< leg_count<<std::endl;
+        
+        
+        // if(leg_count == 1 || leg_count == 3) {
+        //     xd_b_ = old_xd_b;
+        // }
+        // std::cerr<< "the leg count is "<< leg_count<<std::endl;
+        // if(leg_count != 2 && leg_count != 4)
+        // {
+        //   std::cerr<<" the old leg count is "<<old_leg_count<<std::endl;
+        //   if(old_leg_count == 2 || old_leg_count == 4)
+        //   {
+        //     xd_b_peak = old_xd_b; 
+        //     std::cerr<<" x_peak has been updated : "<<xd_b_peak<<std::endl;
+        //   }
+        //   xd_b_ = xd_b_peak;
+        // }
+        
+        
+
         if(leg_count == 0) {
+            // xd_b_ = old_xd_b;
             return false;
         }
 
         xd_b_ /= (double)leg_count;
-        
-        if(leg_count == 1 || leg_count == 3) {
-            xd_b_ = old_xd_b;
-        }
+
+        // if((xd_b_ - old_xd_b).norm() > 0.15)
+        // {
+        //   if(old_leg_count == 2 || old_leg_count == 4)
+        //   {
+        //     xd_b_peak = old_xd_b;
+        //   }
+        //   // std::cerr<< "hold the old correction "<< claro<< " act value.norm: "<<xd_b_.norm()<< " old value: "<<old_xd_b.norm()  <<std::endl;
+      
+        //   xd_b_ = xd_b_peak;
+        //   claro++;
+        // }
+
+        // std::cerr<< "hold the old correction "<< claro<< " act value.norm: "<<xd_b_.norm()<< " old value: "<<old_xd_b.norm()  <<std::endl;
+
+        // if(xd_b_.norm() > 0.05)
+        // {
+      
+        // }
         if(xd_b_.norm() > 10){
           std::cerr << "+++++++++++++++++++++ABNORMAL VELOCITY: " << std::endl;
           Eigen::IOFormat clean(4, 0, ", ", "\n", "[", "]");

@@ -57,7 +57,7 @@ namespace pronto_controller
         pinocchio::urdf::buildModel(urdf_path,root_fb,model_);
         RCLCPP_INFO(controller_->get_logger(), " the DOF computed are %d",DOF);
         
-        pin_model_ = pronto::quadruped::PinocchioProntoQuadrupedModel(model_,"base_link","LF_FOOT","RF_FOOT","LH_FOOT","RH_FOOT");
+        // pin_model_ = pronto::quadruped::PinocchioProntoQuadrupedModel(model_,"base_link","LF_FOOT","RF_FOOT","LH_FOOT","RH_FOOT");
 
         pin_ff_ = Pinocchio_Feet_Force(model_,ker_dir,DOF);
 
@@ -249,7 +249,16 @@ namespace pronto_controller
     pronto::RBISUpdateInterface * LegOdom_Manager::computeVelocity(rclcpp::Time time)
     {
         bool use_cor = false;
-        uint64_t utime = time.nanoseconds()/1000;
+        uint64_t utime = time.nanoseconds()/std::pow(10,3);
+        JointState a;
+        Eigen::Quaterniond b;
+        Eigen::Vector3d c;
+        // std::cerr<<" the u time is "<< utime<< std::endl;
+        stance_est_->setJointStates(utime/1000,
+        a,a,a,
+        b,a,
+        c,c,c,c
+        );
         Vec3_msg deb_cor_msg;
         // TODO add the marker publisher for RVIZ see davide's displayer
         stance_est_->getGRF(grf_);

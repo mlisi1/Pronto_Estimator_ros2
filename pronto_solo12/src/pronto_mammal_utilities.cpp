@@ -99,7 +99,10 @@ namespace pronto_controller
             tau_leg_2d = -tau_rnea_.block<2,1>(leg*2 + FB_VEL,0) + tau_msr_.block<2,1>(leg*2,0);
         
         else
-            tau_leg = - tau_rnea_.block<3,1>(leg*3 + FB_VEL,0) + tau_msr_.block<3,1>(leg*3,0);;
+            tau_leg = - tau_rnea_.block<3,1>(leg*3 + FB_VEL,0) + tau_msr_.block<3,1>(leg*3,0);
+
+        // std::cerr << "the rnea trq of jnt "<<leg<<" is "<<tau_rnea_.block<3,1>(leg*3 + FB_VEL,0).transpose()<<std::endl;
+        // std::cerr << "the msrd trq of jnt "<<leg<<" is "<<tau_msr_.block<3,1>(leg*3,0).transpose()<<std::endl<<std::endl;
         // std::cerr<<"the tau diff is "<<std::endl<<tau_leg_2d<<std::endl ;
         // std::cerr<<"the measured tau is " << std::endl << tau_msr_ << std::endl << "the rnea tau is " << tau_rnea_ << std::endl;
         // get the Jacobian am compute grf

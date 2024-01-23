@@ -88,7 +88,7 @@ bool InsModule::processMessageInit(const ImuMeasurement * msg,
                                     RBIS & init_state,
                                    RBIM & init_cov)
 {
-    RCLCPP_INFO(rclcpp::get_logger("INS Init"),"the counter is %d",init_counter);
+    // RCLCPP_INFO(rclcpp::get_logger("INS Init"),"the counter is %d",init_counter);
     init_state.utime = msg->utime;
 
     RBISIMUProcessStep * update = dynamic_cast<RBISIMUProcessStep *>(processMessage(msg, NULL));

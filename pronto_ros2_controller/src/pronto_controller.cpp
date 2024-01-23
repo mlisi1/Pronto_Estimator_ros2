@@ -228,7 +228,7 @@ controller_interface::return_type Pronto_Controller::update(const rclcpp::Time& 
 
     if (fil_stt_ == Filter_State::NOT_INITIALIZED) {
         // try to configure the filter
-        RCLCPP_INFO(get_node()->get_logger(), "the filter is not initialized");
+        // RCLCPP_INFO(get_node()->get_logger(), "the filter is not initialized");
         if (!isFilterInitialized()) {
             // try to init the INS
 

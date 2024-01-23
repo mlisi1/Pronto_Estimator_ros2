@@ -139,7 +139,9 @@ protected:
     FeetJacobians& feet_jacobians_;
     ForwardKinematics& forward_kinematics_;
     bool debug_;
-
+    int claro = 0;
+    int old_leg_count = 0, leg_count= 0;
+    Eigen::Vector3d xd_b_peak = Eigen::Vector3d::Zero();
     SigmaMode s_mode_;
     AverageMode a_mode_;
     Eigen::Vector3d vel_std_ = Eigen::Vector3d::Zero();

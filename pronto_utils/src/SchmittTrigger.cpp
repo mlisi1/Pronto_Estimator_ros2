@@ -66,6 +66,7 @@ void SchmittTrigger::updateState(uint64_t present_time, double value) {
       } else {
         if (verbose) std::cout << "high state but clock rising for low\n";
         timer += (present_time - previous_time);
+        if (verbose) std::cout << "timer is "<<timer<< " and the time are prev/act"<<previous_time<<"/"<<present_time<<std::endl;
       }
     } else {
       if (verbose) std::cout << "high state, clock zero\n";
