@@ -43,6 +43,8 @@ LegOdometer::LegOdometer(FeetJacobians &feet_jacobians,
     xd_b_(Eigen::Vector3d::Zero()),
     speed_limit_(12.42) // set speed limit to Usain Bolt's sprint record, Berlin August 16th, 2009
 {
+  moving_average_.resize(WINDOW);
+  mov_ave.setZero();
 }
 
 LegOdometer::~LegOdometer() {
@@ -160,7 +162,8 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
                                    Vector3d &velocity,
                                    Matrix3d &covariance)
 {
-
+    // Eigen::Vector3d mov_ave;
+    // mov_ave.setZero();
     vel_cov_ = initial_vel_cov_;
 
     // Recording foot position and base velocity from legs
@@ -266,25 +269,46 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
         
         
 
-        if(leg_count == 0) {
-            // xd_b_ = old_xd_b;
-            return false;
+        if(leg_count == 0) { 
+            if(count == 0)
+            {
+              xd_b_peak = old_xd_b;
+              count ++;
+            }
+            xd_b_ = xd_b_peak;
+            // return false;
+        }
+        else
+        {
+          count = 0;
+          xd_b_ /= (double)leg_count;
         }
 
-        xd_b_ /= (double)leg_count;
 
-        // if((xd_b_ - old_xd_b).norm() > 0.15)
+        
+        // mov_ave = xd_b_;
+        // update_moving_mean(mov_ave);
+        // // xd_b_ = mov_ave;
+        // // std::cerr << " average value is "<< mov_ave(0)<<" meanwhile xb value is "<< xd_b_(0)<<" mean substitution index "<< claro<< std::endl<<std::endl;
+        // if(std::abs(xd_b_(0) - old_xd_b(0)) > 0.01)
         // {
-        //   if(old_leg_count == 2 || old_leg_count == 4)
+        //   if(count == 0)
         //   {
-        //     xd_b_peak = old_xd_b;
+        //       mov_ave_peak = mov_ave;
+        //       std::cerr<< "update peak average"<< mov_ave_peak.norm() <<std::endl;
+        //       count ++;
         //   }
+        //   // if((old_leg_count == 2 || old_leg_count == 4))
+        //   // {
+        //   //   xd_b_peak = old_xd_b;
+        //   // }
         //   // std::cerr<< "hold the old correction "<< claro<< " act value.norm: "<<xd_b_.norm()<< " old value: "<<old_xd_b.norm()  <<std::endl;
       
-        //   xd_b_ = xd_b_peak;
+        //   xd_b_ = mov_ave_peak;
         //   claro++;
         // }
-
+        // else
+        //   count = 0;
         // std::cerr<< "hold the old correction "<< claro<< " act value.norm: "<<xd_b_.norm()<< " old value: "<<old_xd_b.norm()  <<std::endl;
 
         // if(xd_b_.norm() > 0.05)
@@ -415,6 +439,35 @@ void LegOdometer::setGrf(const LegVectorMap &grf){
   Eigen::Array4d prev_grf_ = grf_;
   grf_ << grf[LF](2), grf[RF](2), grf[LH](2), grf[RH](2);
   grf_delta_ = grf_ - prev_grf_;
+}
+
+void LegOdometer::update_moving_mean(Eigen::Vector3d& vec)
+{
+    if(moving_average_elem_ < WINDOW)
+    {
+      moving_average_[index_] = vec;
+      moving_average_elem_ ++;
+      index_ ++;
+      // std::cerr << "insert vec at index "<< index_<< " vec value is "<< vec.transpose()<<std::endl;
+      vec.setZero();
+      
+    }
+    else
+    {
+      // std::cerr<<"the new value is "<<vec.transpose()<<std::endl;
+      index_ = (index_+1)%WINDOW;
+      start_index_ = (start_index_+1)%WINDOW;
+      moving_average_[index_] = vec;
+      vec.setZero();
+      for(int i = 0; i < WINDOW; i++)
+      {
+        // std::cerr<<"index "<< i << "vector is "<<moving_average_[i].transpose()<<std::endl;
+        vec += moving_average_[i];
+      }
+      vec /= (double)WINDOW;
+      // std::cerr << "insert vec at index "<< index_<< " average value is "<< vec.norm()<<std::endl;
+    }
+
 }
 
 }  // namespace pronto

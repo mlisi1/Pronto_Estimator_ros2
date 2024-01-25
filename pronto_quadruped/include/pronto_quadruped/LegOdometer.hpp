@@ -39,9 +39,11 @@
 #include <pronto_quadruped_commons/leg_vector_map.h>
 #include <pronto_quadruped_commons/forward_kinematics.h>
 #include <pronto_quadruped_commons/feet_jacobians.h>
+#include <vector>
 
 // std
 #include <memory>
+#define WINDOW 10
 
 namespace pronto {
 namespace quadruped {
@@ -115,6 +117,9 @@ public:
     void getFeetPositions(LegVectorMap & jd) override;
     virtual LegVectorMap getFootPos();
 
+    void update_moving_mean(Eigen::Vector3d& vec);
+
+
 
     void setInitVelocityCov(const Matrix3d& vel_cov) override;
     void setInitVelocityStd(const Vector3d& vel_std) override;
@@ -164,10 +169,14 @@ protected:
     LegVectorMap base_vel_leg_;
     LegVectorMap foot_pos_;
 
-    Eigen::Vector3d xd_b_;  ///< estimated velocity, base frame
+    Eigen::Vector3d xd_b_,mov_ave, mov_ave_peak;  ///< estimated velocity, base frame
 
     Eigen::Array4d grf_delta_;
     Eigen::Array4d grf_;
+
+    std::vector<Eigen::Vector3d> moving_average_;
+    int index_ = 0,start_index_ = 0, moving_average_elem_ = 0, count = 0;
+
 
     double speed_limit_; // upper limit of the absolute norm of the linear velocity [m/s]
 };

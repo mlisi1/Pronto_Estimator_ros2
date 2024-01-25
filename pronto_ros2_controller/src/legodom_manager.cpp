@@ -264,9 +264,9 @@ namespace pronto_controller
         stance_est_->getGRF(grf_);
         
         stance_est_->getStance(stance_,stance_prob_);
-        for(int i = 0; i<4; i++)
-            std::cerr<<"the "<<i<<"-th leg grf is "<<grf_[i].transpose()<<" and the stance prob is "<<stance_[i]<<std::endl;
-        std::cerr<<std::endl;
+        // for(int i = 0; i<4; i++)
+        //     std::cerr<<"the "<<i<<"-th leg grf is "<<grf_[i].transpose()<<" and the stance prob is "<<stance_[i]<<std::endl;
+        // std::cerr<<std::endl;
         // for(int i = 0; i < 4; i++) {
         //     std::cerr<<" the stance leg "<<i<<"-th leg is "<< stance_[i]<<std::endl;
         // }
