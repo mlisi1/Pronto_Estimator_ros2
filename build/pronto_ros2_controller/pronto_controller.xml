@@ -1,0 +1,9 @@
+<library path="pronto_ros2_controller">
+  <class name="pronto_controller/Pronto_Controller" 
+    type="pronto_controller::Pronto_Controller"
+    base_class_type="controller_interface::ControllerInterface">
+      <description>
+      Pi3Hat state and performance broadcaster
+      </description>
+  </class>
+</library>
