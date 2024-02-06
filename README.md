@@ -3,10 +3,78 @@ ROS2 Pronto Floating Base System estimator implementation is a library
 
 ## ROS1 Pronto Code Desription
 ### Code UML
+Ros1 original code scheme 
 ![Prova](/doc/pronto_node_ros1.png)
+Revisited Pronto Estimator has been adapted to a Ros2-Controller, it uses directly from the HW State interface the Imu Measure and the Joints State, including position, velocity and torque measure.
+#### TODO
+add other exteroceptive sensors 
 ![Controller](/doc/Controller_est.png)
+### TODO
+Add Pronto Parameters Description 
 
-### Class and methods
+## Usage Simulation
+### Dependecies
+Eigen3
+
+## Set up Instruction 
+Create a ROS2 workspace and be sure to have installed GazeboClassic.
+
+Add the simulation and motion control packages provided by [text](https://github.com/ddebenedittis/control_quadrupeds_soft_contacts) and follow the clone instruction.
+
+Clone this repo into the src folder into the workspace.
+
+Define your reference adding a config file into the folder pronto_tuning/config describing a base velocity setpoint used to define a repetable experiments.
+
+Example:
+The straight_motion.yaml file define a staight motion composed by 5 set point producing a trapezoidal velocity reference in forward direction.
+'''
+
+    set_point_list: 
+      - start
+      - move_for
+      - straight
+      - slow_down
+      - stop 
+    start: 
+      vx: 0.0
+      vy: 0.0
+      omega: 0.0
+      time: 0.0
+    move_for: 
+      vx: 0.15
+      vy: 0.0
+      omega: 0.0
+      time: 1.0
+    straight: 
+      vx: 0.15
+      vy: 0.0
+      omega: 0.0
+      time: 51.0
+    slow_down: 
+      vx: 0.0
+      vy: 0.0
+      omega: 0.0
+      time: 52.0
+    stop: 
+      vx: 0.0
+      vy: 0.0
+      omega: 0.0
+      time: 55.0
+
+To launch the code are needed 2 terminals, into the first one should be start the simulation using:
+
+
+    
+    ros2 launch pronto_tuning experiments_pronto.launch.py
+
+despite into the second should be start the record and command node
+
+
+    ros2 launch pronto_tuning cmd_rec.launch.py
+    
+
+
+<!-- ### Class and methods
 <ol>
     <li>
     ROS_FrontEnd (Pronto Ros)
@@ -88,4 +156,4 @@ ROS2 Pronto Floating Base System estimator implementation is a library
             </li>
         </ul>
     </li>
-</ol>
+</ol> -->

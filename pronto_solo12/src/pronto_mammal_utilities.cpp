@@ -19,40 +19,43 @@ namespace pronto_controller
         Jac.setZero();
         // get the correct foot frame 
         pinocchio::FrameIndex leg_id;
+        
         switch (leg)
         {
-        case LegID::LF:
-            leg_id = model_.getFrameId("LF_FOOT");
-            break;
-        case LegID::LH:
-            leg_id = model_.getFrameId("LH_FOOT");
-            break;
-        case LegID::RF:
-            leg_id = model_.getFrameId("RF_FOOT");
-            break;
-        case LegID::RH:
-            leg_id = model_.getFrameId("RH_FOOT");
-            break;
-            
-        default:
-            return false;
-            break;
+            case LegID::LF:
+                leg_id = model_.getFrameId("LF_FOOT");
+                break;
+            case LegID::LH:
+                leg_id = model_.getFrameId("LH_FOOT");
+                break;
+            case LegID::RF:
+                leg_id = model_.getFrameId("RF_FOOT");
+                break;
+            case LegID::RH:
+                leg_id = model_.getFrameId("RH_FOOT");
+                break;
+                
+            default:
+                return false;
+                break;
         }
 
         //get the complete jacobian in world frame 
         q_pin_.block<3,1>(3,0) = Eigen::Vector3d::Zero();
         q_pin_(6)  = 1.0;
         pinocchio::computeFrameJacobian(model_,data_,q_pin_,leg_id,pinocchio::ReferenceFrame::LOCAL_WORLD_ALIGNED,Jac_);
-        // std::cerr << " the full jacobian is "<< std::endl<<Jac_<<std::endl;
-        // pinocchio::getFrameJacobian(model_,data_,leg_id,pinocchio::ReferenceFrame::WORLD,Jac_);
-        // std::cerr << " the full jacobian is "<< std::endl<<Jac_<<std::endl;
-        // pinocchio::getFrameJacobian(model_,data_,leg_id,pinocchio::ReferenceFrame::LOCAL,Jac_);
-        // std::cerr << " the full jacobian is "<< std::endl<<Jac_<<std::endl;
-        // extract the data about the linear velocity 
+        
+        int leg_num ;
+        if(leg == LegID::RF)
+            leg_num = LegID::LH;
+        else if(leg == LegID::LH)
+            leg_num = LegID::RF;
+        else
+            leg_num = leg;
         if(DOF_ == 8)
-            Jac.block<3,2>(0,1) = Jac_.block<3,2>(0,6 + leg*2);
+            Jac.block<3,2>(0,1) = Jac_.block<3,2>(0,6 + leg_num*2);
         else    
-            Jac = Jac_.block<3,3>(0,6 + leg*3);
+            Jac = Jac_.block<3,3>(0,6 + leg_num*3);
         // std::cerr << " the jacobian block is "<< std::endl<<Jac<<std::endl;
         // if(!world)
         //     Jac = R_w2b_.inverse() * Jac;
@@ -91,15 +94,20 @@ namespace pronto_controller
         }
         
         tau_rnea_ = data_.tau;
-        // std::cerr<<"the rnea torque are "<<tau_rnea_.transpose()<<std::endl;
-        // std::cerr << " The computed torque are " << tau_rnea_.transpose() << std::endl;
-        
+       
         // get tau from rnea per joints
+        int leg_num ;
+        if(leg == LegID::RF)
+            leg_num = LegID::LH;
+        else if(leg == LegID::LH)
+            leg_num = LegID::RF;
+        else
+            leg_num = leg;
         if(DOF_ ==  8)
-            tau_leg_2d = -tau_rnea_.block<2,1>(leg*2 + FB_VEL,0) + tau_msr_.block<2,1>(leg*2,0);
+            tau_leg_2d = -tau_rnea_.block<2,1>(leg_num*2 + FB_VEL,0) + tau_msr_.block<2,1>(leg_num*2,0);
         
         else
-            tau_leg = - tau_rnea_.block<3,1>(leg*3 + FB_VEL,0) + tau_msr_.block<3,1>(leg*3,0);
+            tau_leg = - tau_rnea_.block<3,1>(leg_num*3 + FB_VEL,0) + tau_msr_.block<3,1>(leg_num*3,0);
 
         // std::cerr << "the rnea trq of jnt "<<leg<<" is "<<tau_rnea_.block<3,1>(leg*3 + FB_VEL,0).transpose()<<std::endl;
         // std::cerr << "the msrd trq of jnt "<<leg<<" is "<<tau_msr_.block<3,1>(leg*3,0).transpose()<<std::endl<<std::endl;
@@ -107,7 +115,7 @@ namespace pronto_controller
         // std::cerr<<"the measured tau is " << std::endl << tau_msr_ << std::endl << "the rnea tau is " << tau_rnea_ << std::endl;
         // get the Jacobian am compute grf
         this->getLegJacobian(leg,J,true);
-        // std::cerr <<"the complete jacobian is "<<std::endl << J <<std::endl;
+        // std::cerr <<"the complete jacobian "<<leg<<"-th is "<<std::endl << J <<std::endl;
         // std::cerr<<"the J is " << std::endl << J << std::endl;
         if(DOF_ == 12)
         {
@@ -153,7 +161,7 @@ namespace pronto_controller
         }
         // std::cerr<< "foot "<< leg << " has GRF in world " << foot_grf(0)<< " " << foot_grf(1) << " " << foot_grf(2) << std::endl;
         // change the frame from world to base 
-        foot_grf = R_w2b_.inverse()*foot_grf;
+        // foot_grf = R_w2b_.inverse()*foot_grf;
 
         // std::cerr<< "foot "<< leg << " has GRF " << foot_grf(0)<< " " << foot_grf(1) << " " << foot_grf(2) << std::endl;
         return true;
@@ -230,6 +238,7 @@ namespace pronto_controller
     {
         LinVelJac J;
         pin_ff_->getLegJacobian(leg,J,false);
+        // J.block<3,1>(0,0) = this->get_foot_vel(leg);
         
         return J;
     }

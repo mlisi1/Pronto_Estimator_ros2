@@ -262,18 +262,10 @@ namespace pronto_controller
         Vec3_msg deb_cor_msg;
         // TODO add the marker publisher for RVIZ see davide's displayer
         stance_est_->getGRF(grf_);
-        
+      
         stance_est_->getStance(stance_,stance_prob_);
-        // for(int i = 0; i<4; i++)
-        //     std::cerr<<"the "<<i<<"-th leg grf is "<<grf_[i].transpose()<<" and the stance prob is "<<stance_[i]<<std::endl;
-        // std::cerr<<std::endl;
-        // for(int i = 0; i < 4; i++) {
-        //     std::cerr<<" the stance leg "<<i<<"-th leg is "<< stance_[i]<<std::endl;
-        // }
+     
         leg_odom_->setGrf(grf_);
-        
-        // std::cerr << "the joints dot q are "<<dq_.transpose()<<std::endl;
-        // std::cerr<< " the jnt pos are "<<q_.transpose()<< " and the velocity are "<<dq_.transpose()<<std::endl;
         
         use_cor = leg_odom_->estimateVelocity(
             utime,
@@ -353,7 +345,7 @@ namespace pronto_controller
                 if(first_step_)
                     est_pos_[i] = q_[i];
                 dq_[i] = std::get<1>(jnt_tuple);
-                update_fading_filter(q_[i],i);
+                // update_fading_filter(q_[i],i);
                 // if(DEBUG)
                 //     dq_[i] = est_vel_[i];
                 tau_[i] = std::get<2>(jnt_tuple);
@@ -362,7 +354,7 @@ namespace pronto_controller
                     jnt_msg_.name[i] = jnt_id[i];
                     jnt_msg_.position[i] = q_[i];
                     jnt_msg_.velocity[i] = dq_[i];
-                    fading_filter_vel_pub_->publish(jnt_msg_);
+                    // fading_filter_vel_pub_->publish(jnt_msg_);
                     // dq_[i] = est_vel_[i];
                 }
             }

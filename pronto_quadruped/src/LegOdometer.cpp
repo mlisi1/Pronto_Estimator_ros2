@@ -179,6 +179,10 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
         base_vel_leg_[LegID(leg)] = - feet_jacobians_.getFootJacobian(q, LegID(leg))
                             * qd.block<3,1>(leg * 3, 0) ; //+ Eigen::Vector3d(0.4,0.0,0.0);
                               - omega.cross(foot_pos_[LegID(leg)]);
+
+        // base_vel_leg_[LegID(leg)] = -feet_jacobians_.getFootJacobian(q,LegID(leg)).block
+        //                       - omega.cross(foot_pos_[LegID(leg)]);
+        // std::cerr<< " the "<<leg<<"-th jacbian is "<<std::endl
         // for(int p = 0 ; p< 3; p++)
         // {
         //   base_vel_leg_[LegID(leg)](p) = std::fabs( base_vel_leg_[LegID(leg)](p));
@@ -276,7 +280,7 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
               count ++;
             }
             xd_b_ = xd_b_peak;
-            // return false;
+            return false;
         }
         else
         {

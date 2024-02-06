@@ -46,6 +46,7 @@ namespace pronto_controller
             ker_(ker),
             DOF_(DOF)
             {
+                
                 q_pin_ = Eigen::VectorXd::Zero(DOF_ + FB_DOF);
                 dq_pin_ = Eigen::VectorXd::Zero(DOF_ + FB_VEL);
                 ddq_pin_ = Eigen::VectorXd::Zero(DOF_ + FB_VEL);
@@ -59,11 +60,41 @@ namespace pronto_controller
                     {
                         std::cerr<<"jnt name is "<<jnt_ptr<<std::endl;
                         pin_jnt_name_.push_back(jnt_ptr);
+                        
                     }
                 }
             };
             ~Pinocchio_Feet_Force(){};
-
+            bool get_foot_vel(const LegID& leg, Eigen::Vector3d& foot_vel)
+            {
+                pinocchio::FrameIndex leg_id;
+                pinocchio::Motion a;
+                foot_vel.setZero();
+                switch (leg)
+                {
+                    case LegID::LF:
+                        leg_id = model_.getFrameId("LF_FOOT");
+                        break;
+                    case LegID::LH:
+                        leg_id = model_.getFrameId("LH_FOOT");
+                        break;
+                    case LegID::RF:
+                        leg_id = model_.getFrameId("RF_FOOT");
+                        break;
+                    case LegID::RH:
+                        leg_id = model_.getFrameId("RH_FOOT");
+                        break;
+                        
+                    default:
+                        return false;
+                        break;
+                }
+                pinocchio::updateFramePlacement(model_,data_,leg_id);
+                
+                
+                a = pinocchio::getFrameVelocity(model_,data_,leg_id,pinocchio::ReferenceFrame::LOCAL_WORLD_ALIGNED);
+                foot_vel = a.linear();
+            }
             // function to set state dim
             void set_state_dim()
             {
@@ -180,7 +211,13 @@ namespace pronto_controller
             {};
 
             ~Pinocchio_Jacobian(){};
+            Eigen::Vector3d get_foot_vel(LegID leg)
+            {
+                Eigen::Vector3d f_v;
 
+                pin_ff_->get_foot_vel(leg,f_v);
+                return f_v;
+            };
            pronto::quadruped::FootJac getFootJacobian(const pronto::quadruped::JointState& q, const pronto::quadruped::LegID& leg) override;
            pronto::quadruped::FootJac getFootJacobianAngular(const pronto::quadruped::JointState& q,const pronto::quadruped::LegID& leg) override;
       

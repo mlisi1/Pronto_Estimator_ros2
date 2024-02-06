@@ -204,6 +204,7 @@ bool StanceEstimator::getStance(LegBoolMap &stance,
             stance_probability[leg_id] = stance[leg_id];
             break;
         case Mode::HYSTERESIS:
+            // std::cerr << "the ground reaction force is "<<grf_[leg_id](Z)<<std::endl;
             force_triggers_[leg_id].updateState(nsec_, grf_[leg_id](Z));
             stance[leg_id] = force_triggers_[leg_id].getState();
             stance_probability[leg_id] = stance[leg_id];
@@ -213,6 +214,7 @@ bool StanceEstimator::getStance(LegBoolMap &stance,
             stance[leg_id] = (stance_probability[leg_id] > 0.5 ? true : false);
             break;
         }
+        
         // std::cerr << "the GRF of "<< leg_id << "-th leg is "<< grf_[leg_id].transpose() << " and the stance prob is "<<stance[leg_id]<<std::endl;
     }
     return true;

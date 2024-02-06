@@ -8,17 +8,29 @@
 #include "geometry_msgs/msg/pose.hpp"
 #include "gazebo_msgs/msg/link_states.hpp"
 #include <memory>
-#define FB_LINK "solo12::base_link"
-
+#include "rosbag2_cpp/writer.hpp"
+#include "rosbag2_cpp/storage_options.hpp"
+#define FB_LINK_SOLO "solo12::base_link"
+#define FB_LINK_ANYM "anymal_c::base"
+#include <string>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
+#include "geometry_msgs/msg/twist_with_covariance.hpp"
+#include "geometry_msgs/msg/twist_with_covariance_stamped.hpp"
+#include "geometry_msgs/msg/pose_with_covariance.hpp"
+#include "geometry_msgs/msg/pose_with_covariance_stamped.hpp"
+#include "geometry_msgs/msg/vector3.hpp"
+#define EXP_NAME "Estimator_Exp"
 namespace tuning_node
 {
     using std::placeholders::_1;
     using Twist = geometry_msgs::msg::Twist;
     using Pose = geometry_msgs::msg::Pose;
     using LinkStates = gazebo_msgs::msg::LinkStates;
+    using PosewCov = geometry_msgs::msg::PoseWithCovarianceStamped;
+    using TwistwCov = geometry_msgs::msg::TwistWithCovarianceStamped;
+    using Vec3 = geometry_msgs::msg::Vector3;
 
     class Tuning_Node : public rclcpp::Node
     {
@@ -26,20 +38,130 @@ namespace tuning_node
             Tuning_Node()
             : Node("tuning_node")
             {
+                rclcpp::QoS out_qos(10);
+                out_qos.reliability(rclcpp::ReliabilityPolicy::BestEffort);
+                this->declare_parameter("est_twist_topic", "");
+                this->declare_parameter("est_pose_topic", "");
+                this->declare_parameter("odom_twist_cor", "");
+                this->declare_parameter("folder_path", "");
                 pub_ = this->create_publisher<Twist>("/tuning_node/ground_truth",rclcpp::QoS(10));
                 sub_ = this->create_subscription<LinkStates>("gazebo/link_states",rclcpp::QoS(10),
                 std::bind(&Tuning_Node::gz_sub,this,_1));
+                try
+                {
+                    twist_est_t_name_ = this->get_parameter("est_twist_topic").as_string();
+                    pose_est_t_name_ = this->get_parameter("est_pose_topic").as_string();
+                    odom_twist_cor_t_name_ = this->get_parameter("odom_twist_cor").as_string();
+                    bag_folder_path_ = this->get_parameter("folder_path").as_string();
+                    
+                }
+                catch(const std::exception& e)
+                {
+                    RCLCPP_ERROR(get_logger(),"Error getting parameters: %s",e.what());
+                    assert(true);
+                }
+
+                writer_ = std::make_unique<rosbag2_cpp::Writer>();
+
+                time_t tm_now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+                
+                auto lt_now = std::localtime(&tm_now);
+
+                bag_folder_path_ = bag_folder_path_ + EXP_NAME +std::string("_") + std::to_string(lt_now->tm_year+1900) + "_" + std::to_string(lt_now->tm_mon+1) + "_" + std::to_string(lt_now->tm_mday) + "_" +
+            std::to_string(lt_now->tm_hour) + ":" + std::to_string(lt_now->tm_min) + ":" +std::to_string(lt_now->tm_sec);
+
+                const rosbag2_storage::StorageOptions strg_opt({bag_folder_path_,"mcap"});
+                try
+                {
+                    writer_->open(strg_opt);
+                }
+                catch(const std::exception& e)
+                {
+                    RCLCPP_ERROR(get_logger(),"Error opening bag: %s", e.what());
+                    assert(true);
+                }
+                
+
+                writer_->create_topic(
+                    {twist_est_t_name_,
+                    "geometry_msgs/msg/TwistWithCovarianceStamped",
+                    rmw_get_serialization_format(),
+                    ""}
+                );
+
+                writer_->create_topic(
+                    {pose_est_t_name_,
+                    "geometry_msgs/msg/PoseWithCovarianceStamped",
+                    rmw_get_serialization_format(),
+                    ""}
+                );
+
+                writer_->create_topic(
+                    {odom_twist_cor_t_name_,
+                    "geometry_msgs/msg/Vector3",
+                    rmw_get_serialization_format(),
+                    ""}
+                );
+
+                writer_->create_topic(
+                    {"/tuning_node/ground_truth_twist",
+                    "geometry_msgs/msg/Twist",
+                    rmw_get_serialization_format(),
+                    ""}
+                );
+
+                writer_->create_topic(
+                    {"/tuning_node/ground_truth_pose",
+                    "geometry_msgs/msg/Pose",
+                    rmw_get_serialization_format(),
+                    ""}
+                );
+                
+                est_twist_sub_ = this->create_subscription<TwistwCov>(twist_est_t_name_,out_qos,
+                std::bind(&Tuning_Node::est_twist_sub,this,_1));
+
+                est_pose_sub_ = this->create_subscription<PosewCov>(pose_est_t_name_,out_qos,
+                std::bind(&Tuning_Node::est_pose_sub,this,_1));
+
+                odom_sub_ = this->create_subscription<Vec3>(odom_twist_cor_t_name_,rclcpp::QoS(10),
+                std::bind(&Tuning_Node::odom_cor_sub,this,_1));
+
+            }
+            void est_twist_sub(std::shared_ptr<rclcpp::SerializedMessage> msg)
+            {
+                rclcpp::Time time_stamp = this->now();
+                const std::string name = twist_est_t_name_;
+                const std::string type = "geometry_msgs/msg/TwistWithCovarianceStamped";
+                writer_-> write(msg,name,type,time_stamp);
+                // RCLCPP_INFO(get_logger(),"PASS TWIST");
+            }
+            void est_pose_sub(std::shared_ptr<rclcpp::SerializedMessage> msg)
+            {
+                rclcpp::Time time_stamp = this->now();
+                const std::string name = pose_est_t_name_;
+                const std::string type = "geometry_msgs/msg/PoseWithCovarianceStamped";
+                writer_-> write(msg,name,type,time_stamp);
+                // RCLCPP_INFO(get_logger(),"PASS POSE");
+            }
+            void odom_cor_sub(std::shared_ptr<rclcpp::SerializedMessage> msg)
+            {
+                rclcpp::Time time_stamp = this->now();
+                const std::string name = odom_twist_cor_t_name_;
+                const std::string type = "geometry_msgs/msg/Vector3";
+                writer_-> write(msg,name,type,time_stamp);
             }
             void gz_sub(const LinkStates& msg)
             {
+                rclcpp::Time time_stamp = this->now();
                 bool send = false;
                 Twist base_twist_msg;
-                Eigen::Vector3d vel_vect;
+                Pose base_pose_msg;
+                Eigen::Vector3d vel_vect,pose_vec;
                 Eigen::Quaterniond w2b_or;
                 // RCLCPP_INFO(this->get_logger(),"PASS");
                 for(size_t i = 0; i< msg.name.size(); i++)
                 {
-                    if(msg.name[i].compare(FB_LINK)== 0 && send==false)
+                    if(msg.name[i].compare(FB_LINK_SOLO)== 0 && send==false)
                     {
                         vel_vect = Eigen::Vector3d(
                             msg.twist[i].linear.x,
@@ -50,6 +172,8 @@ namespace tuning_node
                             msg.pose[i].orientation.x,
                             msg.pose[i].orientation.y,
                             msg.pose[i].orientation.z);
+                        base_pose_msg.set__position(msg.pose[i].position);
+                        base_pose_msg.set__orientation(msg.pose[i].orientation);
                         vel_vect = w2b_or.toRotationMatrix().inverse()*vel_vect;
                         
                         base_twist_msg.linear.set__x(vel_vect(0));
@@ -69,14 +193,31 @@ namespace tuning_node
                         base_twist_msg.angular.set__z(vel_vect(2));
 
                         pub_->publish(base_twist_msg);
+                        
+                        writer_->write(base_twist_msg,"/tuning_node/ground_truth_twist",time_stamp);
+                        writer_->write(base_pose_msg,"/tuning_node/ground_truth_pose",time_stamp);
+
+
+
                         send = true;
-                        RCLCPP_INFO(this->get_logger(),"PASS");
+                        // RCLCPP_INFO(this->get_logger(),"PASS");
                     }
                 }
             }
         private:
+            // TODO add writer to save the estimation data, the ground truth
             rclcpp::Publisher<Twist>::SharedPtr pub_;
             rclcpp::Subscription<LinkStates>::SharedPtr sub_;
+
+            rclcpp::Subscription<Vec3>::SharedPtr odom_sub_;
+            rclcpp::Subscription<TwistwCov>::SharedPtr est_twist_sub_;
+            rclcpp::Subscription<PosewCov>::SharedPtr est_pose_sub_;
+
+            std::unique_ptr<rosbag2_cpp::Writer> writer_;
+            std::string twist_est_t_name_;
+            std::string pose_est_t_name_;
+            std::string odom_twist_cor_t_name_;
+            std::string bag_folder_path_;
     };
 
     
