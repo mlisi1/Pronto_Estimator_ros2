@@ -273,7 +273,7 @@ bool LegOdometer::estimateVelocity(const uint64_t utime,
         
         
 
-        if(leg_count == 0) { 
+        if(leg_count == 0 || leg_count == 1) { 
             if(count == 0)
             {
               xd_b_peak = old_xd_b;

@@ -1,12 +1,3 @@
-tuning_node:
-  ros__parameters:
-    est_twist_topic: "/pronto_estimator/twist"
-    est_pose_topic: "/pronto_estimator/pose"
-    odom_twist_cor: "/pronto_estimator/Odom_Correction"
-    folder_path: "/home/jacopo/Desktop/Pronto_Tuning/Pronto_Matlab_analysis/Anymal_c/Exp_4/"
-    exp_name: "straight_mot_mv_015"
-    use_sim_time: true
-
 command_node:
   ros__parameters:
     topic_name: "motion_generator/simple_velocity_command"
@@ -15,6 +6,7 @@ command_node:
       - move_for
       - straight
       - slow_down
+      - slow_down_2
       - stop 
     start: 
       vx: 0.0
@@ -22,23 +14,28 @@ command_node:
       omega: 0.0
       time: 0.0
     move_for: 
-      vx: 0.15
+      vx: 0.0
       vy: 0.0
-      omega: 0.0
+      omega: 0.5
       time: 1.0
     straight: 
-      vx: 0.15
-      vy: 0.0
-      omega: 0.0
-      time: 51.0
-    slow_down: 
       vx: 0.0
       vy: 0.0
       omega: 0.0
-      time: 52.0
+      time: 10.0
+    slow_down: 
+      vx: 0.15
+      vy: 0.0
+      omega: 0.0
+      time: 12.0
+    slow_down_2: 
+      vx: 0.15
+      vy: 0.0
+      omega: 0.0
+      time: 42.0
     stop: 
       vx: 0.0
       vy: 0.0
       omega: 0.0
-      time: 55.0
+      time: 45.0
     use_sim_time: true

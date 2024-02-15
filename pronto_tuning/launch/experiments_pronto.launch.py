@@ -32,7 +32,7 @@ def generate_launch_description():
     )
     simulator_solo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-                    os.path.join(get_package_share_path('robot_gazebo'), 'launch', 'solo12.launch.py')
+                    os.path.join(get_package_share_path('robot_gazebo'), 'launch', 'anymal_c.launch.py')
                 ),
                 launch_arguments={
                     'gait': "walking_trot",

@@ -264,6 +264,8 @@ namespace pronto_controller
         stance_est_->getGRF(grf_);
       
         stance_est_->getStance(stance_,stance_prob_);
+       std::cout<<grf_<<std::endl;
+       std::cout<<stance_prob_<<std::endl;
      
         leg_odom_->setGrf(grf_);
         

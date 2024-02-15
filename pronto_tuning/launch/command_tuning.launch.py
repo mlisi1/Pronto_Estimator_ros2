@@ -9,7 +9,7 @@ def generate_launch_description():
 
     global config_file_path
     package_path = get_package_share_path("pronto_tuning")
-    config_path = os.path.join(package_path, 'config/tuning_node_param.yaml')
+    config_path = os.path.join(package_path, 'config/Exp_4_cmd.yaml')
     
     print()
     return LaunchDescription([

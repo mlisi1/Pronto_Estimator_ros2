@@ -13,11 +13,12 @@ find_package(gazebo_msgs REQUIRED)
 find_package(rosbag2_cpp REQUIRED)
 find_package(velocity_command_msgs REQUIRED)
 find_package(Eigen3 REQUIRED)
+find_package(std_srvs REQUIRED)
 add_executable(tuning_node src/tuning_node.cpp)
 add_executable(command_node src/command_node.cpp)
 
-ament_target_dependencies(tuning_node rosbag2_cpp rclcpp geometry_msgs gazebo_msgs Eigen3)
-ament_target_dependencies(command_node rosbag2_cpp rclcpp geometry_msgs gazebo_msgs Eigen3 velocity_command_msgs)
+ament_target_dependencies(tuning_node std_srvs rosbag2_cpp rclcpp geometry_msgs gazebo_msgs Eigen3)
+ament_target_dependencies(command_node std_srvs rosbag2_cpp rclcpp geometry_msgs gazebo_msgs Eigen3 velocity_command_msgs)
 include_directories(include)
 install(TARGETS
   tuning_node command_node

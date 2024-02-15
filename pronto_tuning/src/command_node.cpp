@@ -9,9 +9,12 @@
 #include <cmath>
 #include <iostream>
 #include <cassert>
+#include <future>
 #include "velocity_command_msgs/msg/simple_velocity_command.hpp"
+#include "std_srvs/srv/empty.hpp"
 
 using CmdMsg = velocity_command_msgs::msg::SimpleVelocityCommand;
+using StopSrv = std_srvs::srv::Empty;
 namespace command_node
 {
     class CommandNode : public rclcpp::Node
@@ -22,7 +25,7 @@ namespace command_node
             {
                 std::cerr<<"pass here"<<std::endl;
                 this->declare_parameter("topic_name",std::string());
-                this->declare_parameter("timer_period_ms",10);
+                this->declare_parameter("timer_period_ms",100);
                 period_ = get_parameter("timer_period_ms").as_int();
                 topic_name_ = this->get_parameter("topic_name").as_string();
                 this->declare_parameter("set_point_list",std::vector<std::string>());
@@ -86,8 +89,9 @@ namespace command_node
                 // om_spline_ = tk::spline(spline_time_list_,spline_vx_list_,tk::spline::cspline_hermite,false,tk::spline::first_deriv,0.0,tk::spline::first_deriv,0.0);
                 pub_ = create_publisher<CmdMsg>(topic_name_,rclcpp::QoS(10));
 
-                timer_ = create_wall_timer(std::chrono::duration<int,std::milli>(period_), std::bind(&CommandNode::timer_callback,this));
+                stop_client_ = create_client<StopSrv>("stop_record");
 
+                timer_ = create_wall_timer(std::chrono::duration<int,std::milli>(period_), std::bind(&CommandNode::timer_callback,this));
                 // std::vector<double> prova = {0.0,1.0,2.0,3.0,4.0,5.0,6.0};
                 // for(size_t i = 0; i < prova.size(); i++)
                 // {
@@ -96,6 +100,12 @@ namespace command_node
             }
         private: 
             
+            void req_resp(rclcpp::Client<StopSrv>::SharedFuture fut)
+            {
+                auto state = fut.wait_for(std::chrono::duration<int,std::milli>(500));
+                if(state == std::future_status::ready)
+                    RCLCPP_INFO(get_logger(),"Stop Record Request Completed");
+            }
             void timer_callback()
             {
                 rclcpp::Time time_stamp = get_clock()->now();
@@ -110,13 +120,17 @@ namespace command_node
                     msg_.set__velocity_forward(vx_spline_(secs));
                     msg_.set__velocity_lateral(vy_spline_(secs));
                     msg_.set__yaw_rate(om_spline_(secs));
-                    RCLCPP_INFO(get_logger(),"now is %f and stop at %f and ms is [%f,%f,%f]",secs,spline_time_list_[spline_list_.size()-1],msg_.velocity_forward,msg_.velocity_lateral,msg_.yaw_rate);
+                    // RCLCPP_INFO(get_logger(),"now is %f and stop at %f and ms is [%f,%f,%f]",secs,spline_time_list_[spline_list_.size()-1],msg_.velocity_forward,msg_.velocity_lateral,msg_.yaw_rate);
                     pub_->publish(msg_);
                 }
                 else
                 {
-                    timer_->cancel();
                     RCLCPP_INFO(get_logger(),"The timer has been cancelled, stop sending reference");
+                    auto req = std::make_shared<StopSrv::Request>();
+                    auto result_fut = stop_client_->async_send_request(req);
+                    timer_->cancel();
+
+                    
                 }
             }
 
@@ -130,6 +144,8 @@ namespace command_node
             CmdMsg msg_;
             double offset_timer_ = 0.0;
             int period_;
+            rclcpp::Client<StopSrv>::SharedPtr stop_client_;
+            
             
 
     };

@@ -4,8 +4,8 @@
 #include "rclcpp/publisher.hpp"
 #include <eigen3/Eigen/Core>
 #include <eigen3/Eigen/Dense>
-#include "geometry_msgs/msg/twist.hpp"
-#include "geometry_msgs/msg/pose.hpp"
+#include "geometry_msgs/msg/twist_stamped.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
 #include "gazebo_msgs/msg/link_states.hpp"
 #include <memory>
 #include "rosbag2_cpp/writer.hpp"
@@ -21,15 +21,18 @@
 #include "geometry_msgs/msg/pose_with_covariance.hpp"
 #include "geometry_msgs/msg/pose_with_covariance_stamped.hpp"
 #include "geometry_msgs/msg/vector3.hpp"
+#include "std_srvs/srv/empty.hpp"
 #define EXP_NAME "Estimator_Exp"
 namespace tuning_node
 {
     using std::placeholders::_1;
-    using Twist = geometry_msgs::msg::Twist;
-    using Pose = geometry_msgs::msg::Pose;
+    using std::placeholders::_2;
+    using Twist = geometry_msgs::msg::TwistStamped;
+    using Pose = geometry_msgs::msg::PoseStamped;
     using LinkStates = gazebo_msgs::msg::LinkStates;
     using PosewCov = geometry_msgs::msg::PoseWithCovarianceStamped;
     using TwistwCov = geometry_msgs::msg::TwistWithCovarianceStamped;
+    using StopSrv = std_srvs::srv::Empty;
     using Vec3 = geometry_msgs::msg::Vector3;
 
     class Tuning_Node : public rclcpp::Node
@@ -38,12 +41,15 @@ namespace tuning_node
             Tuning_Node()
             : Node("tuning_node")
             {
+                
                 rclcpp::QoS out_qos(10);
+                std::string exp_name;
                 out_qos.reliability(rclcpp::ReliabilityPolicy::BestEffort);
                 this->declare_parameter("est_twist_topic", "");
                 this->declare_parameter("est_pose_topic", "");
                 this->declare_parameter("odom_twist_cor", "");
                 this->declare_parameter("folder_path", "");
+                this->declare_parameter("exp_name","Pronto_Tuning");
                 pub_ = this->create_publisher<Twist>("/tuning_node/ground_truth",rclcpp::QoS(10));
                 sub_ = this->create_subscription<LinkStates>("gazebo/link_states",rclcpp::QoS(10),
                 std::bind(&Tuning_Node::gz_sub,this,_1));
@@ -53,6 +59,7 @@ namespace tuning_node
                     pose_est_t_name_ = this->get_parameter("est_pose_topic").as_string();
                     odom_twist_cor_t_name_ = this->get_parameter("odom_twist_cor").as_string();
                     bag_folder_path_ = this->get_parameter("folder_path").as_string();
+                    exp_name =get_parameter("exp_name").as_string();
                     
                 }
                 catch(const std::exception& e)
@@ -67,10 +74,10 @@ namespace tuning_node
                 
                 auto lt_now = std::localtime(&tm_now);
 
-                bag_folder_path_ = bag_folder_path_ + EXP_NAME +std::string("_") + std::to_string(lt_now->tm_year+1900) + "_" + std::to_string(lt_now->tm_mon+1) + "_" + std::to_string(lt_now->tm_mday) + "_" +
-            std::to_string(lt_now->tm_hour) + ":" + std::to_string(lt_now->tm_min) + ":" +std::to_string(lt_now->tm_sec);
+                bag_folder_path_ = bag_folder_path_ + exp_name +std::string("_") + std::to_string(lt_now->tm_year+1900) + "_" + std::to_string(lt_now->tm_mon+1) + "_" + std::to_string(lt_now->tm_mday) + "_" +
+            std::to_string(lt_now->tm_hour) + "_" + std::to_string(lt_now->tm_min) + "_" +std::to_string(lt_now->tm_sec);
 
-                const rosbag2_storage::StorageOptions strg_opt({bag_folder_path_,"mcap"});
+                const rosbag2_storage::StorageOptions strg_opt({bag_folder_path_,"sqlite3"});
                 try
                 {
                     writer_->open(strg_opt);
@@ -105,14 +112,14 @@ namespace tuning_node
 
                 writer_->create_topic(
                     {"/tuning_node/ground_truth_twist",
-                    "geometry_msgs/msg/Twist",
+                    "geometry_msgs/msg/TwistStamped",
                     rmw_get_serialization_format(),
                     ""}
                 );
 
                 writer_->create_topic(
                     {"/tuning_node/ground_truth_pose",
-                    "geometry_msgs/msg/Pose",
+                    "geometry_msgs/msg/PoseStamped",
                     rmw_get_serialization_format(),
                     ""}
                 );
@@ -126,29 +133,48 @@ namespace tuning_node
                 odom_sub_ = this->create_subscription<Vec3>(odom_twist_cor_t_name_,rclcpp::QoS(10),
                 std::bind(&Tuning_Node::odom_cor_sub,this,_1));
 
+                stop_srv_ = create_service<StopSrv>("stop_record",std::bind(&Tuning_Node::stop_record,this,_1,_2));
+
             }
             void est_twist_sub(std::shared_ptr<rclcpp::SerializedMessage> msg)
             {
-                rclcpp::Time time_stamp = this->now();
-                const std::string name = twist_est_t_name_;
-                const std::string type = "geometry_msgs/msg/TwistWithCovarianceStamped";
-                writer_-> write(msg,name,type,time_stamp);
+                if(!stop)
+                {
+                    rclcpp::Time time_stamp = this->now();
+                    const std::string name = twist_est_t_name_;
+                    const std::string type = "geometry_msgs/msg/TwistWithCovarianceStamped";
+                    writer_-> write(msg,name,type,time_stamp);
+                }
                 // RCLCPP_INFO(get_logger(),"PASS TWIST");
             }
             void est_pose_sub(std::shared_ptr<rclcpp::SerializedMessage> msg)
             {
-                rclcpp::Time time_stamp = this->now();
-                const std::string name = pose_est_t_name_;
-                const std::string type = "geometry_msgs/msg/PoseWithCovarianceStamped";
-                writer_-> write(msg,name,type,time_stamp);
+                if(!stop)
+                {
+                    rclcpp::Time time_stamp = this->now();
+                    const std::string name = pose_est_t_name_;
+                    const std::string type = "geometry_msgs/msg/PoseWithCovarianceStamped";
+                    writer_-> write(msg,name,type,time_stamp);
+                }
                 // RCLCPP_INFO(get_logger(),"PASS POSE");
             }
             void odom_cor_sub(std::shared_ptr<rclcpp::SerializedMessage> msg)
             {
-                rclcpp::Time time_stamp = this->now();
-                const std::string name = odom_twist_cor_t_name_;
-                const std::string type = "geometry_msgs/msg/Vector3";
-                writer_-> write(msg,name,type,time_stamp);
+                if(!stop)
+                {
+                    rclcpp::Time time_stamp = this->now();
+                    const std::string name = odom_twist_cor_t_name_;
+                    const std::string type = "geometry_msgs/msg/Vector3";
+                    writer_-> write(msg,name,type,time_stamp);
+                }
+            }
+            void stop_record(const std::shared_ptr<StopSrv::Request> req, const std::shared_ptr<StopSrv::Response> res)
+            {
+                RCLCPP_WARN(get_logger(),"Stop recording bag");
+                stop = true;
+                writer_->close();
+                
+                
             }
             void gz_sub(const LinkStates& msg)
             {
@@ -158,49 +184,54 @@ namespace tuning_node
                 Pose base_pose_msg;
                 Eigen::Vector3d vel_vect,pose_vec;
                 Eigen::Quaterniond w2b_or;
-                // RCLCPP_INFO(this->get_logger(),"PASS");
-                for(size_t i = 0; i< msg.name.size(); i++)
+                if(!stop)
                 {
-                    if(msg.name[i].compare(FB_LINK_SOLO)== 0 && send==false)
+                    // RCLCPP_INFO(this->get_logger(),"PASS");
+                    for(size_t i = 0; i< msg.name.size(); i++)
                     {
-                        vel_vect = Eigen::Vector3d(
-                            msg.twist[i].linear.x,
-                            msg.twist[i].linear.y,
-                            msg.twist[i].linear.z);
-                        w2b_or = Eigen::Quaterniond(
-                            msg.pose[i].orientation.w,
-                            msg.pose[i].orientation.x,
-                            msg.pose[i].orientation.y,
-                            msg.pose[i].orientation.z);
-                        base_pose_msg.set__position(msg.pose[i].position);
-                        base_pose_msg.set__orientation(msg.pose[i].orientation);
-                        vel_vect = w2b_or.toRotationMatrix().inverse()*vel_vect;
-                        
-                        base_twist_msg.linear.set__x(vel_vect(0));
-                        base_twist_msg.linear.set__y(vel_vect(1));
-                        base_twist_msg.linear.set__z(vel_vect(2));
+                        if(msg.name[i].compare(FB_LINK_ANYM)== 0 && send==false)
+                        {
+                            vel_vect = Eigen::Vector3d(
+                                msg.twist[i].linear.x,
+                                msg.twist[i].linear.y,
+                                msg.twist[i].linear.z);
+                            w2b_or = Eigen::Quaterniond(
+                                msg.pose[i].orientation.w,
+                                msg.pose[i].orientation.x,
+                                msg.pose[i].orientation.y,
+                                msg.pose[i].orientation.z);
+                            base_pose_msg.pose.set__position(msg.pose[i].position);
+                            base_pose_msg.pose.set__orientation(msg.pose[i].orientation);
+                            vel_vect = w2b_or.toRotationMatrix().inverse()*vel_vect;
+                            
+                            base_twist_msg.twist.linear.set__x(vel_vect(0));
+                            base_twist_msg.twist.linear.set__y(vel_vect(1));
+                            base_twist_msg.twist.linear.set__z(vel_vect(2));
 
 
-                        vel_vect = Eigen::Vector3d(
-                            msg.twist[i].angular.x,
-                            msg.twist[i].angular.y,
-                            msg.twist[i].angular.z);
+                            vel_vect = Eigen::Vector3d(
+                                msg.twist[i].angular.x,
+                                msg.twist[i].angular.y,
+                                msg.twist[i].angular.z);
 
-                        vel_vect = w2b_or.toRotationMatrix().inverse()*vel_vect;
-                        
-                        base_twist_msg.angular.set__x(vel_vect(0));
-                        base_twist_msg.angular.set__y(vel_vect(1));
-                        base_twist_msg.angular.set__z(vel_vect(2));
+                            vel_vect = w2b_or.toRotationMatrix().inverse()*vel_vect;
+                            
+                            base_twist_msg.twist.angular.set__x(vel_vect(0));
+                            base_twist_msg.twist.angular.set__y(vel_vect(1));
+                            base_twist_msg.twist.angular.set__z(vel_vect(2));
+                            base_pose_msg.header.set__stamp(time_stamp);
+                            base_twist_msg.header.set__stamp(time_stamp);
+                            
+                            pub_->publish(base_twist_msg);
+                            
+                            writer_->write(base_twist_msg,"/tuning_node/ground_truth_twist",time_stamp);
+                            writer_->write(base_pose_msg,"/tuning_node/ground_truth_pose",time_stamp);
 
-                        pub_->publish(base_twist_msg);
-                        
-                        writer_->write(base_twist_msg,"/tuning_node/ground_truth_twist",time_stamp);
-                        writer_->write(base_pose_msg,"/tuning_node/ground_truth_pose",time_stamp);
 
 
-
-                        send = true;
-                        // RCLCPP_INFO(this->get_logger(),"PASS");
+                            send = true;
+                            // RCLCPP_INFO(this->get_logger(),"PASS");
+                        }
                     }
                 }
             }
@@ -218,6 +249,8 @@ namespace tuning_node
             std::string pose_est_t_name_;
             std::string odom_twist_cor_t_name_;
             std::string bag_folder_path_;
+            rclcpp::Service<StopSrv>::SharedPtr stop_srv_;
+            bool stop = false;
     };
 
     

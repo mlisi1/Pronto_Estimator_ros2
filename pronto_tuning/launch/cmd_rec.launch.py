@@ -21,7 +21,7 @@ def generate_launch_description():
                 )
         )
     command_time = TimerAction(
-        period=3.0,
+        period=0.5,
         actions=[command_launch]
     )
  
