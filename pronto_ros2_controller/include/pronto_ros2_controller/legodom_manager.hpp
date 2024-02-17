@@ -17,6 +17,9 @@
 #include "pronto_core/rotations.hpp"
 #include "pronto_quadruped/DynamicStanceEstimator.hpp"
 #include "geometry_msgs/msg/vector3.hpp"
+#include "geometry_msgs/msg/vector3_stamped.hpp"
+#include "pronto_msgs/msg/quadruped_stance.hpp"
+#include "pronto_msgs/msg/quadruped_force_torque_sensors.hpp"
 #include "sensor_msgs/msg/joint_state.hpp"
 #include "rclcpp/qos.hpp"
 #include <tuple>
@@ -47,6 +50,8 @@ namespace pronto_controller
     using Jointind = pronto::quadruped::JointIdentifiers;
     using Vec3_msg = geometry_msgs::msg::Vector3;
     using JntStt = sensor_msgs::msg::JointState;
+    using ForceEst = pronto_msgs::msg::QuadrupedForceTorqueSensors;
+    using StanceEst = pronto_msgs::msg::QuadrupedStance;
    
     
     class LegOdom_Manager
@@ -70,6 +75,40 @@ namespace pronto_controller
             //get the actual estimated state
             void getPreviousState(const pronto::StateEstimator *est);
 
+            // publish the estimated force from vector3map
+            void pub_est_force()
+            {
+                ForceEst f_est = ForceEst();
+                f_est.header.set__stamp(controller_->get_clock()->now());
+                f_est.lf.force.set__x(grf_[LegID::LF][0]);
+                f_est.lf.force.set__y(grf_[LegID::LF][1]);
+                f_est.lf.force.set__z(grf_[LegID::LF][2]);
+
+                f_est.lh.force.set__x(grf_[LegID::LH][0]);
+                f_est.lh.force.set__y(grf_[LegID::LH][1]);
+                f_est.lh.force.set__z(grf_[LegID::LH][2]);
+
+                f_est.rf.force.set__x(grf_[LegID::RF][0]);
+                f_est.rf.force.set__y(grf_[LegID::RF][1]);
+                f_est.rf.force.set__z(grf_[LegID::RF][2]);
+
+                f_est.rh.force.set__x(grf_[LegID::RH][0]);
+                f_est.rh.force.set__y(grf_[LegID::RH][1]);
+                f_est.rh.force.set__z(grf_[LegID::RH][2]);
+
+                est_for_pub_->publish(f_est);
+            }
+            void pub_est_stance()
+            {
+                
+                StanceEst s_est = StanceEst();
+                s_est.header.set__stamp(controller_->get_clock()->now());
+                s_est.set__lf(stance_prob_[LegID::LF]);
+                s_est.set__lh(stance_prob_[LegID::LH]);
+                s_est.set__rf(stance_prob_[LegID::RF]);
+                s_est.set__rh(stance_prob_[LegID::RH]);
+                est_stc_pub_->publish(s_est);
+            }
             //set the joint states 
             void setJointStates();  
             void get_q_size()
@@ -141,6 +180,8 @@ namespace pronto_controller
             rclcpp::Publisher<Vec3_msg>::SharedPtr fr_jac_pub_;
             rclcpp::Publisher<Vec3_msg>::SharedPtr hl_jac_pub_;
             rclcpp::Publisher<Vec3_msg>::SharedPtr hr_jac_pub_;
+            rclcpp::Publisher<ForceEst>::SharedPtr est_for_pub_;
+            rclcpp::Publisher<StanceEst>::SharedPtr est_stc_pub_;
             rclcpp::Publisher<JntStt>::SharedPtr fading_filter_vel_pub_;
             rclcpp::Publisher<JntStt>::SharedPtr stance_pub_;
             std::vector<double> est_vel_;

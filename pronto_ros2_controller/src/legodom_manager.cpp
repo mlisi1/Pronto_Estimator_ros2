@@ -101,6 +101,8 @@ namespace pronto_controller
         fr_jac_pub_ = controller_->create_publisher<Vec3_msg>("~/fr_jac_cor",rclcpp::QoS(10));
         hl_jac_pub_ = controller_->create_publisher<Vec3_msg>("~/hl_jac_cor",rclcpp::QoS(10));
         hr_jac_pub_ = controller_->create_publisher<Vec3_msg>("~/hr_jac_cor",rclcpp::QoS(10));
+        est_for_pub_ = controller_->create_publisher<ForceEst>("~/force_estimation",rclcpp::QoS(10));
+        est_stc_pub_ = controller_->create_publisher<StanceEst>("~/stance_estimation",rclcpp::QoS(10));
 
         fading_filter_vel_pub_ = controller_->create_publisher<JntStt>("~/Fading_Filter_Est",rclcpp::QoS(10));
         stance_pub_ = controller_->create_publisher<JntStt>("~/Stance",rclcpp::QoS(10));
@@ -262,10 +264,12 @@ namespace pronto_controller
         Vec3_msg deb_cor_msg;
         // TODO add the marker publisher for RVIZ see davide's displayer
         stance_est_->getGRF(grf_);
+
+
       
         stance_est_->getStance(stance_,stance_prob_);
-       std::cout<<grf_<<std::endl;
-       std::cout<<stance_prob_<<std::endl;
+    //    std::cout<<grf_<<std::endl;
+    //    std::cout<<stance_prob_<<std::endl;
      
         leg_odom_->setGrf(grf_);
         
@@ -282,6 +286,8 @@ namespace pronto_controller
         Eigen::Vector3d foot_vel;
         Vec3_msg aaa;
 
+        pub_est_force();
+        pub_est_stance();
         leg_odom_->get_foot_corr(0,foot_vel);
         aaa.x = foot_vel(0);
         aaa.y = foot_vel(1);

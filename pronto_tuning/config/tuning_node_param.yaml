@@ -5,6 +5,8 @@ tuning_node:
     odom_twist_cor: "/pronto_estimator/Odom_Correction"
     folder_path: "/home/jacopo/Desktop/Pronto_Tuning/Pronto_Matlab_analysis/Anymal_c/Exp_4/"
     exp_name: "straight_mot_mv_015"
+    est_force: "/pronto_estimator/force_estimation"
+    est_stance: "/pronto_estimator/stance_estimation"
     use_sim_time: true
 
 command_node:

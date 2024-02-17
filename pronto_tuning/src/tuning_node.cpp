@@ -22,6 +22,8 @@
 #include "geometry_msgs/msg/pose_with_covariance_stamped.hpp"
 #include "geometry_msgs/msg/vector3.hpp"
 #include "std_srvs/srv/empty.hpp"
+#include "pronto_msgs/msg/quadruped_stance.hpp"
+#include "pronto_msgs/msg/quadruped_force_torque_sensors.hpp"
 #define EXP_NAME "Estimator_Exp"
 namespace tuning_node
 {
@@ -34,6 +36,8 @@ namespace tuning_node
     using TwistwCov = geometry_msgs::msg::TwistWithCovarianceStamped;
     using StopSrv = std_srvs::srv::Empty;
     using Vec3 = geometry_msgs::msg::Vector3;
+    using ForceEst = pronto_msgs::msg::QuadrupedForceTorqueSensors;
+    using StanceEst = pronto_msgs::msg::QuadrupedStance;
 
     class Tuning_Node : public rclcpp::Node
     {
@@ -47,8 +51,11 @@ namespace tuning_node
                 out_qos.reliability(rclcpp::ReliabilityPolicy::BestEffort);
                 this->declare_parameter("est_twist_topic", "");
                 this->declare_parameter("est_pose_topic", "");
+                this->declare_parameter("est_force","");
+                this->declare_parameter("est_stance","");
                 this->declare_parameter("odom_twist_cor", "");
                 this->declare_parameter("folder_path", "");
+
                 this->declare_parameter("exp_name","Pronto_Tuning");
                 pub_ = this->create_publisher<Twist>("/tuning_node/ground_truth",rclcpp::QoS(10));
                 sub_ = this->create_subscription<LinkStates>("gazebo/link_states",rclcpp::QoS(10),
@@ -60,7 +67,8 @@ namespace tuning_node
                     odom_twist_cor_t_name_ = this->get_parameter("odom_twist_cor").as_string();
                     bag_folder_path_ = this->get_parameter("folder_path").as_string();
                     exp_name =get_parameter("exp_name").as_string();
-                    
+                    est_force_t_ = get_parameter("est_force").as_string();
+                    est_stance_t_ = get_parameter("est_stance").as_string();
                 }
                 catch(const std::exception& e)
                 {
@@ -111,6 +119,20 @@ namespace tuning_node
                 );
 
                 writer_->create_topic(
+                    {est_force_t_,
+                    "pronto_msgs/msg/QuadrupedForceTorqueSensors",
+                    rmw_get_serialization_format(),
+                    ""}
+                );
+
+                writer_->create_topic(
+                    {est_stance_t_,
+                    "pronto_msgs/msg/QuadrupedStance",
+                    rmw_get_serialization_format(),
+                    ""}
+                );
+
+                writer_->create_topic(
                     {"/tuning_node/ground_truth_twist",
                     "geometry_msgs/msg/TwistStamped",
                     rmw_get_serialization_format(),
@@ -124,6 +146,7 @@ namespace tuning_node
                     ""}
                 );
                 
+
                 est_twist_sub_ = this->create_subscription<TwistwCov>(twist_est_t_name_,out_qos,
                 std::bind(&Tuning_Node::est_twist_sub,this,_1));
 
@@ -132,6 +155,13 @@ namespace tuning_node
 
                 odom_sub_ = this->create_subscription<Vec3>(odom_twist_cor_t_name_,rclcpp::QoS(10),
                 std::bind(&Tuning_Node::odom_cor_sub,this,_1));
+
+                est_stance_sub_ = create_subscription<StanceEst>(est_stance_t_,rclcpp::QoS(10),
+                std::bind(&Tuning_Node::stance_sub,this,_1));
+
+                est_force_sub_ = create_subscription<ForceEst>(est_force_t_,rclcpp::QoS(10),
+                std::bind(&Tuning_Node::force_sub,this,_1));
+
 
                 stop_srv_ = create_service<StopSrv>("stop_record",std::bind(&Tuning_Node::stop_record,this,_1,_2));
 
@@ -176,6 +206,30 @@ namespace tuning_node
                 
                 
             }
+
+            void force_sub(std::shared_ptr<rclcpp::SerializedMessage> msg)
+            {
+                if(!stop)
+                {
+                    rclcpp::Time time_stamp = this->now();
+                    const std::string name = est_force_t_;
+                    const std::string type = "pronto_msgs/msg/QuadrupedForceTorqueSensors";
+                    writer_-> write(msg,name,type,time_stamp);
+                }
+            }
+
+            void stance_sub(std::shared_ptr<rclcpp::SerializedMessage> msg)
+            {
+                if(!stop)
+                {
+                    rclcpp::Time time_stamp = this->now();
+                    const std::string name = est_stance_t_;
+                    const std::string type = "pronto_msgs/msg/QuadrupedStance";
+                    writer_-> write(msg,name,type,time_stamp);
+                }
+            }
+
+
             void gz_sub(const LinkStates& msg)
             {
                 rclcpp::Time time_stamp = this->now();
@@ -202,7 +256,7 @@ namespace tuning_node
                                 msg.pose[i].orientation.z);
                             base_pose_msg.pose.set__position(msg.pose[i].position);
                             base_pose_msg.pose.set__orientation(msg.pose[i].orientation);
-                            vel_vect = w2b_or.toRotationMatrix().inverse()*vel_vect;
+                            // vel_vect = w2b_or.toRotationMatrix().inverse()*vel_vect;
                             
                             base_twist_msg.twist.linear.set__x(vel_vect(0));
                             base_twist_msg.twist.linear.set__y(vel_vect(1));
@@ -214,7 +268,7 @@ namespace tuning_node
                                 msg.twist[i].angular.y,
                                 msg.twist[i].angular.z);
 
-                            vel_vect = w2b_or.toRotationMatrix().inverse()*vel_vect;
+                            // vel_vect = w2b_or.toRotationMatrix().inverse()*vel_vect;
                             
                             base_twist_msg.twist.angular.set__x(vel_vect(0));
                             base_twist_msg.twist.angular.set__y(vel_vect(1));
@@ -243,10 +297,12 @@ namespace tuning_node
             rclcpp::Subscription<Vec3>::SharedPtr odom_sub_;
             rclcpp::Subscription<TwistwCov>::SharedPtr est_twist_sub_;
             rclcpp::Subscription<PosewCov>::SharedPtr est_pose_sub_;
+            rclcpp::Subscription<ForceEst>::SharedPtr est_force_sub_;
+            rclcpp::Subscription<StanceEst>::SharedPtr est_stance_sub_;
 
             std::unique_ptr<rosbag2_cpp::Writer> writer_;
             std::string twist_est_t_name_;
-            std::string pose_est_t_name_;
+            std::string pose_est_t_name_, est_force_t_,est_stance_t_;
             std::string odom_twist_cor_t_name_;
             std::string bag_folder_path_;
             rclcpp::Service<StopSrv>::SharedPtr stop_srv_;

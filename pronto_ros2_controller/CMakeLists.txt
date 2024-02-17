@@ -26,7 +26,7 @@ find_package(sensor_msgs REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(urdf REQUIRED)
 find_package(pronto_solo12 REQUIRED)
-
+find_package(pronto_msgs REQUIRED)
 
 add_library(
   ${PROJECT_NAME}
