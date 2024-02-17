@@ -61,18 +61,18 @@ The straight_motion.yaml file define a staight motion composed by 5 set point pr
       omega: 0.0
       time: 55.0
 
-To launch the code are needed 2 terminals, into the first one should be start the simulation using:
+To launch the code are needed 2 terminals, into the first one should be started the simulation using:
 
 
     
     ros2 launch pronto_tuning experiments_pronto.launch.py
 
-despite into the second should be start the record and command node
+despite the second should be started the record and command node
 
 
     ros2 launch pronto_tuning cmd_rec.launch.py
     
-
+The experiments can be changed by adding the new one into the config folder into the pronto_tuning package and changing the configuration file name into the filter_tuning.launch.py launch 
 
 <!-- ### Class and methods
 <ol>
